@@ -372,59 +372,17 @@ body {
 .submenu0402act { background-image: url(../img/submenu04/contact_02.gif); }
 .submenu0403act { background-image: url(../img/submenu04/contact_03.gif); }
 #conts04 {
-	display: none;
-}
-#info_map {
-	display: none;
-}
-.contact-wrapper {
-	position: relative;
-	width: 950px;
-	height: 320px;
-	display: flex;
-}
-.contact-left {
-	position: relative;
-	width: 620px;
-	height: 320px;
-	background: url(../img/fotos/foto01.jpg) no-repeat center center;
-	background-size: cover;
-}
-#contactFormArea {
 	position: absolute;
-	top: 30px;
-	left: 30px;
-	background-color: rgba(70, 90, 110, 0.92);
-	padding: 25px;
-	border-radius: 4px;
-	box-shadow: 0 0 12px rgba(0,0,0,0.4);
-	z-index: 5;
-	display: block;
-	width: 400px;
+	z-index: 50;
+	height: 640px;
+	width: 360px;
+	top: 0px;
+	right: 50px;
+	overflow: hidden;
 }
-#contactFormArea table {
-	width: 100%;
-}
-#closeContactForm {
-	display: none;
-}
-.contact-right {
-	width: 330px;
-	height: 320px;
-	background: #3b4f63;
-	color: #e6e6e6;
-	padding: 24px;
-	box-sizing: border-box;
-	font-family: Arial, sans-serif;
-	font-size: 12px;
-	line-height: 16px;
-}
-.contact-right .title {
-	font-weight: bold;
-	margin-bottom: 12px;
-}
-.contact-right .spaced {
-	margin-top: 12px;
+#img04 {
+	position: absolute;
+	top: 60px;
 }
 #menuLang1 {
 	position: absolute;

@@ -327,15 +327,15 @@ function text04(op) {
 
 cnt04pos=1;
 function cont04() {
-	var formArea = document.getElementById('contactFormArea');
 	if (cnt04pos==1) { 
-		formArea.style.display = 'block';
+		var cnt04 = new Tween(document.getElementById('conts04').style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
 		cnt04pos = 2;
 	}
 	else { 
-		formArea.style.display = 'none';
+		var cnt04 = new Tween(document.getElementById('conts04').style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
 		cnt04pos = 1;
 	}
+	cnt04.start();
 }
 
 <!-- /submenus -->

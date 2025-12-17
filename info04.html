@@ -1,53 +1,77 @@
-  <div class="contact-wrapper">
-    <div class="contact-left">
-      <div id="contactFormArea">
-        <form action="" method="post" id="cForm" name="cForm" onsubmit="javascript:enviaForma();">
-          <table border="0" cellpadding="0" cellspacing="0">
-            <tbody><tr><td class="textos" align="left" valign="top">
-                Nombre:<br>
-                <input name="posName" id="posName" type="text">
-                <br>
-                E-mail:<br>
-                <input name="posEmail" id="posEmail" type="text">
-                <br>
-                Trabajo:<br>
-                <input name="posJob" id="posJob" type="text">
-                <br>
-                Ciudad:<br>
-                <input name="posCity" id="posCity" type="text">
-                <br>
-                Pa&iacute;s:<br>
-                <input name="posCountry" id="posCountry" type="text">
-                </td><td class="textos" align="left" valign="top" width="180">            
-                Mensaje:<br>
-                <textarea name="posText" id="posText"></textarea>
-                <br><br>
-                <input class="submit" name="sendContactEmail" id="sendContactEmail" onclick="javascript:enviaForma();" value="ENVIAR" type="button">
-                </td></tr></tbody></table>
-        </form>
+  <div id="conts04">
+  <div id="contactFormArea"><form action="" method="post" id="cForm" name="cForm" onsubmit="javascript:enviaForma();">
+  <table border="0" cellpadding="0" cellspacing="0" width="360">
+    <tbody><tr><td class="textos" align="left" valign="top">
+            Nombre:<br>
 
-        <p id="loadBar" style="display: none;">
+            <input name="posName" id="posName" type="text">
+            <br>
+            E-mail:<br>
+
+            <input name="posEmail" id="posEmail" type="text">
+            <br>
+            Trabajo:<br>
+            <input name="posJob" id="posJob" type="text">
+
+            <br>
+
+            Ciudad:<br>
+            <input name="posCity" id="posCity" type="text">
+
+            <br>
+            Pa&iacute;s:<br>
+            <input name="posCountry" id="posCountry" type="text">
+            </td><td class="textos" align="left" valign="top" width="170">            
+            Mensaje:<br>
+
+            <textarea name="posText" id="posText"></textarea>
+
+            <br><br>
+			<input name="sendContactEmail" id="sendContactEmail" value="VOLVER" style="float:left" type="reset" onclick="javascript:cont04();">
+            <input class="submit" name="sendContactEmail" id="sendContactEmail" onclick="javascript:enviaForma();" value="ENVIAR" type="button">
+            </td></tr></tbody></table>
+      </form>
+  
+
+         <p id="loadBar" style="display: none;">
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
           <strong style="color: rgb(255, 255, 255);">Enviando, espere un momento.</strong><br>
-          <img src="form/loading.gif" alt="Loading..." title="Sending Email" style="position: static;">
-        </p>
-        
-        <p id="emailSuccess" style="display: none;">
-          <strong>Su mensaje ha sido enviado. Gracias!</strong><br><br>
-          <input class="" name="cerrar" id="cerrar" value="CERRAR" onclick="javascript: document.getElementById('emailSuccess').style.display='none';" type="button">
-        </p>
-        
-        <div id="destNone"></div>
-      </div>
-    </div>
 
-    <div class="contact-right">
-      <div class="title">PLAZA DELPHI, OFICINA 304</div>
-      BLVD. ANTONIO L. RODRIGUEZ 3058<br>
-      COL. SANTA MARIA MONTERREY, N. L.<br>
-      64650, MEXICO
-      <div class="spaced">TEL. + 52 (81) 8989 - 8300<br>
-      FAX. + 52 (81) 8378 - 6345</div>
-      <div class="spaced">mgonzalez@gm.com</div>
-      <div class="spaced">✉ CONTACTANOS</div>
+<img src="form/loading.gif" alt="Loading..." title="Sending Email" style="position: static;"> </p>
+        <p id="emailSuccess" style="display: none;">
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+
+        <strong>
+Su mensaje ha sido enviado. Gracias!</strong><br><br>
+
+              <input class="" name="cerrar" id="cerrar" value="CERRAR" onclick="javascript: document.getElementById('emailSuccess').style.display='none';" type="button">
+
+      </p>
+<div id="destNone">
     </div>
+    
+</div>
+
+  <img src="img/submenu04/dirs.gif" name="img04" width="980" height="200" border="0" usemap="#img04Map" id="img04">
+<map name="img04Map">
+<area shape="rect" coords="38,157,218,192" href="javascript: cont04();">
+<area shape="rect" coords="400,157,540,192" href="javascript: cont04();">
+<area shape="rect" coords="760,157,900,192" href="javascript: cont04();">
+</map>
   </div>
+  <a href="javascript: text04(0)" id="submenu0401" class="submenu0401act"><img src="img/shim.gif" border="0" height="50" width="50"></a>
+  <a href="javascript: text04(1)" id="submenu0402"><img src="img/shim.gif" border="0" height="50" width="50"></a>
+  <a href="javascript: text04(2)" id="submenu0403"><img src="img/shim.gif" border="0" height="50" width="50"></a>
+  <img src="img/info4.gif" name="info_img" id="info_img">
