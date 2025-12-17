@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G&M Consulting | Contacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gm: {
+              bg: '#222222',
+              panel: '#3b4f63',
+              accent: '#6ba6d6',
+              text: '#e6e6e6',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Arial'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-gm-bg text-gm-text font-sans">
+  <div class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+    <!-- Header -->
+    <header class="flex flex-col gap-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="index_tailwind.html">
+            <img src="img/logo1.gif" alt="G&M Consulting" class="h-16 w-auto" />
+          </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-6 text-sm uppercase tracking-wide">
+          <a class="hover:text-white" href="nosotros_tailwind.html">Nosotros</a>
+          <a class="hover:text-white" href="nuestro_equipo_tailwind.html">Nuestro Equipo</a>
+          <a class="hover:text-white" href="index_tailwind.html#practice">Practice</a>
+          <span class="text-gm-accent font-semibold">Contact</span>
+          <span class="text-gm-accent">|</span>
+          <a class="hover:text-white" href="#">Español</a>
+          <a class="hover:text-white" href="#">English</a>
+        </nav>
+      </div>
+      <div class="border-t border-gm-accent"></div>
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold">Contáctanos</h1>
+        <p class="text-sm text-gm-text/80 mt-2">Información dedicada solo a contacto. No comparte contenido con la sección de práctica.</p>
+      </div>
+    </header>
+
+    <!-- Contact content -->
+    <section class="bg-gm-panel p-8 rounded shadow space-y-6">
+      <div class="grid lg:grid-cols-2 gap-6 items-start">
+        <!-- Mapa con punto animado -->
+        <div class="relative bg-gm-bg rounded overflow-hidden border border-gm-bg/40 min-h-[300px]">
+          <img src="img/info4.gif" alt="Mapa oficinas G&M Consulting" class="w-full h-full object-cover" />
+          <!-- Punto parpadeante Monterrey -->
+          <span class="absolute w-3 h-3 bg-yellow-300 rounded-full left-[55%] top-[55%]"></span>
+          <span class="absolute w-6 h-6 rounded-full border-2 border-yellow-300 left-[54.5%] top-[54.5%] animate-ping"></span>
+        </div>
+
+        <!-- Datos de oficina y CTA -->
+        <div class="space-y-4 text-sm">
+          <div class="space-y-1">
+            <p class="text-gm-text/90">Plaza Delphi, Oficina 304</p>
+            <p class="text-gm-text/90">Blvd. Antonio L. Rodríguez 3058</p>
+            <p class="text-gm-text/90">Col. Santa Maria Monterrey, N. L. 64650, México</p>
+          </div>
+          <div class="space-y-1">
+            <p class="font-semibold text-gm-text">Tel. +52 (81) 8989 - 8300</p>
+            <p class="font-semibold text-gm-text">Fax. +52 (81) 8378 - 6345</p>
+          </div>
+          <button id="contactToggle" class="bg-gm-accent text-black font-semibold px-4 py-2 rounded hover:bg-white transition text-sm">
+            Contáctanos
+          </button>
+
+          <!-- Formulario oculto -->
+          <form id="contactForm" class="space-y-3 text-sm hidden bg-gm-bg/60 border border-gm-bg/40 rounded p-4">
+            <div class="grid md:grid-cols-2 gap-3">
+              <label class="space-y-1 block">
+                <span>Nombre</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+              <label class="space-y-1 block">
+                <span>E-mail</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="email" />
+              </label>
+              <label class="space-y-1 block">
+                <span>Trabajo</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+              <label class="space-y-1 block">
+                <span>Ciudad</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+              <label class="space-y-1 block">
+                <span>País</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+            </div>
+            <label class="space-y-1 block">
+              <span>Mensaje</span>
+              <textarea class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text h-28"></textarea>
+            </label>
+            <div class="flex items-center gap-3">
+              <button type="button" id="closeForm" class="bg-gm-bg text-gm-text border border-gm-accent/50 px-4 py-2 rounded hover:bg-gm-accent/20 transition">
+                Ocultar
+              </button>
+              <button type="button" class="bg-gm-accent text-black font-semibold px-4 py-2 rounded hover:bg-white transition">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const contactToggle = document.getElementById('contactToggle');
+      const contactForm = document.getElementById('contactForm');
+      const closeForm = document.getElementById('closeForm');
+      if (contactToggle && contactForm) {
+        contactToggle.addEventListener('click', () => {
+          const isHidden = contactForm.classList.contains('hidden');
+          contactForm.classList.toggle('hidden', !isHidden);
+          contactToggle.textContent = isHidden ? 'Ocultar formulario' : 'Contáctanos';
+        });
+      }
+      if (closeForm && contactForm && contactToggle) {
+        closeForm.addEventListener('click', () => {
+          contactForm.classList.add('hidden');
+          contactToggle.textContent = 'Contáctanos';
+        });
+      }
+    </script>
+
+    <!-- Footer -->
+    <footer class="text-xs text-gm-text/70 text-center border-t border-gm-panel pt-6">
+      © 2009 G&M Consulting, S.C. | Powered by Suite407™
+    </footer>
+  </div>
+</body>
+</html>
+
