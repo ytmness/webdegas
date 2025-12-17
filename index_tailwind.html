@@ -34,97 +34,97 @@
           <img src="img/logo1.gif" alt="G&M Consulting" class="h-16 w-auto" />
         </div>
         <nav class="hidden md:flex items-center gap-6 text-sm uppercase tracking-wide">
-          <a class="hover:text-white" href="nosotros_tailwind.html">Nosotros</a>
-          <a class="hover:text-white" href="nuestro_equipo_tailwind.html">Nuestro Equipo</a>
-          <a class="hover:text-white" href="#practice">Practice</a>
-          <a class="hover:text-white" href="contact_tailwind.html">Contact</a>
+          <a class="hover:text-white" href="nosotros_tailwind.html" data-link-base="nosotros_tailwind.html" id="nav-nos">Nosotros</a>
+          <a class="hover:text-white" href="nuestro_equipo_tailwind.html" data-link-base="nuestro_equipo_tailwind.html" id="nav-team">Nuestro Equipo</a>
+          <a class="hover:text-white" href="index_tailwind.html" data-link-base="index_tailwind.html" id="nav-practice">Practice</a>
+          <a class="hover:text-white" href="contact_tailwind.html" data-link-base="contact_tailwind.html" id="nav-contact">Contact</a>
           <span class="text-gm-accent">|</span>
-          <a class="hover:text-white" href="#">Español</a>
-          <a class="hover:text-white" href="#">English</a>
+          <button class="hover:text-white" type="button" id="lang-es">ESPAÑOL</button>
+          <button class="hover:text-white" type="button" id="lang-en">ENGLISH</button>
         </nav>
       </div>
       <div class="border-t border-gm-accent"></div>
       <div>
-        <h1 class="text-3xl md:text-4xl font-bold">YOUR NEXT LAW FIRM</h1>
+        <h1 class="text-3xl md:text-4xl font-bold" id="hero-title">YOUR NEXT LAW FIRM</h1>
       </div>
     </header>
 
     <!-- Practice -->
     <section class="bg-gm-panel p-8 rounded shadow space-y-4" id="practice">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <h2 class="text-2xl font-semibold">Práctica</h2>
-        <p class="text-sm text-gm-text/80">Selecciona un área para ver el detalle.</p>
+        <h2 class="text-2xl font-semibold" id="practice-title">Práctica</h2>
+        <p class="text-sm text-gm-text/80" id="practice-note">Selecciona un área para ver el detalle.</p>
       </div>
 
       <div class="grid md:grid-cols-[260px,1fr] gap-4">
         <div class="flex md:flex-col flex-wrap gap-2 text-sm">
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/40 hover:border-gm-accent text-left w-full" data-target="corp" aria-selected="true">Corporativo</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="comercio">Comercio Interior y Exterior</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="inmobiliario">Inmobiliario</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="propiedad">Propiedad Intelectual / Franquicias</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="migratorio">Migratorio</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="ambiental">Ambiental</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="fiscal">Fiscal y Litigio Fiscal</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="correduria">Correduría Pública</button>
-          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="traduccion">Traducción</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/40 hover:border-gm-accent text-left w-full" data-target="corp" aria-selected="true" id="tab-corp">Corporativo</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="comercio" id="tab-comercio">Comercio Interior y Exterior</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="inmobiliario" id="tab-inmobiliario">Inmobiliario</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="propiedad" id="tab-propiedad">Propiedad Intelectual / Franquicias</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="migratorio" id="tab-migratorio">Migratorio</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="ambiental" id="tab-ambiental">Ambiental</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="fiscal" id="tab-fiscal">Fiscal y Litigio Fiscal</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="correduria" id="tab-correduria">Correduría Pública</button>
+          <button class="practice-tab px-3 py-2 rounded border border-gm-accent/20 hover:border-gm-accent text-left w-full" data-target="traduccion" id="tab-traduccion">Traducción</button>
         </div>
 
         <div class="bg-gm-bg/60 border border-gm-bg/40 rounded p-5 text-sm space-y-3">
           <article class="practice-panel space-y-3" id="panel-corp">
-            <h3 class="text-lg font-semibold">Corporativo</h3>
-            <p>El área corporativa de G&M Consulting, S.C., está ideada para orientar y asistir a su clientela en cuestiones relativas a la constitución, fusión, escisión, disolución y liquidación de sociedades de todo género, formación y estructuración de asociaciones (joint ventures), convenios entre accionistas, así como para apoyarlos en sus reestructuras financieras, operaciones de distribución, suministro, garantías civiles y mercantiles y una gran variedad de operaciones de naturaleza mercantil.</p>
+            <h3 class="text-lg font-semibold" id="corp-title">Corporativo</h3>
+            <p id="corp-p1">El área corporativa de G&M Consulting, S.C., está ideada para orientar y asistir a su clientela en cuestiones relativas a la constitución, fusión, escisión, disolución y liquidación de sociedades de todo género, formación y estructuración de asociaciones (joint ventures), convenios entre accionistas, así como para apoyarlos en sus reestructuras financieras, operaciones de distribución, suministro, garantías civiles y mercantiles y una gran variedad de operaciones de naturaleza mercantil.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-comercio">
-            <h3 class="text-lg font-semibold">Comercio Interior y Exterior</h3>
-            <p>En el área de comercio exterior y transacciones comerciales, el Despacho ha apoyado tanto a importadores como a exportadores de Norte América y de México a cumplir con el nuevo marco regulatorio establecido conforme al Tratado de Libre Comercio de América del Norte. Los socios cuentan con amplia experiencia en programas destinados a fomentar y apoyar las exportaciones así como para obtener regímenes aduaneros preferenciales tales como programas de IMMEX (industria maquiladora manufacturera de exportación), altex, ecex y prosec.</p>
-            <p>En el área de práctica mercantil, los abogados del Despacho han intervenido en operaciones tan diversas como créditos sindicados, fusiones y escisiones, operaciones de comercio transfronterizo y operaciones con garantías reales y personales.</p>
+            <h3 class="text-lg font-semibold" id="comercio-title">Comercio Interior y Exterior</h3>
+            <p id="comercio-p1">En el área de comercio exterior y transacciones comerciales, el Despacho ha apoyado tanto a importadores como a exportadores de Norte América y de México a cumplir con el nuevo marco regulatorio establecido conforme al Tratado de Libre Comercio de América del Norte. Los socios cuentan con amplia experiencia en programas destinados a fomentar y apoyar las exportaciones así como para obtener regímenes aduaneros preferenciales tales como programas de IMMEX (industria maquiladora manufacturera de exportación), altex, ecex y prosec.</p>
+            <p id="comercio-p2">En el área de práctica mercantil, los abogados del Despacho han intervenido en operaciones tan diversas como créditos sindicados, fusiones y escisiones, operaciones de comercio transfronterizo y operaciones con garantías reales y personales.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-inmobiliario">
-            <h3 class="text-lg font-semibold">Inmobiliario</h3>
-            <p>Por lo que respecta al área de derecho inmobiliario, el Despacho ha intervenido en operaciones de compra-venta de inmuebles industriales, comerciales y residenciales, planeación y estructura de fideicomisos inmobiliarios, desarrollos inmobiliarios de tipo industrial así como residencial turístico, régimen condominial y tiempos compartidos (tanto en el interior de la República como en la llamada “zona restringida”), parques industriales, hipotecas civiles (unilaterales y bilaterales), zonificación y arrendamientos, entre otros, tanto en predios de dominio pleno como agrícolas (ejidales y comunales).</p>
-            <p>En este aspecto, es importante también destacar la intervención de los abogados de la Firma en materias referentes a la obtención, transmisión y afectación en garantía de títulos de concesión para la explotación de aguas nacionales provenientes de pozos y zona federal colindante a aguas nacionales, así como zona federal marítima terrestre y títulos de exploración y explotación minera.</p>
-            <p>Igualmente, los socios del Despacho han asistido a clientes en proyectos de distribución de gas natural en la región noroeste del País, en donde su intervención ha sido determinante para asegurar y proteger el derecho de paso de los gasoductos empleados en la distribución y transporte del combustible natural.</p>
+            <h3 class="text-lg font-semibold" id="inmob-title">Inmobiliario</h3>
+            <p id="inmob-p1">Por lo que respecta al área de derecho inmobiliario, el Despacho ha intervenido en operaciones de compra-venta de inmuebles industriales, comerciales y residenciales, planeación y estructura de fideicomisos inmobiliarios, desarrollos inmobiliarios de tipo industrial así como residencial turístico, régimen condominial y tiempos compartidos (tanto en el interior de la República como en la llamada “zona restringida”), parques industriales, hipotecas civiles (unilaterales y bilaterales), zonificación y arrendamientos, entre otros, tanto en predios de dominio pleno como agrícolas (ejidales y comunales).</p>
+            <p id="inmob-p2">En este aspecto, es importante también destacar la intervención de los abogados de la Firma en materias referentes a la obtención, transmisión y afectación en garantía de títulos de concesión para la explotación de aguas nacionales provenientes de pozos y zona federal colindante a aguas nacionales, así como zona federal marítima terrestre y títulos de exploración y explotación minera.</p>
+            <p id="inmob-p3">Igualmente, los socios del Despacho han asistido a clientes en proyectos de distribución de gas natural en la región noroeste del País, en donde su intervención ha sido determinante para asegurar y proteger el derecho de paso de los gasoductos empleados en la distribución y transporte del combustible natural.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-propiedad">
-            <h3 class="text-lg font-semibold">Propiedad Intelectual / Franquicias</h3>
-            <p>En materia de propiedad intelectual, el Despacho ha apoyado a sus clientes, tanto nacionales como extranjeros, en la protección de sus registros marcarios, nombres comerciales, diseños de utilidad y otros derechos de propiedad industrial en México.</p>
-            <p>En lo que a franquicias se refiere, los abogados de la Firma han representado tanto a franquiciantes como a franquiciatarios en una gran variedad de negociaciones que han culminado exitosamente en el establecimiento de franquicias individuales así como de franquicias maestras.</p>
+            <h3 class="text-lg font-semibold" id="prop-title">Propiedad Intelectual / Franquicias</h3>
+            <p id="prop-p1">En materia de propiedad intelectual, el Despacho ha apoyado a sus clientes, tanto nacionales como extranjeros, en la protección de sus registros marcarios, nombres comerciales, diseños de utilidad y otros derechos de propiedad industrial en México.</p>
+            <p id="prop-p2">En lo que a franquicias se refiere, los abogados de la Firma han representado tanto a franquiciantes como a franquiciatarios en una gran variedad de negociaciones que han culminado exitosamente en el establecimiento de franquicias individuales así como de franquicias maestras.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-migratorio">
-            <h3 class="text-lg font-semibold">Migratorio</h3>
-            <p>El área migratoria del Despacho está diseñada para auxiliar a hombres de negocios provenientes de Asia, Europa y de Norte América, así como a sus familias, para adquirir legal estancia en el país que les permita desarrollar tanto actividades lucrativas como no lucrativas en México.</p>
+            <h3 class="text-lg font-semibold" id="migra-title">Migratorio</h3>
+            <p id="migra-p1">El área migratoria del Despacho está diseñada para auxiliar a hombres de negocios provenientes de Asia, Europa y de Norte América, así como a sus familias, para adquirir legal estancia en el país que les permita desarrollar tanto actividades lucrativas como no lucrativas en México.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-ambiental">
-            <h3 class="text-lg font-semibold">Ambiental</h3>
-            <p>Con la promulgación y expedición de normatividad ambiental cada vez más severa, nuestros abogados han asesorado a los clientes con respecto a la aplicación de la legislación ambiental en sus operaciones inmobiliarias, en el desarrollo de productos, en la operación de sus plantas así como en la obtención de licencias y permisos de funcionamiento requeridos por las autoridades regulatorias.</p>
-            <p>Los abogados del despacho también han asumido la defensa de su clientela involucrada en cuestiones contencioso – ambientales.</p>
+            <h3 class="text-lg font-semibold" id="amb-title">Ambiental</h3>
+            <p id="amb-p1">Con la promulgación y expedición de normatividad ambiental cada vez más severa, nuestros abogados han asesorado a los clientes con respecto a la aplicación de la legislación ambiental en sus operaciones inmobiliarias, en el desarrollo de productos, en la operación de sus plantas así como en la obtención de licencias y permisos de funcionamiento requeridos por las autoridades regulatorias.</p>
+            <p id="amb-p2">Los abogados del despacho también han asumido la defensa de su clientela involucrada en cuestiones contencioso – ambientales.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-fiscal">
-            <h3 class="text-lg font-semibold">Fiscal y Litigio Fiscal</h3>
-            <p>G&M Consulting ha desarrollado una sólida práctica fiscal que brinda soporte al resto de las áreas de práctica profesional, apoyando a su clientela en asuntos de carácter nacional como internacional. Por razones obvias, esta área de práctica se involucra estrechamente con el resto de las áreas profesionales.</p>
-            <p>Nuestros abogados están bien familiarizados con los tratados para evitar doble tributación y por lo tanto, han asesorado a los clientes en los aspectos fiscales que derivan de sus operaciones de fusiones y escisiones, asociaciones, administración de activos, operaciones inmobiliarias, transferencia de tecnología, licencias, operaciones comerciales internacionales, regalías e inversión extranjera.</p>
-            <p>Actualmente el área de litigio del Despacho se especializa en las áreas del derecho administrativo y fiscal. No obstante, la Firma está diseñada para apoyar a su clientela en otras áreas de litigio también.</p>
+            <h3 class="text-lg font-semibold" id="fiscal-title">Fiscal y Litigio Fiscal</h3>
+            <p id="fiscal-p1">G&M Consulting ha desarrollado una sólida práctica fiscal que brinda soporte al resto de las áreas de práctica profesional, apoyando a su clientela en asuntos de carácter nacional como internacional. Por razones obvias, esta área de práctica se involucra estrechamente con el resto de las áreas profesionales.</p>
+            <p id="fiscal-p2">Nuestros abogados están bien familiarizados con los tratados para evitar doble tributación y por lo tanto, han asesorado a los clientes en los aspectos fiscales que derivan de sus operaciones de fusiones y escisiones, asociaciones, administración de activos, operaciones inmobiliarias, transferencia de tecnología, licencias, operaciones comerciales internacionales, regalías e inversión extranjera.</p>
+            <p id="fiscal-p3">Actualmente el área de litigio del Despacho se especializa en las áreas del derecho administrativo y fiscal. No obstante, la Firma está diseñada para apoyar a su clientela en otras áreas de litigio también.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-correduria">
-            <h3 class="text-lg font-semibold">Correduría Pública</h3>
-            <p>El Despacho es una de las pocas firmas en el país que ofrece servicios de Correduría Pública como parte de los servicios que ofrece a su clientela, lo que le permite dar un servicio de valor agregado en asuntos referentes a la práctica propia de Notaría Pública (exclusivamente en el área mercantil), así como en valuación de toda clase de activos.</p>
-            <p>Usualmente conocidos entre el público como “notarios mercantiles”, las funciones que desempeña el Corredor Público son esencialmente cinco: a) fedatario público b) asesor legal c) perito valuador d) arbitraje e) mediación comercial.</p>
-            <p>El derecho reserva algunas de estas áreas de servicio en exclusiva al Corredor (fé pública) y permite que otras áreas de servicio sean prestadas por terceros (tal es el caso de los servicios de valuación, arbitraje y corretaje). Cuando en nuestro prudente juicio estimemos que un cliente o un asunto será mejor servido con la intervención de un notario público tradicional y no por el Corredor Público, no dudaremos en hacerle dicha observación.</p>
-            <p>Aun y cuando notarios y Corredores Públicos compiten en el mismo mercado y sirven a un sector común, estos profesionistas no están en conflicto entre sí. Por el contrario, sus áreas de servicio resultan complementarias.</p>
-            <p>Tal como los servicios de traducción pericial, los servicios de Correduría Pública se ofrecen a la clientela de G&M Consulting como un servicio de valor agregado, para dar mayor eficiencia a nuestros procesos y robustecer nuestros servicios legales.</p>
+            <h3 class="text-lg font-semibold" id="corred-title">Correduría Pública</h3>
+            <p id="corred-p1">El Despacho es una de las pocas firmas en el país que ofrece servicios de Correduría Pública como parte de los servicios que ofrece a su clientela, lo que le permite dar un servicio de valor agregado en asuntos referentes a la práctica propia de Notaría Pública (exclusivamente en el área mercantil), así como en valuación de toda clase de activos.</p>
+            <p id="corred-p2">Usualmente conocidos entre el público como “notarios mercantiles”, las funciones que desempeña el Corredor Público son esencialmente cinco: a) fedatario público b) asesor legal c) perito valuador d) arbitraje e) mediación comercial.</p>
+            <p id="corred-p3">El derecho reserva algunas de estas áreas de servicio en exclusiva al Corredor (fé pública) y permite que otras áreas de servicio sean prestadas por terceros (tal es el caso de los servicios de valuación, arbitraje y corretaje). Cuando en nuestro prudente juicio estimemos que un cliente o un asunto será mejor servido con la intervención de un notario público tradicional y no por el Corredor Público, no dudaremos en hacerle dicha observación.</p>
+            <p id="corred-p4">Aun y cuando notarios y Corredores Públicos compiten en el mismo mercado y sirven a un sector común, estos profesionistas no están en conflicto entre sí. Por el contrario, sus áreas de servicio resultan complementarias.</p>
+            <p id="corred-p5">Tal como los servicios de traducción pericial, los servicios de Correduría Pública se ofrecen a la clientela de G&M Consulting como un servicio de valor agregado, para dar mayor eficiencia a nuestros procesos y robustecer nuestros servicios legales.</p>
           </article>
 
           <article class="practice-panel space-y-3 hidden" id="panel-traduccion">
-            <h3 class="text-lg font-semibold">Traducción</h3>
-            <p>G&M Consulting cuenta con personal autorizado tanto por el Tribunal Superior de Justicia del Estado de Nuevo León, como por el Consejo de la Judicatura Federal, para efectuar traducciones oficiales del idioma inglés.</p>
-            <p>El área de traducción se enfoca preponderantemente, a brindar servicio de valor agregado para la clientela de G&M Consulting, con lo cual se eficientizan nuestros tiempos de entrega y reducimos costos en beneficio de nuestros clientes.</p>
+            <h3 class="text-lg font-semibold" id="trad-title">Traducción</h3>
+            <p id="trad-p1">G&M Consulting cuenta con personal autorizado tanto por el Tribunal Superior de Justicia del Estado de Nuevo León, como por el Consejo de la Judicatura Federal, para efectuar traducciones oficiales del idioma inglés.</p>
+            <p id="trad-p2">El área de traducción se enfoca preponderantemente, a brindar servicio de valor agregado para la clientela de G&M Consulting, con lo cual se eficientizan nuestros tiempos de entrega y reducimos costos en beneficio de nuestros clientes.</p>
           </article>
         </div>
       </div>
@@ -168,6 +168,146 @@
     tabButtons.forEach((btn) => {
       btn.addEventListener('click', () => activateTab(btn.dataset.target));
     });
+
+    // Traducciones EN/ES
+    const translations = {
+      es: {
+        'hero-title': 'TU PRÓXIMO DESPACHO',
+        'nav-nos': 'Nosotros',
+        'nav-team': 'Nuestro Equipo',
+        'nav-practice': 'Práctica',
+        'nav-contact': 'Contacto',
+        'practice-title': 'Práctica',
+        'practice-note': 'Selecciona un área para ver el detalle.',
+        'tab-corp': 'Corporativo',
+        'tab-comercio': 'Comercio Interior y Exterior',
+        'tab-inmobiliario': 'Inmobiliario',
+        'tab-propiedad': 'Propiedad Intelectual / Franquicias',
+        'tab-migratorio': 'Migratorio',
+        'tab-ambiental': 'Ambiental',
+        'tab-fiscal': 'Fiscal y Litigio Fiscal',
+        'tab-correduria': 'Correduría Pública',
+        'tab-traduccion': 'Traducción',
+        'corp-title': 'Corporativo',
+        'corp-p1': 'El área corporativa de G&M Consulting, S.C., está ideada para orientar y asistir a su clientela en cuestiones relativas a la constitución, fusión, escisión, disolución y liquidación de sociedades de todo género, formación y estructuración de asociaciones (joint ventures), convenios entre accionistas, así como para apoyarlos en sus reestructuras financieras, operaciones de distribución, suministro, garantías civiles y mercantiles y una gran variedad de operaciones de naturaleza mercantil.',
+        'comercio-title': 'Comercio Interior y Exterior',
+        'comercio-p1': 'En el área de comercio exterior y transacciones comerciales, el Despacho ha apoyado tanto a importadores como a exportadores de Norte América y de México a cumplir con el nuevo marco regulatorio establecido conforme al Tratado de Libre Comercio de América del Norte. Los socios cuentan con amplia experiencia en programas destinados a fomentar y apoyar las exportaciones así como para obtener regímenes aduaneros preferenciales tales como programas de IMMEX (industria maquiladora manufacturera de exportación), altex, ecex y prosec.',
+        'comercio-p2': 'En el área de práctica mercantil, los abogados del Despacho han intervenido en operaciones tan diversas como créditos sindicados, fusiones y escisiones, operaciones de comercio transfronterizo y operaciones con garantías reales y personales.',
+        'inmob-title': 'Inmobiliario',
+        'inmob-p1': 'Por lo que respecta al área de derecho inmobiliario, el Despacho ha intervenido en operaciones de compra-venta de inmuebles industriales, comerciales y residenciales, planeación y estructura de fideicomisos inmobiliarios, desarrollos inmobiliarios de tipo industrial así como residencial turístico, régimen condominial y tiempos compartidos (tanto en el interior de la República como en la llamada “zona restringida”), parques industriales, hipotecas civiles (unilaterales y bilaterales), zonificación y arrendamientos, entre otros, tanto en predios de dominio pleno como agrícolas (ejidales y comunales).',
+        'inmob-p2': 'En este aspecto, es importante también destacar la intervención de los abogados de la Firma en materias referentes a la obtención, transmisión y afectación en garantía de títulos de concesión para la explotación de aguas nacionales provenientes de pozos y zona federal colindante a aguas nacionales, así como zona federal marítima terrestre y títulos de exploración y explotación minera.',
+        'inmob-p3': 'Igualmente, los socios del Despacho han asistido a clientes en proyectos de distribución de gas natural en la región noroeste del País, en donde su intervención ha sido determinante para asegurar y proteger el derecho de paso de los gasoductos empleados en la distribución y transporte del combustible natural.',
+        'prop-title': 'Propiedad Intelectual / Franquicias',
+        'prop-p1': 'En materia de propiedad intelectual, el Despacho ha apoyado a sus clientes, tanto nacionales como extranjeros, en la protección de sus registros marcarios, nombres comerciales, diseños de utilidad y otros derechos de propiedad industrial en México.',
+        'prop-p2': 'En lo que a franquicias se refiere, los abogados de la Firma han representado tanto a franquiciantes como a franquiciatarios en una gran variedad de negociaciones que han culminado exitosamente en el establecimiento de franquicias individuales así como de franquicias maestras.',
+        'migra-title': 'Migratorio',
+        'migra-p1': 'El área migratoria del Despacho está diseñada para auxiliar a hombres de negocios provenientes de Asia, Europa y de Norte América, así como a sus familias, para adquirir legal estancia en el país que les permita desarrollar tanto actividades lucrativas como no lucrativas en México.',
+        'amb-title': 'Ambiental',
+        'amb-p1': 'Con la promulgación y expedición de normatividad ambiental cada vez más severa, nuestros abogados han asesorado a los clientes con respecto a la aplicación de la legislación ambiental en sus operaciones inmobiliarias, en el desarrollo de productos, en la operación de sus plantas así como en la obtención de licencias y permisos de funcionamiento requeridos por las autoridades regulatorias.',
+        'amb-p2': 'Los abogados del despacho también han asumido la defensa de su clientela involucrada en cuestiones contencioso – ambientales.',
+        'fiscal-title': 'Fiscal y Litigio Fiscal',
+        'fiscal-p1': 'G&M Consulting ha desarrollado una sólida práctica fiscal que brinda soporte al resto de las áreas de práctica profesional, apoyando a su clientela en asuntos de carácter nacional como internacional. Por razones obvias, esta área de práctica se involucra estrechamente con el resto de las áreas profesionales.',
+        'fiscal-p2': 'Nuestros abogados están bien familiarizados con los tratados para evitar doble tributación y por lo tanto, han asesorado a los clientes en los aspectos fiscales que derivan de sus operaciones de fusiones y escisiones, asociaciones, administración de activos, operaciones inmobiliarias, transferencia de tecnología, licencias, operaciones comerciales internacionales, regalías e inversión extranjera.',
+        'fiscal-p3': 'Actualmente el área de litigio del Despacho se especializa en las áreas del derecho administrativo y fiscal. No obstante, la Firma está diseñada para apoyar a su clientela en otras áreas de litigio también.',
+        'corred-title': 'Correduría Pública',
+        'corred-p1': 'El Despacho es una de las pocas firmas en el país que ofrece servicios de Correduría Pública como parte de los servicios que ofrece a su clientela, lo que le permite dar un servicio de valor agregado en asuntos referentes a la práctica propia de Notaría Pública (exclusivamente en el área mercantil), así como en valuación de toda clase de activos.',
+        'corred-p2': 'Usualmente conocidos entre el público como “notarios mercantiles”, las funciones que desempeña el Corredor Público son esencialmente cinco: a) fedatario público b) asesor legal c) perito valuador d) arbitraje e) mediación comercial.',
+        'corred-p3': 'El derecho reserva algunas de estas áreas de servicio en exclusiva al Corredor (fé pública) y permite que otras áreas de servicio sean prestadas por terceros (tal es el caso de los servicios de valuación, arbitraje y corretaje). Cuando en nuestro prudente juicio estimemos que un cliente o un asunto será mejor servido con la intervención de un notario público tradicional y no por el Corredor Público, no dudaremos en hacerle dicha observación.',
+        'corred-p4': 'Aun y cuando notarios y Corredores Públicos compiten en el mismo mercado y sirven a un sector común, estos profesionistas no están en conflicto entre sí. Por el contrario, sus áreas de servicio resultan complementarias.',
+        'corred-p5': 'Tal como los servicios de traducción pericial, los servicios de Correduría Pública se ofrecen a la clientela de G&M Consulting como un servicio de valor agregado, para dar mayor eficiencia a nuestros procesos y robustecer nuestros servicios legales.',
+        'trad-title': 'Traducción',
+        'trad-p1': 'G&M Consulting cuenta con personal autorizado tanto por el Tribunal Superior de Justicia del Estado de Nuevo León, como por el Consejo de la Judicatura Federal, para efectuar traducciones oficiales del idioma inglés.',
+        'trad-p2': 'El área de traducción se enfoca preponderantemente, a brindar servicio de valor agregado para la clientela de G&M Consulting, con lo cual se eficientizan nuestros tiempos de entrega y reducimos costos en beneficio de nuestros clientes.',
+      },
+      en: {
+        'hero-title': 'YOUR NEXT LAW FIRM',
+        'nav-nos': 'About Us',
+        'nav-team': 'Our Team',
+        'nav-practice': 'Practice',
+        'nav-contact': 'Contact',
+        'practice-title': 'Practice',
+        'practice-note': 'Select an area to see the details.',
+        'tab-corp': 'Corporate',
+        'tab-comercio': 'Domestic & International Trade',
+        'tab-inmobiliario': 'Real Estate',
+        'tab-propiedad': 'Intellectual Property / Franchises',
+        'tab-migratorio': 'Immigration',
+        'tab-ambiental': 'Environmental',
+        'tab-fiscal': 'Tax & Tax Litigation',
+        'tab-correduria': 'Certified Broker',
+        'tab-traduccion': 'Translation',
+        'corp-title': 'Corporate',
+        'corp-p1': 'Our corporate team advises clients on incorporation, mergers, spin-offs, dissolution and liquidation of companies, joint ventures, shareholder agreements, restructurings, distribution and supply contracts, civil and commercial guarantees, and a wide range of commercial transactions.',
+        'comercio-title': 'Domestic & International Trade',
+        'comercio-p1': 'We support importers and exporters in complying with trade regulations under NAFTA/USMCA and obtaining preferential customs regimes (IMMEX, ALTex, ECEx, PROSEC).',
+        'comercio-p2': 'We have experience in syndicated loans, mergers and spin-offs, cross-border trade operations, and transactions with real and personal guarantees.',
+        'inmob-title': 'Real Estate',
+        'inmob-p1': 'We handle industrial, commercial, and residential real estate transactions, real estate trusts, industrial and resort developments, condominiums, timeshares, industrial parks, mortgages, zoning, and leases, including private and ejido properties.',
+        'inmob-p2': 'We assist with concessions for water use, federal zones, maritime-land zones, and mining exploration and exploitation titles.',
+        'inmob-p3': 'We have supported natural gas distribution projects, securing rights of way for pipelines used in transport and distribution.',
+        'prop-title': 'Intellectual Property / Franchises',
+        'prop-p1': 'We help clients protect trademarks, trade names, utility models, and other IP rights in Mexico.',
+        'prop-p2': 'We represent franchisors and franchisees in negotiations for individual and master franchises.',
+        'migra-title': 'Immigration',
+        'migra-p1': 'We assist businesspeople and their families from Asia, Europe, and North America to obtain legal stay in Mexico for lucrative and non-lucrative activities.',
+        'amb-title': 'Environmental',
+        'amb-p1': 'We advise on environmental compliance in real estate operations, product development, plant operations, and permits/licenses.',
+        'amb-p2': 'We also represent clients in environmental litigation and regulatory matters.',
+        'fiscal-title': 'Tax & Tax Litigation',
+        'fiscal-p1': 'We provide tax support for national and international matters, closely integrated with other practice areas.',
+        'fiscal-p2': 'We advise on double-tax treaties and tax implications of mergers, spin-offs, asset management, real estate, technology transfer, licenses, international trade, royalties, and foreign investment.',
+        'fiscal-p3': 'Our litigation team focuses on administrative and tax matters, with support for other litigation areas as needed.',
+        'corred-title': 'Certified Broker',
+        'corred-p1': 'We offer Certified Public Broker services, adding value in mercantile notary matters and asset valuation.',
+        'corred-p2': 'Certified Brokers act as public attesters, legal advisors, valuation experts, arbitrators, and mediators.',
+        'corred-p3': 'Some services are exclusive to Certified Brokers (public faith), while others may be provided by third parties (valuation, arbitration, brokerage). We recommend traditional notaries when that better serves the client.',
+        'corred-p4': 'Notaries and Certified Brokers complement each other; they are not in conflict and serve overlapping markets.',
+        'corred-p5': 'Like sworn translation, our Certified Broker services add value by streamlining processes and strengthening our legal services.',
+        'trad-title': 'Translation',
+        'trad-p1': 'Our team includes court-authorized translators (State of Nuevo León and Federal Judiciary) for official English-Spanish translations.',
+        'trad-p2': 'Translation services add value for our clients, improving turnaround times and reducing costs.',
+      },
+    };
+
+    const applyLang = (lang) => {
+      const dict = translations[lang] || translations.es;
+      Object.entries(dict).forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      });
+      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+      localStorage.setItem('lang', lang);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url);
+      updateLinks(lang);
+    };
+
+    const updateLinks = (lang) => {
+      const anchors = document.querySelectorAll('a[data-link-base]');
+      anchors.forEach((a) => {
+        const base = a.getAttribute('data-link-base');
+        if (!base) return;
+        const u = new URL(base, window.location.href);
+        u.searchParams.set('lang', lang);
+        a.href = u.toString();
+      });
+    };
+
+    const setLangFromParamOrStorage = () => {
+      const url = new URL(window.location.href);
+      const paramLang = url.searchParams.get('lang');
+      const storedLang = localStorage.getItem('lang');
+      const lang = (paramLang || storedLang || 'es').toLowerCase() === 'en' ? 'en' : 'es';
+      applyLang(lang);
+    };
+
+    const navLangEs = document.getElementById('lang-es');
+    const navLangEn = document.getElementById('lang-en');
+    if (navLangEs) navLangEs.addEventListener('click', () => applyLang('es'));
+    if (navLangEn) navLangEn.addEventListener('click', () => applyLang('en'));
+
+    setLangFromParamOrStorage();
 
   </script>
 </body>

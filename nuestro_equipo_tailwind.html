@@ -11,24 +11,68 @@
       background: #1a1f27;
       border: 1px solid rgba(107, 166, 214, 0.2);
       border-radius: 0.75rem;
-      min-height: 600px;
+      min-height: 520px;
       height: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      perspective: 1400px;
+      transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.35s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .member-card h3 {
+      margin: 0;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.7s ease;
+      transform-origin: center center;
+    }
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 0.75rem;
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
-      transition: max-height 0.9s ease, opacity 0.5s ease, transform 0.5s ease, box-shadow 0.4s ease;
-      max-height: 2000px;
-      opacity: 1;
-      transform: translateY(0);
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+    }
+    .card-front {
+      background: #1a1f27;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .card-back {
+      background: #1a2531;
+      transform: rotateY(180deg);
+      overflow-y: auto;
+    }
+    .card-back p {
+      line-height: 1.6;
+      font-size: 0.95rem;
+      color: rgba(230, 230, 230, 0.92);
     }
     .member-card.collapsed {
-      max-height: 80px;
-      opacity: 0.25;
+      opacity: 0.65;
       transform: translateY(18px);
       box-shadow: none;
+    }
+    .member-card.collapsed .card-inner {
+      transform: rotateY(0deg);
+    }
+    .member-card:not(.collapsed) .card-inner {
+      transform: rotateY(180deg);
+    }
+    .member-card.show-front .card-inner {
+      transform: rotateY(0deg);
     }
     .member-card h3 {
       font-size: 1.125rem;
@@ -44,7 +88,7 @@
       grid-auto-rows: 1fr;
     }
     .carousel-slide {
-      min-height: 680px;
+      min-height: 0;
     }
     /* Carrusel */
     .carousel-track {
@@ -87,35 +131,32 @@
           </a>
         </div>
         <nav class="hidden md:flex items-center gap-6 text-sm uppercase tracking-wide">
-          <a class="hover:text-white" href="nosotros_tailwind.html">Nosotros</a>
-          <a class="hover:text-white" href="nuestro_equipo_tailwind.html">Nuestro Equipo</a>
-          <a class="hover:text-white" href="index_tailwind.html#practice">Práctica</a>
-          <a class="hover:text-white" href="index_tailwind.html#contact">Contacto</a>
+          <a class="hover:text-white" href="nosotros_tailwind.html" data-link-base="nosotros_tailwind.html" id="nav-nos">Nosotros</a>
+          <a class="hover:text-white" href="nuestro_equipo_tailwind.html" data-link-base="nuestro_equipo_tailwind.html" id="nav-team">Nuestro Equipo</a>
+          <a class="hover:text-white" href="index_tailwind.html" data-link-base="index_tailwind.html" id="nav-practice">Práctica</a>
+          <a class="hover:text-white" href="contact_tailwind.html" data-link-base="contact_tailwind.html" id="nav-contact">Contacto</a>
           <span class="text-gm-accent">|</span>
-          <a class="hover:text-white" href="#">Español</a>
-          <a class="hover:text-white" href="#">English</a>
+          <button class="hover:text-white" type="button" id="lang-es">ESPAÑOL</button>
+          <button class="hover:text-white" type="button" id="lang-en">ENGLISH</button>
         </nav>
       </div>
       <div class="border-t border-gm-accent"></div>
-      <div>
-        <h1 class="text-3xl md:text-4xl font-bold">Nuestro Equipo</h1>
-      </div>
     </header>
 
     <!-- Intro alineado al diseño de referencia -->
-    <section class="bg-gm-panel p-8 rounded shadow grid md:grid-cols-[0.9fr_1.6fr] gap-8 items-start">
-      <div class="space-y-3">
-        <p class="text-sm uppercase tracking-[0.2em] text-gm-text/70">Nuestro</p>
-        <h2 class="text-4xl md:text-5xl font-bold leading-tight">Equipo</h2>
+    <section class="bg-gm-panel p-8 rounded shadow grid md:grid-cols-[0.9fr_1.6fr] gap-8 items-center">
+      <div class="space-y-3 flex flex-col justify-center">
+        <p class="text-sm uppercase tracking-[0.2em] text-gm-text/70" id="intro-kicker">Nuestro</p>
+        <h2 class="text-4xl md:text-5xl font-bold leading-tight" id="intro-title">Equipo</h2>
       </div>
       <div class="space-y-4 text-base leading-relaxed">
-        <p>
+        <p id="intro-p1">
           G&M Consulting ha sido fundado por María Guadalupe Martínez Garza y por Moisés González Santillán.
           Anteriormente asociados con otras prestigiosas firmas, tanto la Lic. Martínez como el Lic. González,
           tomaron la decisión de combinar sus habilidades y esfuerzos para iniciar en forma independiente esta empresa
           de asesoría legal.
         </p>
-        <p>
+        <p id="intro-p2">
           En el 2008 G&M Consulting aperturó oficinas en la costa oeste de la República con la incorporación de Bismark
           Ortega Moyron al equipo de trabajo.
         </p>
@@ -123,12 +164,8 @@
     </section>
 
     <!-- Carrusel de tarjetas flip -->
-    <section class="bg-gm-panel p-6 rounded shadow space-y-6">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <div>
-          <h2 class="text-2xl font-semibold">Nuestro equipo</h2>
-          <p class="text-sm text-gm-text/70">Información completa visible en cada tarjeta.</p>
-        </div>
+    <section class="bg-gm-panel px-6 py-4 rounded shadow space-y-4">
+      <div class="flex justify-end">
         <div class="flex gap-2 text-sm">
           <button id="prevSlide" class="px-3 py-1.5 rounded border border-gm-accent text-gm-text hover:bg-white hover:text-black transition">Anterior</button>
           <button id="nextSlide" class="px-3 py-1.5 rounded bg-gm-accent text-black font-semibold hover:bg-white transition">Siguiente</button>
@@ -138,41 +175,77 @@
       <div class="relative overflow-hidden rounded-lg border border-gm-bg/40 bg-gm-bg/40">
         <div id="teamTrack" class="carousel-track">
           <!-- Slide 1 -->
-          <div class="carousel-slide px-4 py-6">
+          <div class="carousel-slide px-4 py-4">
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 team-grid">
               <div class="member-card">
-                <h3>Fundadores</h3>
-                <p>G&M Consulting ha sido fundado por María Guadalupe Martínez Garza y por Moisés González Santillán. Anteriormente asociados con otras prestigiosas firmas, tanto la Lic. Martínez como el Lic. González, tomaron la decisión de combinar sus habilidades y esfuerzos para iniciar en forma independiente esta empresa de asesoría legal. En el 2008 G&M Consulting aperturó oficinas en la costa oeste de la República con la incorporación de Bismark Ortega Moyron al equipo de trabajo.</p>
+                <div class="card-inner">
+                  <div class="card-face card-front">
+                    <h3 class="text-xl font-semibold">Fundadores</h3>
+                  </div>
+                  <div class="card-face card-back">
+                    <p>G&M Consulting ha sido fundado por María Guadalupe Martínez Garza y por Moisés González Santillán. Anteriormente asociados con otras prestigiosas firmas, tanto la Lic. Martínez como el Lic. González, tomaron la decisión de combinar sus habilidades y esfuerzos para iniciar en forma independiente esta empresa de asesoría legal. En el 2008 G&M Consulting aperturó oficinas en la costa oeste de la República con la incorporación de Bismark Ortega Moyron al equipo de trabajo.</p>
+                  </div>
+                </div>
               </div>
 
               <div class="member-card">
-                <h3>Moisés González Santillán</h3>
-                <p>El Lic. González Santillán es becario Fulbright, obtuvo título de Licenciatura en Derecho por parte del Instituto Tecnológico y de Estudios Superiores de Monterrey -con honores- (1994), y una Maestría en Derecho Comparado de la Universidad de Pennsylvania (1998), en los Estados Unidos de América. Es miembro de la Barra Mexicana Colegio de Abogados, de la Barra Internacional de Abogados y de la Barra de Abogados de México-EUA. Su práctica profesional se concentra en derecho administrativo, ambiental, migratorio, fiscal, litigio administrativo, inmobiliario, comercio exterior, fideicomisos, laboral, contratos y corporativo. Corredor Público No. 24 en Nuevo León. Asociado en el pasado con Bufete Ignacio A. Guajardo, S.C. (1994-1999, Mexicali y Tijuana, Baja California).</p>
+                <div class="card-inner">
+                  <div class="card-face card-front">
+                    <h3 class="text-xl font-semibold">Moisés González Santillán</h3>
+                  </div>
+                  <div class="card-face card-back">
+                    <p>El Lic. González Santillán es becario Fulbright, titulado en Derecho por el ITESM (1994, con honores) y con Maestría en Derecho Comparado por la Universidad de Pennsylvania (1998). Miembro de la Barra Mexicana, la Barra Internacional y la Barra de Abogados México-EUA. Su práctica se centra en derecho administrativo, ambiental, migratorio, fiscal, inmobiliario, comercio exterior, fideicomisos, laboral, contratos y corporativo. Corredor Público No. 24 en Nuevo León. Ex asociado de Bufete Ignacio A. Guajardo, S.C. (1994-1999, Mexicali y Tijuana).</p>
+                  </div>
+                </div>
               </div>
 
               <div class="member-card">
-                <h3>María G. Martínez Garza</h3>
-                <p>La Lic. Martínez Garza obtuvo el título de Licenciatura en Derecho del Instituto Tecnológico y de Estudios Superiores de Monterrey (1994). Se ha desempeñado como abogado interno de Grupo Nacional Provincial y de Cervecería Cuauhtémoc-Moctezuma. Especialista en derecho corporativo, fusiones y escisiones, fideicomisos, planeación fiscal, contratos civiles y mercantiles, contratos de crédito, garantías civiles y mercantiles, asociaciones y propiedad intelectual.</p>
+                <div class="card-inner">
+                  <div class="card-face card-front">
+                    <h3 class="text-xl font-semibold">María G. Martínez Garza</h3>
+                  </div>
+                  <div class="card-face card-back">
+                    <p>La Lic. Martínez Garza obtuvo el título de Licenciatura en Derecho del Instituto Tecnológico y de Estudios Superiores de Monterrey (1994). Se ha desempeñado como abogado interno de Grupo Nacional Provincial y de Cervecería Cuauhtémoc-Moctezuma. Especialista en derecho corporativo, fusiones y escisiones, fideicomisos, planeación fiscal, contratos civiles y mercantiles, contratos de crédito, garantías civiles y mercantiles, asociaciones y propiedad intelectual.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Slide 2 -->
-          <div class="carousel-slide px-4 py-6">
+          <div class="carousel-slide px-4 py-4">
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 team-grid">
               <div class="member-card">
-                <h3>Bismark Ortega Moyron</h3>
-                <p>El Lic. Ortega obtuvo el título de Licenciatura en Derecho del ITESM (1994). Miembro de la Barra Internacional de Abogados y de la Barra de Abogados de México-EUA. Su práctica se concentra en derecho administrativo, ambiental, migratorio, fiscal, litigio administrativo, inmobiliario, fideicomisos, contratos y corporativo. Asociado en el pasado con Bufete Consulbaja, S.C. (1997-2007, La Paz y Cabo San Lucas, BCS). Perito traductor e intérprete de inglés autorizado por el Tribunal Superior de Justicia de Baja California Sur.</p>
+                <div class="card-inner">
+                  <div class="card-face card-front">
+                    <h3 class="text-xl font-semibold">Bismark Ortega Moyron</h3>
+                  </div>
+                  <div class="card-face card-back">
+                    <p>El Lic. Ortega obtuvo el título de Licenciatura en Derecho del ITESM (1994). Miembro de la Barra Internacional de Abogados y de la Barra de Abogados de México-EUA. Su práctica se concentra en derecho administrativo, ambiental, migratorio, fiscal, litigio administrativo, inmobiliario, fideicomisos, contratos y corporativo. Asociado en el pasado con Bufete Consulbaja, S.C. (1997-2007, La Paz y Cabo San Lucas, BCS). Perito traductor e intérprete de inglés autorizado por el Tribunal Superior de Justicia de Baja California Sur.</p>
+                  </div>
+                </div>
               </div>
 
               <div class="member-card">
-                <h3>Myrna Gracia Manzano</h3>
-                <p>En marzo de 2004, la Lic. Myrna Gracia se integró al Despacho. Obtuvo título de Licenciatura en Derecho por la Universidad Autónoma de Nuevo León (1996). Se ha desempeñado como abogado interno para Grupo Nacional Provincial, GMAC-FRC Operadora Auritec (subsidiaria de GMAC) y del Hospital San José Monterrey. Áreas: derecho corporativo, transacciones comerciales, derecho inmobiliario, financiamientos con y sin garantías, inversión extranjera, laboral, seguros y contratos.</p>
+                <div class="card-inner">
+                  <div class="card-face card-front">
+                    <h3 class="text-xl font-semibold">Myrna Gracia Manzano</h3>
+                  </div>
+                  <div class="card-face card-back">
+                    <p>En marzo de 2004, la Lic. Myrna Gracia se integró al Despacho. Obtuvo título de Licenciatura en Derecho por la Universidad Autónoma de Nuevo León (1996). Se ha desempeñado como abogado interno para Grupo Nacional Provincial, GMAC-FRC Operadora Auritec (subsidiaria de GMAC) y del Hospital San José Monterrey. Áreas: derecho corporativo, transacciones comerciales, derecho inmobiliario, financiamientos con y sin garantías, inversión extranjera, laboral, seguros y contratos.</p>
+                  </div>
+                </div>
               </div>
 
               <div class="member-card">
-                <h3>G&M en la costa oeste</h3>
-                <p>Con la incorporación de Bismark Ortega Moyron, G&M Consulting expandió su cobertura a la costa oeste de la República. El equipo combina experiencia en derecho corporativo, financiero, comercial, inmobiliario, litigio administrativo, migratorio y ambiental. Atendemos asuntos transfronterizos con soluciones ágiles y personalizadas.</p>
+                <div class="card-inner">
+                  <div class="card-face card-front">
+                    <h3 class="text-xl font-semibold">G&M en la costa oeste</h3>
+                  </div>
+                  <div class="card-face card-back">
+                    <p>Con la incorporación de Bismark Ortega Moyron, G&M Consulting expandió su cobertura a la costa oeste de la República. El equipo combina experiencia en derecho corporativo, financiero, comercial, inmobiliario, litigio administrativo, migratorio y ambiental. Atendemos asuntos transfronterizos con soluciones ágiles y personalizadas.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -183,12 +256,12 @@
     <!-- CTA -->
     <section class="bg-gm-panel p-8 rounded shadow flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
       <div>
-        <h3 class="text-xl font-semibold">¿Quieres conocer más del equipo?</h3>
-        <p class="text-sm mt-2">Agenda una llamada y te presentamos a la persona indicada para tu asunto.</p>
+        <h3 class="text-xl font-semibold" id="cta-title">¿Quieres conocer más del equipo?</h3>
+        <p class="text-sm mt-2" id="cta-body">Agenda una llamada y te presentamos a la persona indicada para tu asunto.</p>
       </div>
       <div class="flex gap-3 text-sm">
-        <a href="index_tailwind.html#contact" class="bg-gm-accent text-black font-semibold px-4 py-2 rounded hover:bg-white transition">Contáctanos</a>
-        <a href="index_tailwind.html#practice" class="border border-gm-accent text-gm-text px-4 py-2 rounded hover:bg-white hover:text-black transition">Ver práctica</a>
+        <a href="contact_tailwind.html" data-link-base="contact_tailwind.html" class="bg-gm-accent text-black font-semibold px-4 py-2 rounded hover:bg-white transition" id="cta-btn">Contáctanos</a>
+        <a href="index_tailwind.html" data-link-base="index_tailwind.html" class="border border-gm-accent text-gm-text px-4 py-2 rounded hover:bg-white hover:text-black transition" id="cta-practice-btn">Ver práctica</a>
       </div>
     </section>
 
@@ -212,6 +285,7 @@
       if (!slide) return;
       slide.querySelectorAll('.member-card').forEach((card) => {
         card.classList.add('collapsed');
+        card.classList.remove('show-front');
       });
     };
 
@@ -219,7 +293,10 @@
       const slide = slides[idx];
       if (!slide) return;
       const cards = Array.from(slide.querySelectorAll('.member-card'));
-      cards.forEach((card) => card.classList.add('collapsed')); // aseguro estado inicial
+      cards.forEach((card) => {
+        card.classList.add('collapsed');
+        card.classList.remove('show-front');
+      }); // aseguro estado inicial
       // secuencia tipo dominó
       cards.forEach((card, i) => {
         setTimeout(() => card.classList.remove('collapsed'), 130 * i + 80);
@@ -236,12 +313,16 @@
       setTimeout(() => openSlide(current), 850);
     };
 
-    const startAuto = () => {
-      auto = setInterval(() => goTo(current + 1), 6000);
+    const stopAuto = () => {
+      if (auto) {
+        clearInterval(auto);
+        auto = null;
+      }
     };
 
-    const stopAuto = () => {
-      if (auto) clearInterval(auto);
+    const startAuto = () => {
+      stopAuto();
+      auto = setInterval(() => goTo(current + 1), 6000);
     };
 
     if (track) {
@@ -249,6 +330,18 @@
       slides.forEach((_, i) => collapseSlide(i));
       openSlide(0);
       startAuto();
+
+      // Hover para ver el frente (nombre) manualmente
+      slides.forEach((slide) => {
+        slide.querySelectorAll('.member-card').forEach((card) => {
+          card.addEventListener('mouseenter', () => {
+            card.classList.add('show-front');
+          });
+          card.addEventListener('mouseleave', () => {
+            card.classList.remove('show-front');
+          });
+        });
+      });
 
       prevBtn?.addEventListener('click', () => {
         stopAuto();
@@ -261,7 +354,83 @@
         goTo(current + 1);
         startAuto();
       });
+
+      track.addEventListener('mouseenter', stopAuto);
+      track.addEventListener('mouseleave', () => {
+        startAuto();
+      });
     }
+
+    // Traducciones EN/ES
+    const translations = {
+      es: {
+        'nav-nos': 'Nosotros',
+        'nav-team': 'Nuestro Equipo',
+        'nav-practice': 'Práctica',
+        'nav-contact': 'Contacto',
+        'intro-kicker': 'Nuestro',
+        'intro-title': 'Equipo',
+        'intro-p1': 'G&M Consulting ha sido fundado por María Guadalupe Martínez Garza y por Moisés González Santillán. Anteriormente asociados con otras prestigiosas firmas, tanto la Lic. Martínez como el Lic. González, tomaron la decisión de combinar sus habilidades y esfuerzos para iniciar en forma independiente esta empresa de asesoría legal.',
+        'intro-p2': 'En el 2008 G&M Consulting aperturó oficinas en la costa oeste de la República con la incorporación de Bismark Ortega Moyron al equipo de trabajo.',
+        'cta-title': '¿Quieres conocer más del equipo?',
+        'cta-body': 'Agenda una llamada y te presentamos a la persona indicada para tu asunto.',
+        'cta-btn': 'Contáctanos',
+        'cta-practice-btn': 'Ver práctica',
+      },
+      en: {
+        'nav-nos': 'About Us',
+        'nav-team': 'Our Team',
+        'nav-practice': 'Practice',
+        'nav-contact': 'Contact',
+        'intro-kicker': 'Our',
+        'intro-title': 'Team',
+        'intro-p1': 'G&M Consulting was founded by María Guadalupe Martínez Garza and Moisés González Santillán. Formerly with other renowned firms, they combined their expertise to launch this independent legal advisory practice.',
+        'intro-p2': 'In 2008, G&M Consulting expanded to the west coast with the incorporation of Bismark Ortega Moyron.',
+        'cta-title': 'Want to know more about the team?',
+        'cta-body': 'Schedule a call and we will introduce you to the right person for your matter.',
+        'cta-btn': 'Contact us',
+        'cta-practice-btn': 'See practice',
+      },
+    };
+
+    const updateLinks = (lang) => {
+      document.querySelectorAll('a[data-link-base]').forEach((a) => {
+        const base = a.getAttribute('data-link-base');
+        if (!base) return;
+        const u = new URL(base, window.location.href);
+        u.searchParams.set('lang', lang);
+        a.href = u.toString();
+      });
+    };
+
+    const applyLang = (lang) => {
+      const dict = translations[lang] || translations.es;
+      Object.entries(dict).forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      });
+      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+      localStorage.setItem('lang', lang);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url);
+      updateLinks(lang);
+    };
+
+    const setLangFromParamOrStorage = () => {
+      const url = new URL(window.location.href);
+      const paramLang = url.searchParams.get('lang');
+      const storedLang = localStorage.getItem('lang');
+      const lang = (paramLang || storedLang || 'es').toLowerCase() === 'en' ? 'en' : 'es';
+      applyLang(lang);
+    };
+
+    const navLangEs = document.getElementById('lang-es');
+    const navLangEn = document.getElementById('lang-en');
+    if (navLangEs) navLangEs.addEventListener('click', () => applyLang('es'));
+    if (navLangEn) navLangEn.addEventListener('click', () => applyLang('en'));
+
+    setLangFromParamOrStorage();
   </script>
 </body>
 </html>
