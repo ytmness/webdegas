@@ -2,15 +2,28 @@
 
 ## Dominio: consultinglaw.net
 
+## 🖥️ Información del Servidor Synology
+
+- **IP del servidor:** `192.168.1.8`
+- **Acceso DSM (HTTPS):** `https://192.168.1.8:5001/`
+- **Acceso DSM (HTTP):** `http://192.168.1.8:5000/` (si está habilitado)
+- **Sitio web (una vez configurado):** `http://192.168.1.8` o `http://192.168.1.8:80`
+
 ---
 
 ## PASO 1: Acceder a tu Synology (DSM)
 
 1. Abre tu navegador (Chrome, Firefox, Safari, etc.)
-2. En la barra de direcciones escribe la IP de tu Synology seguida de `:5000`
-   - **Ejemplo:** `192.168.1.50:5000` (pregunta la IP a quien administra la red si no la sabes)
+2. En la barra de direcciones escribe la dirección de tu Synology:
+   - **Tu servidor:** `https://192.168.1.8:5001/`
+   - **Nota:** El puerto `5001` es para HTTPS. Si prefieres HTTP, usa `http://192.168.1.8:5000/`
 3. Ingresa tu usuario y contraseña de administrador
 4. Deberías ver el escritorio de DSM (se parece a Windows)
+
+> **Información del servidor:**
+> - **IP:** 192.168.1.8
+> - **Puerto HTTPS:** 5001
+> - **Puerto HTTP:** 5000 (si está habilitado)
 
 ---
 
@@ -97,16 +110,19 @@ Ahora tu sitio está en línea! Puedes acceder de dos formas:
 
 ### Opción 1 - Desde tu red local:
 
-En el navegador: `http://IP-DE-TU-SYNOLOGY`
-- **Ejemplo:** `http://192.168.1.50`
+En el navegador: `http://192.168.1.8`
+- **O con puerto específico:** `http://192.168.1.8:80` (si configuraste el puerto 80)
+- **O con puerto personalizado:** `http://192.168.1.8:8080` (si usaste otro puerto)
 
 ### Opción 2 - Si configuraste un nombre:
 
 1. Edita el archivo `hosts` de tu computadora y agrega:
    ```
-   192.168.1.50    webdegas.local
+   192.168.1.8    webdegas.local
    ```
 2. Luego accede desde: `http://webdegas.local`
+
+> **Nota:** El archivo hosts en Windows está en `C:\Windows\System32\drivers\etc\hosts` (requiere permisos de administrador para editarlo)
 
 > **Nota para Windows:** El archivo hosts está en `C:\Windows\System32\drivers\etc\hosts` (requiere permisos de administrador para editarlo)
 
@@ -163,7 +179,14 @@ Si te da error de permisos:
 
 Si el puerto 80 está ocupado:
 - Usa otro puerto como `8080` en el Virtual Host
-- Accede con `http://IP:8080` o `http://webdegas.local:8080`
+- Accede con `http://192.168.1.8:8080` o `http://webdegas.local:8080`
+
+### Acceso al sitio web:
+
+Una vez configurado el Virtual Host, podrás acceder a tu sitio web desde:
+- **Red local:** `http://192.168.1.8` (si usaste puerto 80)
+- **Con puerto personalizado:** `http://192.168.1.8:8080` (si usaste otro puerto)
+- **Con nombre local:** `http://webdegas.local` (si configuraste el archivo hosts)
 
 ### Archivo .htaccess:
 
@@ -176,12 +199,33 @@ Tu proyecto tiene un archivo `.htaccess` vacío, está bien dejarlo así. Si nec
 - Se valida el formato del email
 - Los datos se sanitizan para prevenir inyección de código
 
-### Dominio público:
+### Dominio público (consultinglaw.net):
 
-Si quieres que el sitio sea accesible desde internet (no solo la red local):
-1. Configura un DNS apuntando `consultinglaw.net` a la IP pública de tu Synology
-2. Configura el router para hacer port forwarding del puerto 80 (o 443 para HTTPS)
-3. Considera usar HTTPS con un certificado SSL (Let's Encrypt es gratuito)
+Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
+
+1. **Obtén tu IP pública:**
+   - Ve a `https://whatismyipaddress.com/` para conocer tu IP pública
+   - O revisa la configuración de tu router
+
+2. **Configura el DNS:**
+   - En tu proveedor de dominio, configura un registro A apuntando `consultinglaw.net` a tu IP pública
+   - También configura `www.consultinglaw.net` si lo necesitas
+
+3. **Configura Port Forwarding en el router:**
+   - Puerto 80 (HTTP) → `192.168.1.8:80`
+   - Puerto 443 (HTTPS) → `192.168.1.8:443` (si usas HTTPS)
+
+4. **Configura HTTPS en Synology:**
+   - Ve a **Panel de Control → Seguridad → Certificado**
+   - Puedes usar Let's Encrypt (gratuito) para obtener un certificado SSL
+   - Configura el certificado para `consultinglaw.net`
+
+5. **Configura el Virtual Host en Web Station:**
+   - Crea un nuevo Virtual Host con el dominio `consultinglaw.net`
+   - Selecciona el puerto 443 (HTTPS) o 80 (HTTP)
+   - Apunta a la misma carpeta donde subiste los archivos
+
+> **Nota:** Asegúrate de que tu router tenga una IP pública estática o usa un servicio de DNS dinámico (DDNS) si tu IP cambia.
 
 ---
 
