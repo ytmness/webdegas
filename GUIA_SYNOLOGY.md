@@ -70,12 +70,15 @@ Mientras estás en el **Centro de Paquetes**:
    - Si no existe, créala: clic derecho en el espacio → **"Crear"** → **"Crear carpeta"** → nómbrala `web`
 3. Entra a la carpeta **`web`**
 
-### Opción A - Subir el ZIP directamente:
+### Opción A - Subir el ZIP directamente (RECOMENDADO):
 
 1. Haz clic en el botón **"Cargar"** (arriba)
 2. Selecciona tu archivo `webdegas-main.zip`
 3. Una vez subido, haz clic derecho sobre el ZIP → **"Extraer aquí"**
-4. Entra a la carpeta `webdegas-main` que se creó
+4. Se creará la carpeta `webdegas-main` dentro de `web`
+5. **Verifica:** Dentro de `webdegas-main` deben estar todos tus archivos: `index.html`, `form/`, `img/`, `script/`, etc.
+
+> **Nota:** Si ves un archivo `index.html` suelto en la carpeta `web` (fuera de `webdegas-main`), es probablemente de otro proyecto o ejemplo. Puedes ignorarlo o eliminarlo. Lo importante es que tu proyecto esté dentro de `webdegas-main`.
 
 ### Opción B - Subir los archivos descomprimidos:
 
@@ -95,12 +98,14 @@ Mientras estás en el **Centro de Paquetes**:
    - **Tipo de portal:** Name-based
    - **Nombre del host:** `webdegas` (o el nombre que quieras)
    - **Puerto:** `80` (HTTP) - si quieres HTTPS usa `443` pero requiere certificado
-   - **Carpeta raíz del documento:** Haz clic en el botón de carpeta y selecciona:
-     - Si subiste el ZIP: `/web/webdegas-main`
-     - Si subiste directo: `/web`
+   - **Carpeta raíz del documento:** ⚠️ **IMPORTANTE:** Haz clic en el botón de carpeta y selecciona:
+     - **Si subiste el ZIP y lo extrajiste:** `/web/webdegas-main` ← **Esta es la correcta**
+     - **NO uses:** `/web` (esa carpeta puede tener otros archivos como `index.html` de ejemplo)
    - **HTTP back-end server:** Apache HTTP Server 2.4
-   - **PHP:** Selecciona la versión que instalaste
+   - **PHP:** Selecciona la versión que instalaste (ej: PHP 8.2)
 5. Haz clic en **"Aceptar"**
+
+> **Nota:** Si ves un archivo `index.html` suelto en la carpeta `/web` que no es tuyo, puedes eliminarlo o ignorarlo. El Virtual Host debe apuntar a `/web/webdegas-main` donde están todos tus archivos del proyecto.
 
 ---
 
