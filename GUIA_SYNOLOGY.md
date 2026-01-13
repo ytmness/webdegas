@@ -4,7 +4,9 @@
 
 ## 🖥️ Información del Servidor Synology
 
-- **IP del servidor:** `192.168.1.8`
+- **IP del servidor (local):** `192.168.1.8`
+- **IP pública (IPv4):** `189.219.66.244` ← **Para configurar DNS en GoDaddy**
+- **IP pública (IPv6):** `2806:230:2044:c3dd:9c9f:9a29:ce17:deac` (opcional)
 - **Acceso DSM (HTTPS):** `https://192.168.1.8:5001/`
 - **Acceso DSM (HTTP):** `http://192.168.1.8:5000/` (si está habilitado)
 - **Sitio web (una vez configurado):** `http://192.168.1.8` ← **Usa HTTP, no HTTPS**
@@ -236,27 +238,29 @@ Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
 
 2. **Configura los registros DNS:**
 
-   Necesitas crear/editar estos registros:
+   Necesitas crear/editar estos registros usando tu **IPv4** (no la IPv6):
 
    **Registro A (para el dominio principal):**
    - **Tipo:** `A`
    - **Nombre/Host:** `@` (o déjalo en blanco, o `consultinglaw.net`)
-   - **Valor/Puntos a:** `TU_IP_PUBLICA` (la IP que obtuviste en el Paso 1)
+   - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4**
    - **TTL:** `600` (o el valor por defecto)
 
    **Registro A (para www):**
    - **Tipo:** `A`
    - **Nombre/Host:** `www`
-   - **Valor/Puntos a:** `TU_IP_PUBLICA` (la misma IP)
+   - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4 (la misma)**
    - **TTL:** `600` (o el valor por defecto)
 
    **Ejemplo de cómo se vería en GoDaddy:**
    ```
    Tipo | Nombre | Valor          | TTL
    -----|--------|----------------|-----
-   A    | @      | 123.45.67.89   | 600
-   A    | www    | 123.45.67.89   | 600
+   A    | @      | 189.219.66.244 | 600
+   A    | www    | 189.219.66.244 | 600
    ```
+
+   > **Nota:** Usa la **IPv4** (`189.219.66.244`) para los registros A. La IPv6 (`2806:230:2044:c3dd:9c9f:9a29:ce17:deac`) se usa para registros AAAA, pero no es necesaria para empezar.
 
 3. **Guarda los cambios** y espera 5-30 minutos para que se propaguen los DNS
 
