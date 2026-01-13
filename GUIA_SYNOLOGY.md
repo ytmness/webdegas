@@ -240,27 +240,42 @@ Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
 
    Necesitas crear/editar estos registros usando tu **IPv4** (no la IPv6):
 
-   **⚠️ IMPORTANTE - Si ves errores de conflicto:**
-   - Si ya existe un registro para `www` (probablemente un CNAME), **elimínalo primero** o **edítalo** en lugar de crear uno nuevo
-   - Busca en la lista de registros DNS existentes y elimina/edita los que entren en conflicto
+   **⚠️ IMPORTANTE - Limpieza de registros existentes:**
+   
+   Antes de crear los nuevos registros, necesitas limpiar los existentes:
 
-   **Registro A (para el dominio principal):**
-   - Busca si ya existe un registro para `@` o el dominio raíz
-   - Si existe, **edítalo** (no lo crees de nuevo)
-   - Si no existe, **créalo** con estos valores:
-     - **Tipo:** `A`
-     - **Nombre/Host:** `@` (o déjalo en blanco, o `consultinglaw.net`)
+   **1. Elimina el registro A "Parked":**
+   - Busca el registro A que tiene `@` con valor "Parked"
+   - Haz clic en los 3 puntos (⋯) o el ícono de editar → **Eliminar**
+   - Si no te deja eliminarlo, intenta editarlo y cambiar el valor a `189.219.66.244`
+   - **Mantén solo el registro A con tu IP** (`189.219.66.244`)
+
+   **2. Cambia el CNAME de www a registro A:**
+   - Busca el registro **CNAME** que tiene `www` → `consultinglaw.net.`
+   - **Elimínalo** (haz clic en los 3 puntos → Eliminar)
+   - Luego **crea un nuevo registro A** para `www`:
+     - **Tipo:** `A` (NO CNAME)
+     - **Nombre/Host:** `www`
      - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4**
      - **TTL:** `600` (o el valor por defecto)
 
+   **Registro A (para el dominio principal - @):**
+   - Si ya tienes un registro A con `@` y valor `189.219.66.244`, **déjalo así** ✅
+   - Si tienes otro registro A con "Parked", **elimínalo** o **edítalo** para que apunte a `189.219.66.244`
+   - Solo debe haber **UN** registro A para `@` con tu IP
+
    **Registro A (para www):**
-   - **PRIMERO:** Busca si ya existe un registro para `www` en la lista
-   - Si existe un registro CNAME para `www`, **elimínalo** (haz clic en los 3 puntos o el ícono de editar → Eliminar)
-   - Luego **crea** o **edita** el registro A:
+   - **PRIMERO:** Elimina el CNAME existente de `www`
+   - **Luego:** Crea un nuevo registro A:
      - **Tipo:** `A` (NO CNAME)
      - **Nombre/Host:** `www`
      - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4 (la misma)**
      - **TTL:** `600` (o el valor por defecto)
+
+   **⚠️ NO elimines estos registros (son necesarios):**
+   - Los registros **NS** (nameservers) - no se pueden eliminar, es normal
+   - El registro **SOA** - no se puede eliminar
+   - Los registros **TXT** y **CNAME** que empiezan con `_` (como `_domainconnect`, `_dmarc`) - déjalos
 
    **Ejemplo de cómo se vería en GoDaddy:**
    ```
