@@ -92,7 +92,7 @@ Mientras estás en el **Centro de Paquetes**:
 ## PASO 6: Crear un Virtual Host (sitio web)
 
 1. Regresa a **Web Station**
-2. Ve a la pestaña **"Virtual Host"**
+2. Ve a la pestaña **"Virtual Host"** (no confundir con "Servicio web")
 3. Haz clic en **"Crear"**
 4. Llena los campos:
    - **Tipo de portal:** Name-based
@@ -105,7 +105,11 @@ Mientras estás en el **Centro de Paquetes**:
    - **PHP:** Selecciona la versión que instalaste (ej: PHP 8.2)
 5. Haz clic en **"Aceptar"**
 
-> **Nota:** Si ves un archivo `index.html` suelto en la carpeta `/web` que no es tuyo, puedes eliminarlo o ignorarlo. El Virtual Host debe apuntar a `/web/webdegas-main` donde están todos tus archivos del proyecto.
+> **Nota importante:** 
+> - Si ya tienes un servicio web llamado "web" en la pestaña "Servicio web", ese es diferente al Virtual Host
+> - El Virtual Host es lo que necesitas crear en la pestaña "Virtual Host"
+> - Si ves un archivo `index.html` suelto en la carpeta `/web` que no es tuyo, puedes eliminarlo o ignorarlo
+> - El Virtual Host debe apuntar a `/web/webdegas-main` donde están todos tus archivos del proyecto
 
 ---
 
