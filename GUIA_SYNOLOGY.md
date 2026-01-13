@@ -4,28 +4,47 @@
 
 ## 🖥️ Información del Servidor Synology
 
+### IP Local (dentro de tu red):
 - **IP del servidor (local):** `192.168.1.8`
-- **IP pública (IPv4):** `189.219.66.244` ← **Para configurar DNS en GoDaddy**
-- **IP pública (IPv6):** `2806:230:2044:c3dd:9c9f:9a29:ce17:deac` (opcional)
 - **Acceso DSM (HTTPS):** `https://192.168.1.8:5001/`
 - **Acceso DSM (HTTP):** `http://192.168.1.8:5000/` (si está habilitado)
 - **Sitio web (una vez configurado):** `http://192.168.1.8` ← **Usa HTTP, no HTTPS**
 
-> ⚠️ **Importante:** Para acceder al sitio web desde la IP local, usa siempre **HTTP** (`http://`), no HTTPS. Los certificados SSL no funcionan con direcciones IP, solo con nombres de dominio.
+> **Cómo verificar la IP local del Synology:**
+> - Usa `find.synology.com` en un navegador
+> - O instala la utilidad **Synology Assistant**
+> - O ve a **Panel de Control > Red > Interfaz de Red** en DSM
+> - O revisa la tabla DHCP de tu router
+
+### IP Pública (para internet):
+- **IP pública (IPv4):** `189.219.66.244` ← **Para configurar DNS en GoDaddy**
+- **IP pública (IPv6):** `2806:230:2044:c3dd:9c9f:9a29:ce17:deac` (opcional)
+
+> ⚠️ **Importante:** 
+> - **IP Local** (`192.168.1.8`): Se usa dentro de tu red local para acceder al Synology
+> - **IP Pública** (`189.219.66.244`): Se usa en los DNS de GoDaddy para que el dominio apunte a tu servidor desde internet
+> - Para acceder al sitio web desde la IP local, usa siempre **HTTP** (`http://`), no HTTPS. Los certificados SSL no funcionan con direcciones IP, solo con nombres de dominio.
 
 ---
 
 ## PASO 1: Acceder a tu Synology (DSM)
 
-1. Abre tu navegador (Chrome, Firefox, Safari, etc.)
-2. En la barra de direcciones escribe la dirección de tu Synology:
-   - **Tu servidor:** `https://192.168.1.8:5001/`
-   - **Nota:** El puerto `5001` es para HTTPS. Si prefieres HTTP, usa `http://192.168.1.8:5000/`
-3. Ingresa tu usuario y contraseña de administrador
-4. Deberías ver el escritorio de DSM (se parece a Windows)
+1. **Encuentra la IP de tu Synology** (si no la conoces):
+   - Usa `find.synology.com` en un navegador
+   - O instala la utilidad **Synology Assistant**
+   - O ve a **Panel de Control > Red > Interfaz de Red** en DSM
+   - O revisa la tabla DHCP de tu router
+
+2. **Accede a DSM:**
+   - Abre tu navegador (Chrome, Firefox, Safari, etc.)
+   - En la barra de direcciones escribe la dirección de tu Synology:
+     - **Tu servidor:** `https://192.168.1.8:5001/`
+     - **Nota:** El puerto `5001` es para HTTPS. Si prefieres HTTP, usa `http://192.168.1.8:5000/`
+   - Ingresa tu usuario y contraseña de administrador
+   - Deberías ver el escritorio de DSM (se parece a Windows)
 
 > **Información del servidor:**
-> - **IP:** 192.168.1.8
+> - **IP local:** 192.168.1.8
 > - **Puerto HTTPS:** 5001
 > - **Puerto HTTP:** 5000 (si está habilitado)
 
