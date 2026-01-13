@@ -82,9 +82,12 @@ Mientras estás en el **Centro de Paquetes**:
    - **Puerto HTTP:** Debe estar en `80` y **habilitado** ✅
    - **Puerto HTTPS:** Puede estar en `443` (opcional)
    - Si el puerto 80 no está habilitado, haz clic en el botón de configuración (⚙️) y habilítalo
+   - ⚠️ **IMPORTANTE:** Los puertos que configures aquí son los que estarán disponibles cuando crees el servicio web
 4. Verifica que **Apache HTTP Server 2.4** esté en estado "Normal" (verde)
 5. Verifica que **PHP 8.2** esté en estado "Normal" (verde)
 6. Si alguno no está normal, haz clic en el ícono de administración para configurarlo
+
+> **Nota:** Los puertos que configures en "Portal web" son los que podrás usar cuando crees el servicio web. Si no habilitas el puerto 80 aquí, no podrás seleccionarlo al crear el servicio.
 
 ---
 
