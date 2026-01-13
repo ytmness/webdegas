@@ -240,17 +240,27 @@ Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
 
    Necesitas crear/editar estos registros usando tu **IPv4** (no la IPv6):
 
+   **⚠️ IMPORTANTE - Si ves errores de conflicto:**
+   - Si ya existe un registro para `www` (probablemente un CNAME), **elimínalo primero** o **edítalo** en lugar de crear uno nuevo
+   - Busca en la lista de registros DNS existentes y elimina/edita los que entren en conflicto
+
    **Registro A (para el dominio principal):**
-   - **Tipo:** `A`
-   - **Nombre/Host:** `@` (o déjalo en blanco, o `consultinglaw.net`)
-   - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4**
-   - **TTL:** `600` (o el valor por defecto)
+   - Busca si ya existe un registro para `@` o el dominio raíz
+   - Si existe, **edítalo** (no lo crees de nuevo)
+   - Si no existe, **créalo** con estos valores:
+     - **Tipo:** `A`
+     - **Nombre/Host:** `@` (o déjalo en blanco, o `consultinglaw.net`)
+     - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4**
+     - **TTL:** `600` (o el valor por defecto)
 
    **Registro A (para www):**
-   - **Tipo:** `A`
-   - **Nombre/Host:** `www`
-   - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4 (la misma)**
-   - **TTL:** `600` (o el valor por defecto)
+   - **PRIMERO:** Busca si ya existe un registro para `www` en la lista
+   - Si existe un registro CNAME para `www`, **elimínalo** (haz clic en los 3 puntos o el ícono de editar → Eliminar)
+   - Luego **crea** o **edita** el registro A:
+     - **Tipo:** `A` (NO CNAME)
+     - **Nombre/Host:** `www`
+     - **Valor/Puntos a:** `189.219.66.244` ← **Tu IPv4 (la misma)**
+     - **TTL:** `600` (o el valor por defecto)
 
    **Ejemplo de cómo se vería en GoDaddy:**
    ```
@@ -260,7 +270,9 @@ Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
    A    | www    | 189.219.66.244 | 600
    ```
 
-   > **Nota:** Usa la **IPv4** (`189.219.66.244`) para los registros A. La IPv6 (`2806:230:2044:c3dd:9c9f:9a29:ce17:deac`) se usa para registros AAAA, pero no es necesaria para empezar.
+   > **Nota:** 
+   > - Usa la **IPv4** (`189.219.66.244`) para los registros A. La IPv6 (`2806:230:2044:c3dd:9c9f:9a29:ce17:deac`) se usa para registros AAAA, pero no es necesaria para empezar.
+   > - Si ves el error "El nombre de registro www está en conflicto", significa que ya existe un registro para `www`. Elimínalo primero y luego crea el nuevo registro A.
 
 3. **Guarda los cambios** y espera 5-30 minutos para que se propaguen los DNS
 
