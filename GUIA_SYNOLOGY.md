@@ -333,27 +333,67 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 
 5. Haz clic en **"Aplicar"** para guardar los cambios
 
-#### Paso 3: Configura Port Forwarding en el router
+#### Paso 3: Abrir puertos en el firewall de Synology
 
-1. Accede a la configuración de tu router (normalmente `http://192.168.1.1` o `http://192.168.0.1`)
-2. Busca la sección **"Port Forwarding"** o **"Reenvío de puertos"** o **"NAT"**
+Antes de configurar el router, necesitas permitir el tráfico en el firewall de Synology:
+
+1. Ve a **Panel de Control > Seguridad > Firewall**
+2. Si el firewall está deshabilitado, puedes habilitarlo (recomendado) o dejarlo deshabilitado
+3. Si está habilitado, configura las reglas:
+   - Haz clic en **"Editar reglas"** o **"Crear regla"**
+   - Crea una regla para HTTP:
+     - **Puerto:** `80`
+     - **Protocolo:** `TCP`
+     - **Acción:** `Permitir`
+     - **Origen:** `Todas las interfaces` o `Todas las IP`
+   - Crea una regla para HTTPS (si vas a usarlo):
+     - **Puerto:** `443`
+     - **Protocolo:** `TCP`
+     - **Acción:** `Permitir`
+     - **Origen:** `Todas las interfaces` o `Todas las IP`
+4. Guarda y aplica los cambios
+
+> **Nota:** Si el firewall está deshabilitado, los puertos ya están abiertos. Pero es mejor habilitarlo y crear reglas específicas para mayor seguridad.
+
+#### Paso 4: Configura Port Forwarding en el router
+
+1. Accede a la configuración de tu router:
+   - Normalmente `http://192.168.1.1` o `http://192.168.0.1`
+   - O revisa la etiqueta del router para la IP de administración
+   - Usa las credenciales de administrador del router
+
+2. Busca la sección:
+   - **"Port Forwarding"** o **"Reenvío de puertos"**
+   - **"NAT"** o **"Virtual Server"**
+   - **"Aplicaciones y juegos"** (en algunos routers)
+
 3. Configura estas reglas:
 
-   **Regla 1 - HTTP:**
-   - **Puerto externo:** `80`
-   - **Puerto interno:** `80`
-   - **IP interna:** `192.168.1.8` (tu Synology)
-   - **Protocolo:** `TCP`
+   **Regla 1 - HTTP (puerto 80):**
+   - **Nombre/Descripción:** `Web Server HTTP` o `Synology Web`
+   - **Puerto externo/Público:** `80`
+   - **Puerto interno/Privado:** `80`
+   - **IP interna/Destino:** `192.168.1.8` (tu Synology)
+   - **Protocolo:** `TCP` (o `TCP/UDP` si está disponible)
+   - **Estado:** `Habilitado` ✅
 
-   **Regla 2 - HTTPS (si vas a usar SSL):**
-   - **Puerto externo:** `443`
-   - **Puerto interno:** `443`
-   - **IP interna:** `192.168.1.8` (tu Synology)
-   - **Protocolo:** `TCP`
+   **Regla 2 - HTTPS (puerto 443, si vas a usar SSL):**
+   - **Nombre/Descripción:** `Web Server HTTPS` o `Synology Web SSL`
+   - **Puerto externo/Público:** `443`
+   - **Puerto interno/Privado:** `443`
+   - **IP interna/Destino:** `192.168.1.8` (tu Synology)
+   - **Protocolo:** `TCP` (o `TCP/UDP` si está disponible)
+   - **Estado:** `Habilitado` ✅
 
 4. Guarda los cambios en el router
+5. Reinicia el router si es necesario (algunos routers requieren reinicio para aplicar cambios)
 
-#### Paso 4: Configura HTTPS en Synology (recomendado)
+> **Importante:** 
+> - El Port Forwarding redirige el tráfico desde internet (puerto 80/443) hacia tu Synology (192.168.1.8)
+> - Sin esto, aunque el sitio esté configurado, no será accesible desde internet
+> - Algunos proveedores de internet bloquean el puerto 80. Si no funciona, prueba con otro puerto como 8080 y configura el Virtual Host en Synology para usar ese puerto
+
+#### Paso 5: Configura HTTPS en Synology (recomendado)
 
 1. Ve a **Panel de Control → Seguridad → Certificado**
 2. Haz clic en **"Añadir"** → **"Añadir un nuevo certificado"**
@@ -365,7 +405,7 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 5. Acepta los términos y haz clic en **"Aplicar"**
 6. Espera a que se genere el certificado (puede tardar unos minutos)
 
-#### Paso 5: Configura el Virtual Host en Web Station
+#### Paso 6: Configura el Virtual Host en Web Station
 
 1. Ve a **Web Station → Servicio web**
 2. Crea un nuevo servicio o edita el existente
@@ -378,7 +418,7 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
    - **Certificado SSL:** Selecciona el certificado de Let's Encrypt que creaste (si usas HTTPS)
 4. Guarda los cambios
 
-#### Paso 6: Verifica que funciona
+#### Paso 7: Verifica que funciona
 
 1. Espera 15-30 minutos después de configurar los DNS
 2. Prueba acceder desde internet:
