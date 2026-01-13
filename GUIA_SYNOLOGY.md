@@ -310,6 +310,29 @@ Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
 
 3. **Guarda los cambios** y espera 5-30 minutos para que se propaguen los DNS
 
+#### Paso 2.5: Configuración de red en Synology (opcional pero recomendado)
+
+Si necesitas verificar o ajustar la configuración de red del Synology:
+
+1. Ve a **Panel de Control > Red > Interfaz de red > General**
+
+2. **Pasarela predeterminada:**
+   - Debe ser `192.168.1.1` (tu router)
+   - Si está diferente, haz clic en "Editar" y corrígela
+
+3. **Configurar el servidor DNS manualmente:**
+   - **Opción A (recomendada):** Deja desmarcado para usar los DNS del router
+   - **Opción B:** Si quieres usar DNS públicos, marca la casilla y usa:
+     - **Servidor DNS preferido:** `8.8.8.8` (Google) o `1.1.1.1` (Cloudflare)
+     - **Servidor DNS alternativo:** `8.8.4.4` (Google) o `1.0.0.1` (Cloudflare)
+
+4. **Proxy:**
+   - ⚠️ **IMPORTANTE:** Desmarca la casilla "Conectar a través de un servidor proxy"
+   - Para un servidor web NO necesitas proxy
+   - Si está marcado sin dirección, causará problemas de conexión
+
+5. Haz clic en **"Aplicar"** para guardar los cambios
+
 #### Paso 3: Configura Port Forwarding en el router
 
 1. Accede a la configuración de tu router (normalmente `http://192.168.1.1` o `http://192.168.0.1`)
