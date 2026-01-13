@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>G&amp;M Consulting</title>
+<link href="style/gral.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="script/motionTween.js"></script>
+<script type="text/javascript" src="script/OpacityTween.js"></script>
+<script type="text/javascript" src="script/scripts.js"></script>
+<script type="text/javascript" src="form/phpmail.js"></script>
+<script type="text/javascript">
+
+</script>
+<link href="form/phpmail.css" rel="stylesheet" type="text/css">
+</head><body onload="MM_preloadImages('img/menu/menu_01.gif','img/menu/menuH_01.gif','img/menu/menuH_02.gif','img/menu/menuH_03.gif','img/menu/menuH_04.gif','img/loading.gif','img/submenu02/our_team01.gif','img/submenu02/our_team02.gif','img/submenu02/our_team03.gif','img/submenu02/our_team04.gif','img/submenu02/our_team05.gif','img/submenu03/practice_text01.gif','img/submenu03/practice_text02.gif','img/submenu03/practice_text03.gif','img/submenu03/practice_text04.gif','img/submenu03/practice_text05.gif','img/submenu03/practice_text06.gif','img/submenu03/practice_text07.gif','img/submenu03/practice_text08.gif','img/submenu03/practice_text09.gif','img/submenu03/practice_title01.gif','img/submenu03/practice_title02.gif','img/submenu03/practice_title03.gif','img/submenu03/practice_title04.gif','img/submenu03/practice_title05.gif','img/submenu03/practice_title06.gif','img/submenu03/practice_title07.gif','img/submenu03/practice_title08.gif','img/submenu03/practice_title09.gif'); intro(); ">
+<div id="gral">
+  <div style="top: 0px;" id="header">
+  <img style="width: 950px;" src="img/stripe_line.gif" name="img_line" id="img_line" height="3" width="1">
+  <img style="left: 950px;" src="img/shape.gif" name="img_line_shape" id="img_line_shape" height="3" width="1">
+  	<div id="logo1"><img style="top: 4px;" src="img/logo1.gif" id="img_logo1" height="85" width="347"></div>
+  	<div id="logo1_legend"><img style="bottom: 0px;" src="img/logo1_legend.gif" name="img_logo1_legend" id="img_logo1_legend" height="24" width="331"></div>
+    <div style="opacity: 1;" id="menu">
+      <table border="0" cellpadding="0" cellspacing="0">
+
+        <tbody><tr>
+          <td><a href="javascript: cambiaSec('info01.html', 'info');" target="_top" onclick="MM_nbGroup('down','group1','menu01','img/menu/menuH_01.gif',1)" onmouseover="MM_nbGroup('over','menu01','img/menu/menuH_01.gif','',1)" onmouseout="MM_nbGroup('out')"><img src="img/menu/menu_01.gif" alt="" name="menu01" id="menu01" onload="MM_nbGroup('init','group1','menu01','img/menu/menu_01.gif',1)" border="0" height="29" width="110"></a></td>
+          <td><a href="javascript: cambiaSec('info02.html', 'info');" target="_top" onclick="MM_nbGroup('down','group1','menu02','img/menu/menuH_02.gif',1)" onmouseover="MM_nbGroup('over','menu02','img/menu/menuH_02.gif','',1)" onmouseout="MM_nbGroup('out')"><img src="http://localhost/gmconsulting/img/menu/menu_02.gif" alt="" name="menu02" id="menu02" onload="" border="0" height="29" width="110"></a></td>
+          <td><a href="javascript: cambiaSec('info03.html', 'info');" target="_top" onclick="MM_nbGroup('down','group1','menu03','img/menu/menuH_03.gif',1)" onmouseover="MM_nbGroup('over','menu03','img/menu/menuH_03.gif','',1)" onmouseout="MM_nbGroup('out')"><img src="http://localhost/gmconsulting/img/menu/menu_03.gif" alt="" name="menu03" id="menu03" onload="" border="0" height="29" width="110"></a></td>
+          <td><a href="javascript: cambiaSec('info04.html', 'info');" target="_top" onclick="MM_nbGroup('down','group1','menu04','img/menu/menuH_04.gif',1)" onmouseover="MM_nbGroup('over','menu04','img/menu/menuH_04.gif','',1)" onmouseout="MM_nbGroup('out')"><img src="img/menu/menuH_04.gif" alt="" name="menu04" id="menu04" onload="" border="0" height="29" width="110"></a></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  
+  <div style="display: none; opacity: 0;" id="infoLoader"><img src="img/loading.gif" name="infoLoaderGif" id="infoLoaderGif" height="32" width="32"></div>
+  <div id="info">  <div id="conts04">
+  <div id="contactFormArea"><form action="" method="post" id="cForm" name="cForm" onsubmit="javascript:enviaForma();">
+  <table border="0" cellpadding="0" cellspacing="0" width="360">
+    <tbody><tr><td class="textos" align="left" valign="top">
+            Nombre:<br>
+
+            <input name="posName" id="posName" type="text">
+
+            <br>
+            E-mail:<br>
+
+            <input name="posEmail" id="posEmail" type="text">
+            <br>
+            Trabajo:<br>
+            <input name="posJob" id="posJob" type="text">
+
+            <br>
+
+            Ciudad:<br>
+            <input name="posCity" id="posCity" type="text">
+
+            <br>
+            País:<br>
+            <input name="posCountry" id="posCountry" type="text">
+            </td><td class="textos" align="left" valign="middle" width="170">            
+            Mensaje:<br>
+
+            <textarea name="posText" id="posText"></textarea>
+
+            <br><br>
+			<input name="sendContactEmail" id="sendContactEmail" value="VOLVER" style="float: left;" onclick="javascript:cont04();" type="reset">
+            <input class="submit" name="sendContactEmail" id="sendContactEmail" onclick="javascript:enviaForma();" value="ENVIAR" type="button">
+            </td></tr></tbody></table>
+      </form>
+  
+
+         <p id="loadBar" style="display: none;">
+
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+          <strong style="color: rgb(255, 255, 255);">Enviando, espere un momento.</strong><br>
+
+<img src="form/loading.gif" alt="Loading..." title="Sending Email" style="position: static;"> </p>
+        <p id="emailSuccess" style="display: none;">
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+
+        <strong>
+Su mensaje ha sido enviado. Gracias!</strong><br><br>
+
+              <input class="" name="cerrar" id="cerrar" value="CERRAR" onclick="javascript: document.getElementById('emailSuccess').style.display='none';" type="button">
+
+      </p>
+<div id="destNone">
+
+    </div>
+    
+</div>
+
+  <img src="img/submenu04/dirs.gif" name="img04" usemap="#img04Map" id="img04" border="0" height="200" width="980">
+<map name="img04Map">
+<area shape="rect" coords="38,157,218,192" href="javascript: cont04();">
+<area shape="rect" coords="400,157,540,192" href="javascript: cont04();">
+<area shape="rect" coords="760,157,900,192" href="javascript: cont04();">
+</map>
+  </div>
+  <a href="javascript: text04(0)" id="submenu0401" class="submenu0401act"><img src="img/shim.gif" border="0" height="50" width="50"></a>
+  <a href="javascript: text04(1)" id="submenu0402"><img src="img/shim.gif" border="0" height="50" width="50"></a>
+
+  <a href="javascript: text04(2)" id="submenu0403"><img src="img/shim.gif" border="0" height="50" width="50"></a>
+  <img src="img/info4.gif" name="info_img" id="info_img"></div>
+  <div style="opacity: 1;" id="footer">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody><tr>
+        <td>©2009 ALL RIGHTS RESERVED | G&amp;M CONSULTING, S.C.</td>
+        <td align="right"><a href="http://www.suite407.com">POWERED BY SUITE407™</a></td>
+
+      </tr>
+    </tbody></table>
+  </div>
+</div>
+</body></html>

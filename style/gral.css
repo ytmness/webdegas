@@ -1,0 +1,427 @@
+body {
+	background-color: #222222;
+}
+#gral {
+	position: absolute;
+	height: 540px;
+	width: 950px;
+	left: 50%;
+	top: 50%;
+	margin-top: -270px;
+	margin-left: -475px;
+	overflow: hidden;
+}
+#header {
+	position: absolute;
+	height: 140px;
+	width: 950px;
+	left: 0px;
+	top: 200px;
+	z-index: 100;
+}
+#img_line {
+	position: absolute;
+	height: 3px;
+	width: 0px;
+	left: 0px;
+	top: 100px;
+}
+#img_line_shape {
+	position: absolute;
+	height: 3px;
+	width: 400px;
+	left: -400px;
+	top: 100px;
+}
+#logo1 {
+	position: absolute;
+	height: 100px;
+	width: 347px;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+}
+
+#img_logo1 {
+	position: absolute;
+	left: 0px;
+	top: 100px;
+}
+
+#logo1_legend {
+	position: absolute;
+	height: 35px;
+	width: 347px;
+	left: 0px;
+	top: 103px;
+	overflow: hidden;
+}
+#img_logo1_legend {
+	position: absolute;
+	left: 0px;
+	bottom: 35px;
+}
+#info {
+	position: absolute;
+	height: 320px;
+	width: 950px;
+	left: 0px;
+	top: 175px;
+	z-index: 1;
+	overflow: hidden;
+}
+#info_img  {
+	position: absolute;
+	z-index: 1;
+	top: 0px;
+	left: 0px;
+	display: block;
+}
+#infoLoader {
+	position: absolute;
+	height: 350px;
+	width: 950px;
+	left: 0px;
+	top: 145px;
+	z-index: 10;
+	background-color: #222222;
+	filter: Alpha(Opacity=0);
+	opacity: 0;
+	-moz-opacity:0;
+	display: block;
+}
+#infoLoaderGif {
+	position: absolute;
+	top: 150px;
+	left: 450px;
+}
+
+
+
+#menu {
+	position: absolute;
+	height: 29px;
+	width: 440px;
+	top: 71px;
+	right: 0px;
+	filter: Alpha(Opacity=0);
+	opacity: 0;
+	-moz-opacity:0;
+}
+
+#footer {
+	font-family: tahoma, Arial, sans-serif;
+	color: #dddddd;
+	position: absolute;
+	height: 15px;
+	width: 950px;
+	left: 0px;
+	bottom: 0px;
+	font-size: 10px;
+	filter: Alpha(Opacity=0);
+	opacity: 0;
+	-moz-opacity:0;
+}
+#footer a {
+	color: #dddddd;
+	text-decoration: none;
+}
+#footer a:hover {
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+.conts02 {
+	position: absolute;
+	height: 320px;
+	width: 761px;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+	background-image: url(../img/submenu02/our_team_.gif);
+	background-repeat: no-repeat;
+}
+.conts02 img {
+	display: block;
+	position: absolute;
+	left: 22px;
+	top: 22px;
+	filter: Alpha(Opacity=100);
+	opacity: 100;
+	-moz-opacity:100;
+}
+
+#submenu02 {
+	position: absolute;
+	z-index: 10;
+	height: 320px;
+	width: 189px;
+	top: 0px;
+	right: 0px;
+}
+#submenu02_linea {
+	position: absolute;
+	z-index: 20;
+	height: 320px;
+	width: 1px;
+	left: 0px;
+	top: 0px;
+}
+
+.s02 {
+	position: absolute;
+	left: 0px;
+	z-index: 10;
+	background-image: url(../img/submenu02/op01-trans.png);
+	display: block;
+	height: 65px;
+	width: 189px;
+}
+.s02:hover  {
+	background-image: url(../img/submenu02/op01H-trans.png);
+}
+.s02active {
+	position: absolute;
+	left: 0px;
+	z-index: 30;
+	height: 65px;
+	width: 189px;
+	background-image: url(../img/submenu02/op01H-trans.png);
+	display: block;
+}
+.s02active img { position: absolute; top: 27px; left: 0px; }
+.s02 img { position: absolute; top: 27px; left: 0px; }
+
+#submenu0201 { top: 0px; }
+#submenu0202 {
+	top: 63px;
+}
+#submenu0203 {
+	top: 127px;
+}
+#submenu0204 {
+	top: 191px;
+}
+#submenu0205 {
+	top: 255px;
+}
+
+
+
+
+.conts03 {
+	position: absolute;
+	height: 320px;
+	width: 763px;
+	right: 0px;
+	top: 0px;
+	z-index: 1;
+	display: block;
+	background-image: url(../img/submenu03/practice.png);
+}
+#submenu03 {
+	position: absolute;
+	z-index: 10;
+	height: 320px;
+	width: 188px;
+	top: 0px;
+	left: 0px;
+}
+#submenu03_linea {
+	position: absolute;
+	z-index: 20;
+	height: 320px;
+	width: 1px;
+	right: 0px;
+	top: 0px;
+}
+
+.s03 {
+	position: absolute;
+	left: 0px;
+	z-index: 10;
+	background-image: url(../img/submenu03/op01-trans.png);
+	display: block;
+	height: 36px;
+	width: 188px;
+}
+.s03 img {
+	position: absolute;
+	right: 0px;
+	top: 12px;
+}
+.s03active img {
+	position: absolute;
+	right: 0px;
+	top: 12px;
+}
+
+.s03:hover  {
+	background-image: url(../img/submenu03/op01H-trans.png);
+}
+.s03active {
+	position: absolute;
+	left: 0px;
+	z-index: 30;
+	height: 36px;
+	width: 188px;
+	background-image: url(../img/submenu03/op01H-trans.png);
+	display: block;
+}
+
+#submenu0301 { top: 0px; }
+#submenu0302 { top: 35px; }
+#submenu0303 { top: 70px; }
+#submenu0304 { top: 105px; }
+#submenu0305 { top: 140px; }
+#submenu0306 { top: 175px; }
+#submenu0307 { top: 210px; }
+#submenu0308 { top: 245px; }
+#submenu0309 { top: 280px; }
+.conts03info {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 763px;
+	height: 320px;
+	display: none;
+	filter: Alpha(Opacity=100);
+	opacity: 100;
+	-moz-opacity:100;
+	}
+.conts03btn {
+	background-image: url(../img/btn_nxt.gif);
+	display: block;
+	position: absolute;
+	left: 220px;
+	bottom: 20px;
+	height: 32px;
+	width: 32px;
+	z-index: 50;
+}
+.conts03btn:hover {
+	background-image: url(../img/btn_nxtH.gif);
+}
+.conts03btnA {
+	background-image: url(../img/btn_prv.gif);
+	display: block;
+	position: absolute;
+	left: 220px;
+	bottom: 20px;
+	height: 32px;
+	width: 32px;
+	z-index: 50;
+}
+.conts03btnA:hover {
+	background-image: url(../img/btn_prvH.gif);
+}
+
+#title02 {
+	position: absolute;
+	left: 22px;
+	top: 15px;
+	z-index: 20;
+}
+#text03 {
+	position: absolute;
+	top: 20px;
+	right: 22px;
+	height: 278px;
+	width: 500px;
+	z-index: 10;
+	overflow: hidden;
+}
+#text03 img {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+#logo_correduria img {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+#submenu0401 {
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	left: 280px;
+	top: 111px;
+	z-index: 100;
+	display: block;
+}
+#submenu0402 {
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	left: 137px;
+	top: 106px;
+	z-index: 100;
+}
+#submenu0403 {
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	left: 152px;
+	top: 156px;
+	z-index: 100;
+}
+#submenu0401:hover { background-image: url(../img/submenu04/contact_01.gif); }
+#submenu0402:hover { background-image: url(../img/submenu04/contact_02.gif); }
+#submenu0403:hover { background-image: url(../img/submenu04/contact_03.gif); }
+.submenu0401act { background-image: url(../img/submenu04/contact_01.gif); }
+.submenu0402act { background-image: url(../img/submenu04/contact_02.gif); }
+.submenu0403act { background-image: url(../img/submenu04/contact_03.gif); }
+#conts04 {
+	position: absolute;
+	z-index: 50;
+	height: 640px;
+	width: 360px;
+	top: 0px;
+	right: 50px;
+	overflow: hidden;
+}
+#img04 {
+	position: absolute;
+	top: 60px;
+}
+#menuLang1 {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 155px;
+	height: 31px;
+}
+#menuEs {
+	background-image: url(../img/menuLang/menuLang_01.gif);
+	display: block;
+	height: 31px;
+	width: 78px;
+	float: left;
+}
+#menuEsAct {
+	background-image: url(../img/menuLang/menuLangH_01.gif);
+	display: none;
+	height: 31px;
+	width: 78px;
+	float: left;
+}
+#menuEn {
+	background-image: url(../img/menuLang/menuLang_02.gif);
+	display: block;
+	height: 31px;
+	width: 75px;
+	float: right;
+}
+#menuEnAct {
+	background-image: url(../img/menuLang/menuLangH_02.gif);
+	display: block;
+	height: 31px;
+	width: 75px;
+	float: right;
+}
+#menuEs:hover {
+	background-image: url(../img/menuLang/menuLangH_01.gif);
+}
+#menuEn:hover {
+	background-image: url(../img/menuLang/menuLangH_02.gif);
+}

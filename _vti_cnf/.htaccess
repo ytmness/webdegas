@@ -1,0 +1,11 @@
+# -FrontPage-
+
+Options None
+
+<Limit GET POST PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+AuthName consultinglaw.net
+AuthUserFile /home/moises/public_html/_vti_pvt/service.pwd
+AuthGroupFile /home/moises/public_html/_vti_pvt/service.grp

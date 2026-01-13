@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Diagnóstico G&M Consulting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { border-left: 4px solid #4CAF50; }
+        .error { border-left: 4px solid #f44336; }
+        .warning { border-left: 4px solid #ff9800; }
+        h1 { color: #333; }
+        h2 { color: #666; margin-top: 0; }
+        pre { background: #f0f0f0; padding: 10px; overflow-x: auto; }
+        img { max-width: 100px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Diagnóstico del Sitio G&M Consulting</h1>
+    
+    <div class="test">
+        <h2>1. Información del navegador</h2>
+        <pre id="browserInfo"></pre>
+    </div>
+
+    <div class="test">
+        <h2>2. Rutas de archivos</h2>
+        <p><strong>URL actual:</strong> <span id="currentUrl"></span></p>
+        <p><strong>Base URL:</strong> <span id="baseUrl"></span></p>
+    </div>
+
+    <div class="test">
+        <h2>3. Test de carga de JavaScript</h2>
+        <div id="jsTest"></div>
+    </div>
+
+    <div class="test">
+        <h2>4. Test de carga de imágenes</h2>
+        <div id="imgTest"></div>
+    </div>
+
+    <div class="test">
+        <h2>5. Test de CSS</h2>
+        <div id="cssTest"></div>
+    </div>
+
+    <script>
+        // Información del navegador
+        document.getElementById('browserInfo').textContent = 
+            'User Agent: ' + navigator.userAgent + '\n' +
+            'Plataforma: ' + navigator.platform + '\n' +
+            'Idioma: ' + navigator.language;
+
+        // URLs
+        document.getElementById('currentUrl').textContent = window.location.href;
+        document.getElementById('baseUrl').textContent = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+        // Test de JavaScript
+        let jsDiv = document.getElementById('jsTest');
+        let jsFiles = [
+            'script/motionTween.js',
+            'script/OpacityTween.js',
+            'script/scripts.js',
+            'form/phpmail.js'
+        ];
+
+        jsFiles.forEach(file => {
+            let script = document.createElement('script');
+            script.src = file;
+            script.onload = () => {
+                jsDiv.innerHTML += `<p class="success">✅ ${file} - Cargado</p>`;
+            };
+            script.onerror = () => {
+                jsDiv.innerHTML += `<p class="error">❌ ${file} - ERROR al cargar</p>`;
+            };
+            document.head.appendChild(script);
+        });
+
+        // Test de imágenes
+        let imgDiv = document.getElementById('imgTest');
+        let images = [
+            'img/logo1.gif',
+            'img/info4.gif',
+            'img/submenu04/dirs.gif',
+            'img/menu/menu_01.gif'
+        ];
+
+        images.forEach(imgSrc => {
+            let img = new Image();
+            img.onload = () => {
+                imgDiv.innerHTML += `<div class="success">
+                    <p>✅ ${imgSrc}</p>
+                    <img src="${imgSrc}" alt="${imgSrc}">
+                </div>`;
+            };
+            img.onerror = () => {
+                imgDiv.innerHTML += `<p class="error">❌ ${imgSrc} - NO ENCONTRADA</p>`;
+            };
+            img.src = imgSrc;
+        });
+
+        // Test de CSS
+        let cssDiv = document.getElementById('cssTest');
+        let link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'style/gral.css';
+        link.onload = () => {
+            cssDiv.innerHTML = '<p class="success">✅ style/gral.css - Cargado correctamente</p>';
+        };
+        link.onerror = () => {
+            cssDiv.innerHTML = '<p class="error">❌ style/gral.css - ERROR al cargar</p>';
+        };
+        document.head.appendChild(link);
+
+        // Test adicional de consola
+        console.log('%c🔧 Diagnóstico iniciado', 'background: #222; color: #bada55; font-size: 16px; padding: 10px;');
+        console.log('Si ves este mensaje, la consola funciona correctamente');
+    </script>
+</body>
+</html>
