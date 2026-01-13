@@ -7,7 +7,9 @@
 - **IP del servidor:** `192.168.1.8`
 - **Acceso DSM (HTTPS):** `https://192.168.1.8:5001/`
 - **Acceso DSM (HTTP):** `http://192.168.1.8:5000/` (si está habilitado)
-- **Sitio web (una vez configurado):** `http://192.168.1.8` o `http://192.168.1.8:80`
+- **Sitio web (una vez configurado):** `http://192.168.1.8` ← **Usa HTTP, no HTTPS**
+
+> ⚠️ **Importante:** Para acceder al sitio web desde la IP local, usa siempre **HTTP** (`http://`), no HTTPS. Los certificados SSL no funcionan con direcciones IP, solo con nombres de dominio.
 
 ---
 
@@ -55,11 +57,13 @@ Mientras estás en el **Centro de Paquetes**:
 
 1. Cierra el Centro de Paquetes
 2. En el menú principal, busca y abre **"Web Station"**
-3. En la pestaña **"Web Service Portal"**, verás algo como:
-   - **PHP:** (selecciona la versión que instalaste, ejemplo: PHP 8.2)
-   - **HTTP back-end server:** Apache 2.4
-4. Haz clic en el botón de **configuración (⚙️)** junto a Apache
-5. Asegúrate que esté **habilitado** y dale **"Aplicar"**
+3. En la pestaña **"Portal web"** (o "Web Service Portal"), verás la configuración de puertos:
+   - **Puerto HTTP:** Debe estar en `80` y **habilitado** ✅
+   - **Puerto HTTPS:** Puede estar en `443` (opcional)
+   - Si el puerto 80 no está habilitado, haz clic en el botón de configuración (⚙️) y habilítalo
+4. Verifica que **Apache HTTP Server 2.4** esté en estado "Normal" (verde)
+5. Verifica que **PHP 8.2** esté en estado "Normal" (verde)
+6. Si alguno no está normal, haz clic en el ícono de administración para configurarlo
 
 ---
 
@@ -117,11 +121,14 @@ Mientras estás en el **Centro de Paquetes**:
 
 Ahora tu sitio está en línea! Puedes acceder de dos formas:
 
-### Opción 1 - Desde tu red local:
+### Opción 1 - Desde tu red local (HTTP):
 
-En el navegador: `http://192.168.1.8`
-- **O con puerto específico:** `http://192.168.1.8:80` (si configuraste el puerto 80)
+⚠️ **IMPORTANTE:** Usa **HTTP** (no HTTPS) para acceder desde la IP local:
+- **URL correcta:** `http://192.168.1.8` ← **Usa HTTP, no HTTPS**
+- **O con puerto específico:** `http://192.168.1.8:80`
 - **O con puerto personalizado:** `http://192.168.1.8:8080` (si usaste otro puerto)
+
+> **Nota sobre HTTPS:** Si intentas acceder con `https://192.168.1.8`, verás un error de certificado porque los certificados SSL están diseñados para nombres de dominio (como `consultinglaw.net`), no para direcciones IP. Para uso local, usa siempre **HTTP**.
 
 ### Opción 2 - Si configuraste un nombre:
 
@@ -212,29 +219,104 @@ Tu proyecto tiene un archivo `.htaccess` vacío, está bien dejarlo así. Si nec
 
 Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
 
-1. **Obtén tu IP pública:**
-   - Ve a `https://whatismyipaddress.com/` para conocer tu IP pública
-   - O revisa la configuración de tu router
+#### Paso 1: Obtén tu IP pública
 
-2. **Configura el DNS:**
-   - En tu proveedor de dominio, configura un registro A apuntando `consultinglaw.net` a tu IP pública
-   - También configura `www.consultinglaw.net` si lo necesitas
+1. Ve a `https://whatismyipaddress.com/` para conocer tu IP pública
+2. O revisa la configuración de tu router
+3. **Anota esta IP** - la necesitarás para configurar los DNS
 
-3. **Configura Port Forwarding en el router:**
-   - Puerto 80 (HTTP) → `192.168.1.8:80`
-   - Puerto 443 (HTTPS) → `192.168.1.8:443` (si usas HTTPS)
+> ⚠️ **Importante:** Si tu IP pública cambia (IP dinámica), considera usar un servicio de DNS dinámico (DDNS) o solicitar una IP estática a tu proveedor de internet.
 
-4. **Configura HTTPS en Synology:**
-   - Ve a **Panel de Control → Seguridad → Certificado**
-   - Puedes usar Let's Encrypt (gratuito) para obtener un certificado SSL
-   - Configura el certificado para `consultinglaw.net`
+#### Paso 2: Configura los DNS en GoDaddy
 
-5. **Configura el Virtual Host en Web Station:**
-   - Crea un nuevo Virtual Host con el dominio `consultinglaw.net`
-   - Selecciona el puerto 443 (HTTPS) o 80 (HTTP)
-   - Apunta a la misma carpeta donde subiste los archivos
+1. **Accede a GoDaddy:**
+   - Ve a `https://www.godaddy.com/` e inicia sesión
+   - Ve a **Mis Productos** → **Dominios**
+   - Haz clic en `consultinglaw.net` → **DNS** o **Administrar DNS**
 
-> **Nota:** Asegúrate de que tu router tenga una IP pública estática o usa un servicio de DNS dinámico (DDNS) si tu IP cambia.
+2. **Configura los registros DNS:**
+
+   Necesitas crear/editar estos registros:
+
+   **Registro A (para el dominio principal):**
+   - **Tipo:** `A`
+   - **Nombre/Host:** `@` (o déjalo en blanco, o `consultinglaw.net`)
+   - **Valor/Puntos a:** `TU_IP_PUBLICA` (la IP que obtuviste en el Paso 1)
+   - **TTL:** `600` (o el valor por defecto)
+
+   **Registro A (para www):**
+   - **Tipo:** `A`
+   - **Nombre/Host:** `www`
+   - **Valor/Puntos a:** `TU_IP_PUBLICA` (la misma IP)
+   - **TTL:** `600` (o el valor por defecto)
+
+   **Ejemplo de cómo se vería en GoDaddy:**
+   ```
+   Tipo | Nombre | Valor          | TTL
+   -----|--------|----------------|-----
+   A    | @      | 123.45.67.89   | 600
+   A    | www    | 123.45.67.89   | 600
+   ```
+
+3. **Guarda los cambios** y espera 5-30 minutos para que se propaguen los DNS
+
+#### Paso 3: Configura Port Forwarding en el router
+
+1. Accede a la configuración de tu router (normalmente `http://192.168.1.1` o `http://192.168.0.1`)
+2. Busca la sección **"Port Forwarding"** o **"Reenvío de puertos"** o **"NAT"**
+3. Configura estas reglas:
+
+   **Regla 1 - HTTP:**
+   - **Puerto externo:** `80`
+   - **Puerto interno:** `80`
+   - **IP interna:** `192.168.1.8` (tu Synology)
+   - **Protocolo:** `TCP`
+
+   **Regla 2 - HTTPS (si vas a usar SSL):**
+   - **Puerto externo:** `443`
+   - **Puerto interno:** `443`
+   - **IP interna:** `192.168.1.8` (tu Synology)
+   - **Protocolo:** `TCP`
+
+4. Guarda los cambios en el router
+
+#### Paso 4: Configura HTTPS en Synology (recomendado)
+
+1. Ve a **Panel de Control → Seguridad → Certificado**
+2. Haz clic en **"Añadir"** → **"Añadir un nuevo certificado"**
+3. Selecciona **"Obtener un certificado de Let's Encrypt"** (gratuito)
+4. Llena los campos:
+   - **Nombre de dominio:** `consultinglaw.net`
+   - **Correo electrónico:** Tu email (para notificaciones)
+   - **Dominio alternativo:** `www.consultinglaw.net` (opcional)
+5. Acepta los términos y haz clic en **"Aplicar"**
+6. Espera a que se genere el certificado (puede tardar unos minutos)
+
+#### Paso 5: Configura el Virtual Host en Web Station
+
+1. Ve a **Web Station → Servicio web**
+2. Crea un nuevo servicio o edita el existente
+3. Configura:
+   - **Nombre:** `consultinglaw.net`
+   - **Puerto:** `80` (HTTP) o `443` (HTTPS si configuraste el certificado)
+   - **Carpeta raíz del documento:** `/web/webdegas-main`
+   - **HTTP back-end server:** Apache HTTP Server 2.4
+   - **PHP:** PHP 8.2
+   - **Certificado SSL:** Selecciona el certificado de Let's Encrypt que creaste (si usas HTTPS)
+4. Guarda los cambios
+
+#### Paso 6: Verifica que funciona
+
+1. Espera 15-30 minutos después de configurar los DNS
+2. Prueba acceder desde internet:
+   - `http://consultinglaw.net` (HTTP)
+   - `https://consultinglaw.net` (HTTPS, si lo configuraste)
+3. Si no funciona, verifica:
+   - Que los DNS se hayan propagado (usa `https://www.whatsmydns.net/` para verificar)
+   - Que el Port Forwarding esté configurado correctamente
+   - Que el firewall del router permita el tráfico en los puertos 80 y 443
+
+> **Nota:** La propagación de DNS puede tardar hasta 48 horas, aunque normalmente es en 15-30 minutos. Si tu IP pública cambia, necesitarás actualizar los registros DNS o usar un servicio de DNS dinámico.
 
 ---
 
@@ -254,9 +336,75 @@ Si quieres que el sitio sea accesible desde internet usando `consultinglaw.net`:
 
 ### Error 404 Not Found:
 
-1. Verifica que los archivos estén en la ruta correcta
-2. Verifica la configuración del Virtual Host
-3. Asegúrate de que `index.html` exista en la raíz
+1. Verifica que los archivos estén en la ruta correcta (`/web/webdegas-main`)
+2. Verifica la configuración del Virtual Host - debe apuntar a `/web/webdegas-main`
+3. Asegúrate de que `index.html` exista dentro de `/web/webdegas-main/index.html`
+4. Verifica que el servicio web esté activo (debe mostrar "Normal" en verde)
+
+### Error de certificado SSL / "Sitio web no confiable":
+
+Si ves un error sobre certificado no válido al acceder a `https://192.168.1.8`:
+
+**Solución:** Usa **HTTP** en lugar de HTTPS:
+- ❌ **NO uses:** `https://192.168.1.8`
+- ✅ **USA:** `http://192.168.1.8`
+
+Los certificados SSL están diseñados para nombres de dominio (como `consultinglaw.net`), no para direcciones IP. Para acceder desde la red local, siempre usa HTTP.
+
+### Error ERR_CONNECTION_REFUSED:
+
+Este error significa que el servidor no está escuchando en el puerto o el servicio no está activo.
+
+1. **Verifica el Portal web:**
+   - Ve a Web Station → **Portal web**
+   - Verifica que el puerto **80** esté **habilitado** ✅
+   - Si no está habilitado, haz clic en configuración (⚙️) y habilítalo
+   - Guarda los cambios
+
+2. **Verifica que Apache esté activo:**
+   - En Web Station → General, verifica que Apache HTTP Server 2.4 esté en estado "Normal" (verde)
+   - Si no está normal, haz clic en el ícono de administración y reinícialo
+
+3. **Verifica el servicio web creado:**
+   - Ve a Web Station → **Servicio web**
+   - Busca el servicio que creaste (debe tener un nombre como "webdegas" o similar)
+   - Verifica que esté en estado "Normal" (verde)
+   - Si no está activo, haz clic en "Editar" y verifica la configuración
+
+4. **Verifica la carpeta raíz:**
+   - Edita el servicio web
+   - Verifica que la "Carpeta raíz del documento" sea exactamente `/web/webdegas-main`
+   - NO debe ser solo `/web`
+
+5. **Verifica los permisos:**
+   - En File Station, clic derecho en `/web/webdegas-main` → Propiedades → Permisos
+   - El usuario/grupo `http` debe tener permisos de **lectura y ejecución**
+   - Si no los tiene, agrégalos y aplica
+
+6. **Reinicia el servicio:**
+   - En Web Station → Servicio web, selecciona tu servicio
+   - Haz clic en "Acción" → "Reiniciar" (si está disponible)
+
+### El sitio no carga / muestra página en blanco:
+
+1. **Verifica la carpeta en File Station:**
+   - Debe existir: `/web/webdegas-main/index.html`
+   - Debe existir: `/web/webdegas-main/form/form2.php`
+   - Si no están ahí, los archivos están en la ubicación incorrecta
+
+2. **Verifica la configuración del servicio web:**
+   - Ve a Web Station → Servicio web
+   - El servicio debe estar en estado "Normal" (verde)
+   - Verifica que la carpeta raíz sea `/web/webdegas-main` (no solo `/web`)
+
+3. **Verifica los permisos:**
+   - En File Station, clic derecho en `/web/webdegas-main` → Propiedades → Permisos
+   - El usuario/grupo `http` debe tener permisos de lectura y ejecución
+
+4. **Prueba acceder directamente:**
+   - `http://192.168.1.8` (si usaste puerto 80)
+   - `http://192.168.1.8:8080` (si usaste otro puerto)
+   - Si ves el `index.html` suelto de ejemplo, significa que está apuntando a `/web` en lugar de `/web/webdegas-main`
 
 ### Los caracteres especiales se ven mal:
 
