@@ -382,10 +382,41 @@ Antes de configurar el router, necesitas permitir el tráfico en el firewall de 
 
 #### Paso 4: Configura Port Forwarding en el router
 
-1. Accede a la configuración de tu router:
+1. **Accede a la configuración de tu router:**
    - Normalmente `http://192.168.1.1` o `http://192.168.0.1`
    - O revisa la etiqueta del router para la IP de administración
-   - Usa las credenciales de administrador del router
+   - También puedes verificar la "Pasarela predeterminada" en Synology (Panel de Control > Red) - esa es la IP del router
+
+2. **Credenciales del router ZTE:**
+   
+   **Opción 1 - Credenciales por defecto comunes:**
+   - **Usuario:** `admin`
+   - **Contraseña:** `admin`
+   - O
+   - **Usuario:** `admin`
+   - **Contraseña:** (déjalo vacío)
+   - O
+   - **Usuario:** `admin`
+   - **Contraseña:** `password`
+   - O
+   - **Usuario:** `root`
+   - **Contraseña:** `Zte521` o `admin`
+
+   **Opción 2 - Revisa la etiqueta del router:**
+   - Busca una etiqueta en la parte inferior o trasera del router ZTE
+   - Generalmente tiene la IP de acceso, usuario y contraseña por defecto
+   - Puede decir algo como "Default IP: 192.168.1.1" y "Username/Password: admin/admin"
+
+   **Opción 3 - Si cambiaste las credenciales:**
+   - Si no recuerdas las credenciales, puedes resetear el router
+   - Busca un botón "Reset" pequeño en el router
+   - Mantén presionado por 10-30 segundos hasta que parpadeen las luces
+   - Esto restaurará las credenciales por defecto (pero perderás toda la configuración del router)
+
+3. **Si no puedes acceder:**
+   - Verifica que estés conectado a la misma red que el router
+   - Prueba diferentes combinaciones de usuario/contraseña comunes
+   - Contacta a tu proveedor de internet - a veces ellos tienen las credenciales o las cambian
 
 2. Busca la sección:
    - **"Port Forwarding"** o **"Reenvío de puertos"**
