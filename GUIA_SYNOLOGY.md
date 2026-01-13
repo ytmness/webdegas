@@ -120,24 +120,46 @@ Mientras estás en el **Centro de Paquetes**:
 ## PASO 6: Crear un Virtual Host (sitio web)
 
 1. Regresa a **Web Station**
-2. Ve a la pestaña **"Virtual Host"** (no confundir con "Servicio web")
-3. Haz clic en **"Crear"**
-4. Llena los campos:
-   - **Tipo de portal:** Name-based
-   - **Nombre del host:** `webdegas` (o el nombre que quieras)
-   - **Puerto:** `80` (HTTP) - si quieres HTTPS usa `443` pero requiere certificado
-   - **Carpeta raíz del documento:** ⚠️ **IMPORTANTE:** Haz clic en el botón de carpeta y selecciona:
-     - **Si subiste el ZIP y lo extrajiste:** `/web/webdegas-main` ← **Esta es la correcta**
-     - **NO uses:** `/web` (esa carpeta puede tener otros archivos como `index.html` de ejemplo)
-   - **HTTP back-end server:** Apache HTTP Server 2.4
-   - **PHP:** Selecciona la versión que instalaste (ej: PHP 8.2)
-5. Haz clic en **"Aceptar"**
+2. Ve a la pestaña **"Portal web"** (o "Web portal")
+3. Haz clic en **"Crear"** (botón azul arriba)
+4. Se abrirá el **"Asistente de creación de portales"**
 
-> **Nota importante:** 
-> - Si ya tienes un servicio web llamado "web" en la pestaña "Servicio web", ese es diferente al Virtual Host
-> - El Virtual Host es lo que necesitas crear en la pestaña "Virtual Host"
-> - Si ves un archivo `index.html` suelto en la carpeta `/web` que no es tuyo, puedes eliminarlo o ignorarlo
-> - El Virtual Host debe apuntar a `/web/webdegas-main` donde están todos tus archivos del proyecto
+### Configuración en el asistente:
+
+**Paso 1 - Configuración básica:**
+- **Servicio:** Debe mostrar `php web` o `PHP 8.2` ✅ (ya está configurado)
+- **Estado:** Debe mostrar "Normal" en verde ✅
+- **Tipo de portal:** `Basada en el nombre` ✅ (ya está seleccionado)
+- **Nombre de host:** 
+  - Escribe: `consultinglaw.net` (o `webdegas` si es solo para uso local)
+  - ⚠️ Este campo es obligatorio (tiene borde rojo si está vacío)
+- **Puerto:**
+  - ✅ **Marca** el checkbox de `80 / 443` (esto habilita ambos puertos)
+  - ✅ **Marca** el checkbox de `HTTP` (puerto 80)
+  - ⚠️ **Desmarca** el checkbox de `HTTPS` (puerto 443) - solo si NO has configurado certificado SSL aún
+  - Si ya configuraste el certificado SSL, puedes marcar HTTPS también
+- **Configuración de VPN:**
+  - ⚠️ **Desmarca** `HSTS` (no es necesario para empezar)
+- **Perfil de control de acceso:** 
+  - Déjalo en `No configurado` (o selecciona uno si tienes configurado)
+
+5. Haz clic en **"Crear"** (botón azul abajo)
+
+**Paso 2 - Configuración de carpeta (en la siguiente pantalla):**
+- **Carpeta raíz del documento:** ⚠️ **MUY IMPORTANTE:** 
+  - Haz clic en el botón de carpeta (📁) o "Seleccionar"
+  - Navega y selecciona: `/web/webdegas-main` ← **Esta es la correcta**
+  - **NO uses:** `/web` (esa carpeta puede tener otros archivos como `index.html` de ejemplo)
+- **HTTP back-end server:** `Apache HTTP Server 2.4`
+- **PHP:** `PHP 8.2` (o la versión que instalaste)
+
+6. Haz clic en **"Aplicar"** o **"Crear"** para finalizar
+
+> **Resumen de qué marcar/desmarcar:**
+> - ✅ **Marca:** `80 / 443`, `HTTP`
+> - ⚠️ **Desmarca:** `HTTPS` (solo si NO tienes certificado SSL), `HSTS`
+> - ✅ **Escribe:** Nombre de host (`consultinglaw.net` o `webdegas`)
+> - ✅ **Selecciona:** Carpeta `/web/webdegas-main`
 
 ---
 
