@@ -423,23 +423,37 @@ Antes de configurar el router, necesitas permitir el tráfico en el firewall de 
    - **"NAT"** o **"Virtual Server"**
    - **"Aplicaciones y juegos"** (en algunos routers)
 
-3. Configura estas reglas:
+3. Configura estas reglas (para router ZTE):
 
    **Regla 1 - HTTP (puerto 80):**
-   - **Nombre/Descripción:** `Web Server HTTP` o `Synology Web`
-   - **Puerto externo/Público:** `80`
-   - **Puerto interno/Privado:** `80`
-   - **IP interna/Destino:** `192.168.1.8` (tu Synology)
-   - **Protocolo:** `TCP` (o `TCP/UDP` si está disponible)
-   - **Estado:** `Habilitado` ✅
+   
+   En el formulario "New Item" que ves, llena estos campos:
+   - **On/Off:** Selecciona **"On"** ✅
+   - **Name:** `Web Server HTTP` o `Synology Web`
+   - **Protocol:** `TCP` (ya está seleccionado) ✅
+   - **WAN Connection:** `Auto` (déjalo así) ✅
+   - **WAN Host IP Address:** 
+     - Deja `0.0.0.0 ~ 0.0.0.0` (permite todas las IPs externas)
+     - O si quieres ser más específico, usa tu IP pública: `189.219.66.244 ~ 189.219.66.244`
+   - **LAN Host:** `192.168.1.8` ← **Tu Synology**
+   - **WAN Port:** `80 ~ 80` (puerto externo)
+   - **LAN Host Port:** `80 ~ 80` (puerto interno)
+   
+   Haz clic en **"Apply"** para guardar esta regla
 
    **Regla 2 - HTTPS (puerto 443, si vas a usar SSL):**
-   - **Nombre/Descripción:** `Web Server HTTPS` o `Synology Web SSL`
-   - **Puerto externo/Público:** `443`
-   - **Puerto interno/Privado:** `443`
-   - **IP interna/Destino:** `192.168.1.8` (tu Synology)
-   - **Protocolo:** `TCP` (o `TCP/UDP` si está disponible)
-   - **Estado:** `Habilitado` ✅
+   
+   Haz clic en **"Create New Item"** (el botón con el +) para crear otra regla:
+   - **On/Off:** Selecciona **"On"** ✅
+   - **Name:** `Web Server HTTPS` o `Synology Web SSL`
+   - **Protocol:** `TCP`
+   - **WAN Connection:** `Auto`
+   - **WAN Host IP Address:** `0.0.0.0 ~ 0.0.0.0` (o `189.219.66.244 ~ 189.219.66.244`)
+   - **LAN Host:** `192.168.1.8` ← **Tu Synology**
+   - **WAN Port:** `443 ~ 443` (puerto externo)
+   - **LAN Host Port:** `443 ~ 443` (puerto interno)
+   
+   Haz clic en **"Apply"** para guardar esta regla
 
 4. Guarda los cambios en el router
 5. Reinicia el router si es necesario (algunos routers requieren reinicio para aplicar cambios)
