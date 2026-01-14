@@ -630,6 +630,50 @@ Este error significa que el servidor no está escuchando en el puerto o el servi
    - En Web Station → Servicio web, selecciona tu servicio
    - Haz clic en "Acción" → "Reiniciar" (si está disponible)
 
+### El puerto 80 está cerrado (Port 80 is closed):
+
+Si al verificar en `canyouseeme.org` te dice "Port 80 is closed", el tráfico no está llegando a tu Synology. Sigue estos pasos en orden:
+
+**Paso 1 - Verifica el Port Forwarding en el router ZTE:**
+1. Accede a tu router (`http://192.168.1.1`)
+2. Ve a **Port Forwarding**
+3. Verifica que la regla para puerto 80 esté:
+   - **On/Off:** `On` ✅
+   - **LAN Host:** `192.168.1.8` ✅
+   - **WAN Port:** `80 ~ 80` ✅
+   - **LAN Host Port:** `80 ~ 80` ✅
+4. Si no está así, corrígela y guarda
+5. **Reinicia el router** (desconéctalo 30 segundos y vuelve a conectarlo)
+
+**Paso 2 - Verifica el firewall del router:**
+1. En el router ZTE, busca **"Firewall"** o **"Seguridad"**
+2. Asegúrate de que no esté bloqueando el puerto 80
+3. O deshabilita temporalmente el firewall del router para probar
+
+**Paso 3 - Verifica el firewall del Synology:**
+1. Ve a **Panel de Control > Seguridad > Firewall**
+2. Verifica que la regla para puerto 80 esté **habilitada**
+3. O deshabilita temporalmente el firewall para probar
+4. Si funciona sin firewall, el problema está en las reglas
+
+**Paso 4 - Verifica que el servicio web esté funcionando localmente:**
+1. Desde tu red local, accede a: `http://192.168.1.8`
+2. Debe mostrar tu sitio web
+3. Si no carga, el problema está en la configuración del servicio web en Synology
+
+**Paso 5 - Verifica que el proveedor no bloquee el puerto 80:**
+- Algunos proveedores de internet bloquean el puerto 80
+- Contacta a tu proveedor y pregunta si bloquean el puerto 80
+- Si lo bloquean, tendrás que:
+  - Usar otro puerto (como 8080) y configurar el Port Forwarding y el servicio web para usar ese puerto
+  - O solicitar que desbloqueen el puerto 80
+
+**Paso 6 - Prueba desde la red local:**
+1. Desde otra computadora en tu red local, accede a: `http://192.168.1.8`
+2. Si funciona localmente pero no desde internet, el problema está en el Port Forwarding del router
+
+> **Nota:** Si tu proveedor bloquea el puerto 80, no podrás usar Let's Encrypt con el método estándar. Tendrás que usar otro puerto o solicitar que desbloqueen el puerto 80.
+
 ### El sitio no carga / muestra página en blanco:
 
 1. **Verifica la carpeta en File Station:**
