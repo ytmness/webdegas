@@ -466,9 +466,11 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
    - **WAN Host IP Address:** 
      - Deja `0.0.0.0 ~ 0.0.0.0` (permite todas las IPs externas)
      - O si quieres ser más específico, usa tu IP pública: `189.219.66.244 ~ 189.219.66.244`
-   - **LAN Host:** `192.168.1.8` ← **IP LOCAL de tu Synology (NO la IP pública)**
-   - **WAN Port:** `80 ~ 80` (puerto externo - el que llega desde internet)
-   - **LAN Host Port:** `80 ~ 80` (puerto interno - el que usa tu Synology)
+   - **LAN Host:** `192.168.1.8` ← **IP LOCAL de tu Synology (NO la IP pública)** ✅
+   - **WAN Port:** `80 ~ 80` ← **Cambia de 8080 a 80** (puerto externo - el que llega desde internet)
+   - **LAN Host Port:** `80 ~ 80` ← **Cambia de 8080 a 80** (puerto interno - el que usa tu Synology)
+   
+   ⚠️ **IMPORTANTE:** Si ves que tienes `8080` en lugar de `80`, cámbialo a `80` en ambos campos (WAN Port y LAN Host Port)
    
    Haz clic en **"Apply"** para guardar esta regla
 
@@ -655,10 +657,11 @@ Si al verificar en `canyouseeme.org` te dice "Port 80 is closed", el tráfico no
 3. Verifica que la regla para puerto 80 esté:
    - **On/Off:** `On` ✅
    - **LAN Host:** `192.168.1.8` ✅
-   - **WAN Port:** `80 ~ 80` ✅
-   - **LAN Host Port:** `80 ~ 80` ✅
-4. Si no está así, corrígela y guarda
-5. **Reinicia el router** (desconéctalo 30 segundos y vuelve a conectarlo)
+   - **WAN Port:** `80 ~ 80` ✅ (NO 8080)
+   - **LAN Host Port:** `80 ~ 80` ✅ (NO 8080)
+4. ⚠️ **Si tienes 8080 en lugar de 80, cámbialo a 80 en ambos campos**
+5. Si no está así, corrígela y guarda
+6. **Reinicia el router** (desconéctalo 30 segundos y vuelve a conectarlo)
 
 **Paso 2 - Verifica el firewall del router:**
 1. En el router ZTE, busca **"Firewall"** o **"Seguridad"**
