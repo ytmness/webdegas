@@ -373,17 +373,24 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
    **Opción A - Crear reglas manualmente:**
    - Haz clic en **"Editar reglas"** o **"Crear regla"** o **"Reglas de firewall"**
    - Haz clic en **"Crear"** o **"Añadir"**
-   - Crea una regla para HTTP (puerto 80):
-     - **Puerto:** `80`
+   - En la sección **"Puertos"**, haz clic en **"Personalizado"**
+   - Configura la regla:
+     - **Tipo:** `Puerto de destino` ← **Solo este, NO puerto de origen**
      - **Protocolo:** `TCP`
-     - **Acción:** `Permitir`
-     - **Origen:** `Todas las interfaces` o `Todas las IP` o `Cualquier IP`
-   - Crea otra regla para HTTPS (puerto 443):
-     - **Puerto:** `443`
-     - **Protocolo:** `TCP`
-     - **Acción:** `Permitir`
-     - **Origen:** `Todas las interfaces` o `Todas las IP` o `Cualquier IP`
+     - **Puertos (Separar con comas):** `80,443` ← **Ambos puertos separados por coma**
+     - O si prefieres crear reglas separadas:
+       - Una regla con puerto `80`
+       - Otra regla con puerto `443`
+   - **Acción:** `Permitir`
+   - **Origen:** `Todas las interfaces` o `Todas las IP` o `Cualquier IP`
+   - Haz clic en **"OK"** para guardar
+   - Asegúrate de que la regla esté **"Habilitada"**
    - Guarda y aplica los cambios
+
+   > **Nota importante:** 
+   > - Solo necesitas configurar **"Puerto de destino"** (80 y 443)
+   > - **NO necesitas** crear una regla para "Puerto de origen"
+   > - El puerto de origen es dinámico y lo asigna el navegador del cliente, no necesitas permitirlo específicamente
 
    **Opción B - Permitir todo el tráfico de Web Station:**
    - En el firewall, busca la opción **"Permitir todo el tráfico de Web Station"**
