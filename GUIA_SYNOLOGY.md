@@ -536,9 +536,25 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 
 **Solución 4 - Si el proveedor bloquea el puerto 80:**
 Algunos proveedores de internet bloquean el puerto 80. En ese caso:
-1. Usa un puerto alternativo como 8080 en el Port Forwarding
-2. O solicita a tu proveedor que desbloquee el puerto 80
-3. O usa un servicio de DNS dinámico con validación alternativa
+
+⚠️ **IMPORTANTE:** Si usas el puerto 8080, Let's Encrypt NO funcionará porque necesita el puerto 80 para validar el dominio.
+
+**Opción A - Solicitar desbloqueo del puerto 80 (RECOMENDADO):**
+1. Contacta a tu proveedor de internet
+2. Solicita que desbloqueen el puerto 80 para uso de servidor web
+3. Una vez desbloqueado, cambia el Port Forwarding a puerto 80
+4. Luego podrás usar Let's Encrypt normalmente
+
+**Opción B - Usar puerto 8080 (sin Let's Encrypt):**
+1. Deja el Port Forwarding en puerto 8080
+2. Configura el servicio web en Synology para usar puerto 8080
+3. Accede desde internet con: `http://consultinglaw.net:8080`
+4. ⚠️ **NO podrás usar Let's Encrypt** - tendrás que usar un certificado autofirmado o comprar uno
+
+**Opción C - Usar validación DNS de Let's Encrypt (avanzado):**
+1. Algunos clientes de Let's Encrypt permiten validación por DNS en lugar de HTTP
+2. Esto requiere configuración adicional y herramientas especiales
+3. Es más complejo pero funciona sin puerto 80
 
 **Proceso para obtener el certificado:**
 
@@ -681,10 +697,13 @@ Si al verificar en `canyouseeme.org` te dice "Port 80 is closed", el tráfico no
 
 **Paso 5 - Verifica que el proveedor no bloquee el puerto 80:**
 - Algunos proveedores de internet bloquean el puerto 80
+- **Cómo verificar:** Intenta cambiar el Port Forwarding a puerto 80 y prueba en `canyouseeme.org`
+- Si el puerto 80 sigue cerrado después de configurarlo correctamente, probablemente tu proveedor lo bloquea
 - Contacta a tu proveedor y pregunta si bloquean el puerto 80
-- Si lo bloquean, tendrás que:
-  - Usar otro puerto (como 8080) y configurar el Port Forwarding y el servicio web para usar ese puerto
-  - O solicitar que desbloqueen el puerto 80
+- Si lo bloquean, tienes estas opciones:
+  - **Opción 1 (RECOMENDADA):** Solicita que desbloqueen el puerto 80 para uso de servidor web
+  - **Opción 2:** Usa puerto 8080, pero NO podrás usar Let's Encrypt (necesita puerto 80)
+  - **Opción 3:** Usa validación DNS de Let's Encrypt (más complejo)
 
 **Paso 6 - Prueba desde la red local:**
 1. Desde otra computadora en tu red local, accede a: `http://192.168.1.8`
