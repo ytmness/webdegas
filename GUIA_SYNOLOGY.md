@@ -451,10 +451,24 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 
 3. Configura estas reglas (para router ZTE):
 
-   ⚠️ **IMPORTANTE - Diferencia entre IPs:**
-   - **IP Pública** (`189.219.66.244`): Se usa en los DNS de GoDaddy, NO en el router
-   - **IP Local** (`192.168.1.8`): Se usa en LAN Host del router, es la IP de tu Synology dentro de tu red
-   - El Port Forwarding redirige el tráfico desde internet (IP pública) hacia tu Synology (IP local)
+   ⚠️ **IMPORTANTE - Diferencia entre IPs y cómo funciona el flujo:**
+   
+   **¿Por qué la IP pública apunta al dominio si el servidor está en Synology?**
+   
+   El flujo funciona así:
+   1. **DNS (GoDaddy):** `consultinglaw.net` → apunta a tu **IP pública** `189.219.66.244`
+   2. **Internet:** Cuando alguien accede a `consultinglaw.net`, el tráfico llega a tu router con IP `189.219.66.244`
+   3. **Router:** El router recibe el tráfico en el puerto 80
+   4. **Port Forwarding:** El router redirige ese tráfico a tu **IP local** `192.168.1.8` (tu Synology)
+   5. **Synology:** Tu servidor web procesa la petición y responde
+   6. **Respuesta:** El router envía la respuesta de vuelta a internet
+   
+   **Resumen:**
+   - **IP Pública** (`189.219.66.244`): Es la IP de tu router en internet. Se usa en los DNS de GoDaddy para que el dominio apunte a tu router
+   - **IP Local** (`192.168.1.8`): Es la IP de tu Synology dentro de tu red local. Se usa en LAN Host del router
+   - **Port Forwarding:** Es el "puente" que conecta la IP pública (router) con la IP local (Synology)
+   
+   Sin Port Forwarding, el tráfico llegaría al router pero no sabría a dónde enviarlo. El Port Forwarding le dice al router: "Cuando llegue tráfico al puerto 80, envíalo a 192.168.1.8"
 
    **Regla 1 - HTTP (puerto 80):**
    
@@ -491,12 +505,22 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 4. Guarda los cambios en el router
 5. Reinicia el router si es necesario (algunos routers requieren reinicio para aplicar cambios)
 
-> **Importante - Explicación de cómo funciona el Port Forwarding:**
+> **Importante - Explicación completa de cómo funciona el flujo:**
 > 
-> 1. **Desde internet:** Alguien accede a `http://consultinglaw.net` (que apunta a tu IP pública `189.219.66.244`)
-> 2. **El router recibe:** El tráfico llega al router en el puerto 80
-> 3. **Port Forwarding redirige:** El router redirige ese tráfico a `192.168.1.8:80` (tu Synology)
-> 4. **El Synology responde:** Tu servidor web procesa la petición y responde
+> **Flujo completo desde internet hasta tu Synology:**
+> 
+> 1. **Usuario accede:** Alguien escribe `http://consultinglaw.net` en su navegador
+> 2. **DNS resuelve:** El sistema DNS busca `consultinglaw.net` y encuentra que apunta a `189.219.66.244` (tu IP pública)
+> 3. **Tráfico llega al router:** El tráfico llega a tu router (que tiene la IP pública `189.219.66.244`) en el puerto 80
+> 4. **Port Forwarding redirige:** El router ve que hay una regla de Port Forwarding que dice "puerto 80 → enviar a `192.168.1.8:80`"
+> 5. **Tráfico llega al Synology:** El tráfico se redirige a tu Synology (IP local `192.168.1.8`) en el puerto 80
+> 6. **Synology procesa:** Tu servidor web Apache en el Synology procesa la petición y genera la respuesta
+> 7. **Respuesta regresa:** La respuesta viaja de vuelta: Synology → Router → Internet → Usuario
+> 
+> **Por eso necesitas:**
+> - **DNS en GoDaddy:** Para que `consultinglaw.net` apunte a tu IP pública (`189.219.66.244`)
+> - **Port Forwarding en el router:** Para que el router sepa enviar el tráfico a tu Synology (`192.168.1.8`)
+> - **Servicio web en Synology:** Para que procese las peticiones y sirva tu sitio
 > 
 > **Por eso:**
 > - **WAN Host IP Address:** Puede ser `0.0.0.0` (cualquier IP externa) o tu IP pública `189.219.66.244`
@@ -545,13 +569,37 @@ Algunos proveedores de internet bloquean el puerto 80. En ese caso:
 3. Una vez desbloqueado, cambia el Port Forwarding a puerto 80
 4. Luego podrás usar Let's Encrypt normalmente
 
-**Opción B - Usar puerto 8080 (sin Let's Encrypt):**
+**Opción B - Obtener certificado desde otro servidor:**
+Si tienes otro servidor con puerto 80 abierto, puedes obtener el certificado allí y transferirlo:
+
+1. **En tu otro servidor:**
+   - Instala Certbot o usa Let's Encrypt
+   - Obtén el certificado para `consultinglaw.net` y `www.consultinglaw.net`
+   - Los archivos del certificado estarán en:
+     - Certificado: `fullchain.pem` o `cert.pem`
+     - Clave privada: `privkey.pem`
+
+2. **Transferir al Synology:**
+   - Descarga los archivos del certificado desde tu otro servidor
+   - En Synology: **Panel de Control → Seguridad → Certificado**
+   - Haz clic en **"Añadir"** → **"Añadir un nuevo certificado"**
+   - Selecciona **"Importar certificado"**
+   - Sube el archivo del certificado (`fullchain.pem` o `cert.pem`)
+   - Sube la clave privada (`privkey.pem`)
+   - Configura el certificado para `consultinglaw.net`
+
+3. **Renovación:**
+   - El certificado de Let's Encrypt expira cada 90 días
+   - Necesitarás renovarlo en tu otro servidor y transferirlo nuevamente
+   - O configura una renovación automática y transferencia
+
+**Opción C - Usar puerto 8080 (sin Let's Encrypt):**
 1. Deja el Port Forwarding en puerto 8080
 2. Configura el servicio web en Synology para usar puerto 8080
 3. Accede desde internet con: `http://consultinglaw.net:8080`
 4. ⚠️ **NO podrás usar Let's Encrypt** - tendrás que usar un certificado autofirmado o comprar uno
 
-**Opción C - Usar validación DNS de Let's Encrypt (avanzado):**
+**Opción D - Usar validación DNS de Let's Encrypt (avanzado):**
 1. Algunos clientes de Let's Encrypt permiten validación por DNS en lugar de HTTP
 2. Esto requiere configuración adicional y herramientas especiales
 3. Es más complejo pero funciona sin puerto 80
