@@ -360,25 +360,44 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 
 #### Paso 3: Abrir puertos en el firewall de Synology
 
-Antes de configurar el router, necesitas permitir el tráfico en el firewall de Synology:
+⚠️ **IMPORTANTE:** Aunque ya configuraste el Port Forwarding en el router, también necesitas permitir el tráfico en el firewall del Synology:
 
 1. Ve a **Panel de Control > Seguridad > Firewall**
-2. Si el firewall está deshabilitado, puedes habilitarlo (recomendado) o dejarlo deshabilitado
-3. Si está habilitado, configura las reglas:
-   - Haz clic en **"Editar reglas"** o **"Crear regla"**
-   - Crea una regla para HTTP:
+
+2. **Verifica el estado del firewall:**
+   - Si el firewall está **deshabilitado**, los puertos ya están abiertos ✅
+   - Si el firewall está **habilitado**, necesitas crear reglas
+
+3. **Si el firewall está habilitado, crea las reglas:**
+
+   **Opción A - Crear reglas manualmente:**
+   - Haz clic en **"Editar reglas"** o **"Crear regla"** o **"Reglas de firewall"**
+   - Haz clic en **"Crear"** o **"Añadir"**
+   - Crea una regla para HTTP (puerto 80):
      - **Puerto:** `80`
      - **Protocolo:** `TCP`
      - **Acción:** `Permitir`
-     - **Origen:** `Todas las interfaces` o `Todas las IP`
-   - Crea una regla para HTTPS (si vas a usarlo):
+     - **Origen:** `Todas las interfaces` o `Todas las IP` o `Cualquier IP`
+   - Crea otra regla para HTTPS (puerto 443):
      - **Puerto:** `443`
      - **Protocolo:** `TCP`
      - **Acción:** `Permitir`
-     - **Origen:** `Todas las interfaces` o `Todas las IP`
-4. Guarda y aplica los cambios
+     - **Origen:** `Todas las interfaces` o `Todas las IP` o `Cualquier IP`
+   - Guarda y aplica los cambios
 
-> **Nota:** Si el firewall está deshabilitado, los puertos ya están abiertos. Pero es mejor habilitarlo y crear reglas específicas para mayor seguridad.
+   **Opción B - Permitir todo el tráfico de Web Station:**
+   - En el firewall, busca la opción **"Permitir todo el tráfico de Web Station"**
+   - O busca reglas predefinidas relacionadas con "Web Station" o "HTTP"
+   - Actívalas si están disponibles
+
+4. **Verifica que las reglas estén activas:**
+   - Las reglas deben aparecer en la lista con estado "Habilitado" o "Activo"
+   - Asegúrate de que estén **antes** de cualquier regla de "Denegar"
+
+> **Nota:** 
+> - Si el firewall está deshabilitado, no necesitas hacer nada más ✅
+> - Si el firewall está habilitado pero no ves las reglas, créalas manualmente
+> - Algunas versiones de DSM tienen reglas predefinidas para Web Station que puedes activar
 
 #### Paso 4: Configura Port Forwarding en el router
 
