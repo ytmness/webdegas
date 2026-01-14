@@ -491,6 +491,40 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 
 #### Paso 5: Configura HTTPS en Synology (recomendado)
 
+⚠️ **IMPORTANTE:** Antes de intentar obtener el certificado de Let's Encrypt, asegúrate de que:
+1. Los DNS estén propagados (espera 15-30 minutos después de configurarlos)
+2. El puerto 80 esté abierto y accesible desde internet
+3. El servicio web esté funcionando en el puerto 80
+
+**Si te sale el error "Let's Encrypt no puede validar este nombre de dominio":**
+
+**Solución 1 - Verifica que el puerto 80 sea accesible desde internet:**
+1. Ve a `https://www.yougetsignal.com/tools/open-ports/` o `https://canyouseeme.org/`
+2. Ingresa tu IP pública: `189.219.66.244`
+3. Ingresa el puerto: `80`
+4. Haz clic en "Check" o "Check Port"
+5. Si dice "Port is open" ✅, el puerto está bien
+6. Si dice "Port is closed" ❌, hay un problema con el Port Forwarding o el firewall
+
+**Solución 2 - Verifica que los DNS estén propagados:**
+1. Ve a `https://www.whatsmydns.net/`
+2. Busca `consultinglaw.net` tipo A
+3. Verifica que apunte a `189.219.66.244`
+4. Si no apunta correctamente, espera más tiempo (puede tardar hasta 48 horas)
+
+**Solución 3 - Verifica que el servicio web esté funcionando:**
+1. Desde internet (no desde tu red local), intenta acceder a: `http://consultinglaw.net`
+2. O desde tu celular con datos móviles (no WiFi): `http://consultinglaw.net`
+3. Si no carga, el problema está en el Port Forwarding o el servicio web
+
+**Solución 4 - Si el proveedor bloquea el puerto 80:**
+Algunos proveedores de internet bloquean el puerto 80. En ese caso:
+1. Usa un puerto alternativo como 8080 en el Port Forwarding
+2. O solicita a tu proveedor que desbloquee el puerto 80
+3. O usa un servicio de DNS dinámico con validación alternativa
+
+**Proceso para obtener el certificado:**
+
 1. Ve a **Panel de Control → Seguridad → Certificado**
 2. Haz clic en **"Añadir"** → **"Añadir un nuevo certificado"**
 3. Selecciona **"Obtener un certificado de Let's Encrypt"** (gratuito)
@@ -500,6 +534,8 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
    - **Dominio alternativo:** `www.consultinglaw.net` (opcional)
 5. Acepta los términos y haz clic en **"Aplicar"**
 6. Espera a que se genere el certificado (puede tardar unos minutos)
+
+> **Nota:** Let's Encrypt necesita poder acceder a `http://consultinglaw.net` desde internet en el puerto 80 para validar el dominio. Si no puede, no podrá emitir el certificado.
 
 #### Paso 6: Configura el Virtual Host en Web Station
 
