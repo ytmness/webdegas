@@ -451,6 +451,11 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 
 3. Configura estas reglas (para router ZTE):
 
+   ⚠️ **IMPORTANTE - Diferencia entre IPs:**
+   - **IP Pública** (`189.219.66.244`): Se usa en los DNS de GoDaddy, NO en el router
+   - **IP Local** (`192.168.1.8`): Se usa en LAN Host del router, es la IP de tu Synology dentro de tu red
+   - El Port Forwarding redirige el tráfico desde internet (IP pública) hacia tu Synology (IP local)
+
    **Regla 1 - HTTP (puerto 80):**
    
    En el formulario "New Item" que ves, llena estos campos:
@@ -461,9 +466,9 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
    - **WAN Host IP Address:** 
      - Deja `0.0.0.0 ~ 0.0.0.0` (permite todas las IPs externas)
      - O si quieres ser más específico, usa tu IP pública: `189.219.66.244 ~ 189.219.66.244`
-   - **LAN Host:** `192.168.1.8` ← **Tu Synology**
-   - **WAN Port:** `80 ~ 80` (puerto externo)
-   - **LAN Host Port:** `80 ~ 80` (puerto interno)
+   - **LAN Host:** `192.168.1.8` ← **IP LOCAL de tu Synology (NO la IP pública)**
+   - **WAN Port:** `80 ~ 80` (puerto externo - el que llega desde internet)
+   - **LAN Host Port:** `80 ~ 80` (puerto interno - el que usa tu Synology)
    
    Haz clic en **"Apply"** para guardar esta regla
 
@@ -475,18 +480,28 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
    - **Protocol:** `TCP`
    - **WAN Connection:** `Auto`
    - **WAN Host IP Address:** `0.0.0.0 ~ 0.0.0.0` (o `189.219.66.244 ~ 189.219.66.244`)
-   - **LAN Host:** `192.168.1.8` ← **Tu Synology**
-   - **WAN Port:** `443 ~ 443` (puerto externo)
-   - **LAN Host Port:** `443 ~ 443` (puerto interno)
+   - **LAN Host:** `192.168.1.8` ← **IP LOCAL de tu Synology (NO la IP pública)**
+   - **WAN Port:** `443 ~ 443` (puerto externo - el que llega desde internet)
+   - **LAN Host Port:** `443 ~ 443` (puerto interno - el que usa tu Synology)
    
    Haz clic en **"Apply"** para guardar esta regla
 
 4. Guarda los cambios en el router
 5. Reinicia el router si es necesario (algunos routers requieren reinicio para aplicar cambios)
 
-> **Importante:** 
-> - El Port Forwarding redirige el tráfico desde internet (puerto 80/443) hacia tu Synology (192.168.1.8)
-> - Sin esto, aunque el sitio esté configurado, no será accesible desde internet
+> **Importante - Explicación de cómo funciona el Port Forwarding:**
+> 
+> 1. **Desde internet:** Alguien accede a `http://consultinglaw.net` (que apunta a tu IP pública `189.219.66.244`)
+> 2. **El router recibe:** El tráfico llega al router en el puerto 80
+> 3. **Port Forwarding redirige:** El router redirige ese tráfico a `192.168.1.8:80` (tu Synology)
+> 4. **El Synology responde:** Tu servidor web procesa la petición y responde
+> 
+> **Por eso:**
+> - **WAN Host IP Address:** Puede ser `0.0.0.0` (cualquier IP externa) o tu IP pública `189.219.66.244`
+> - **LAN Host:** DEBE ser `192.168.1.8` (la IP LOCAL de tu Synology dentro de tu red)
+> - **NO uses** la IP pública (`189.219.66.244`) en LAN Host, porque esa IP es del router, no del Synology
+> 
+> - Sin Port Forwarding, aunque el sitio esté configurado, no será accesible desde internet
 > - Algunos proveedores de internet bloquean el puerto 80. Si no funciona, prueba con otro puerto como 8080 y configura el Virtual Host en Synology para usar ese puerto
 
 #### Paso 5: Configura HTTPS en Synology (recomendado)
