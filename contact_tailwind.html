@@ -11,6 +11,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      min-height: 400px;
+      width: 100%;
     }
     .mexico-grid {
       display: grid;
@@ -19,11 +21,14 @@
       gap: 2px;
       width: 100%;
       max-width: 400px;
-      aspect-ratio: 20/24;
+      min-height: 400px;
+      margin: 0 auto;
     }
     .map-cell {
       background-color: #4a5a6e;
       border-radius: 2px;
+      min-width: 4px;
+      min-height: 4px;
     }
     .map-cell.active {
       background-color: #6b7d91;
@@ -227,9 +232,12 @@
       }
       
       // Crear mapa cuando la página carga
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', createMexicoMap);
-      } else {
+      window.addEventListener('DOMContentLoaded', function() {
+        createMexicoMap();
+      });
+      
+      // También intentar crear si ya está cargado
+      if (document.readyState !== 'loading') {
         createMexicoMap();
       }
 
