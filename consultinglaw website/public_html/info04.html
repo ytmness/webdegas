@@ -1,128 +1,39 @@
-  <!-- Sección de Ubicación -->
-  <div id="locationSection" style="background-color: #38465a; padding: 20px; margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); width: 100%; box-sizing: border-box;">
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 980px; margin: 0 auto;">
+  <!-- Sección de Ubicación - Simple -->
+  <div style="background-color: #38465a; padding: 20px; margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); width: 980px; margin-left: auto; margin-right: auto;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td width="50%" style="vertical-align: middle; padding-right: 15px;">
-          <!-- Mapa de México estilizado -->
-          <div id="mexicoMap" style="position: relative; min-height: 250px; display: block; text-align: center;"></div>
+        <td width="50%" style="vertical-align: middle; padding-right: 20px; text-align: center;">
+          <div style="width: 300px; height: 250px; background-color: #4a5a6e; margin: 0 auto; border: 1px solid rgba(255,255,255,0.1); display: table-cell; vertical-align: middle; text-align: center;">
+            <span style="color: #999; font-size: 11px;">MAPA DE MÉXICO</span>
+          </div>
         </td>
-        <td width="50%" style="vertical-align: middle; padding-left: 15px;">
-          <!-- Información de contacto -->
-          <div style="color: white; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.6;">
-        <!-- Oficina Monterrey -->
-        <div style="margin-bottom: 15px;">
-          <p style="font-weight: bold; margin-bottom: 5px;">Monterrey Office</p>
-          <p style="margin: 3px 0;">RAFAEL J. VERGER 1814, DESPACHO 2</p>
-          <p style="margin: 3px 0;">COL. OBISPADO 64060</p>
-          <p style="margin: 3px 0;">MONTERREY, NUEVO LEÓN, MÉXICO</p>
-          <p style="margin-top: 8px; margin-bottom: 3px;">TEL. +52 (81) 8989 8300</p>
-          <p style="margin: 3px 0;">FAX. +52 (81) 8378 6345</p>
-        </div>
-        
-        <!-- Oficina La Paz -->
-        <div style="margin-bottom: 15px;">
-          <p style="font-weight: bold; margin-bottom: 5px;">BISMARK ORTEGA</p>
-          <p style="margin: 3px 0;">LA PAZ, BCS, MÉXICO, C.P. 23090</p>
-          <p style="margin-top: 8px; margin-bottom: 3px;">CEL. +52 (612) 348 9445</p>
-          <p style="margin: 3px 0;">OFIC. +52 (612) 124 0935</p>
-          <p style="margin: 3px 0;">BOM@CONSULTINGLAW.NET</p>
-        </div>
-        
-        <!-- Botón Contact Us -->
-        <div style="text-align: center; margin-top: 15px;">
-          <button type="button" onclick="javascript: cont04();" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border: 1px solid rgba(200,200,200,0.5); border-radius: 4px; background: transparent; color: white; font-size: 12px; cursor: pointer;">
-            <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor;" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-            CONTACT US
-          </button>
-        </div>
+        <td width="50%" style="vertical-align: middle; padding-left: 20px;">
+          <div style="color: white; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.8;">
+            <div style="margin-bottom: 15px;">
+              <strong>Monterrey Office</strong><br>
+              RAFAEL J. VERGER 1814, DESPACHO 2<br>
+              COL. OBISPADO 64060<br>
+              MONTERREY, NUEVO LEÓN, MÉXICO<br>
+              <br>
+              TEL. +52 (81) 8989 8300<br>
+              FAX. +52 (81) 8378 6345
+            </div>
+            <div style="margin-bottom: 15px;">
+              <strong>BISMARK ORTEGA</strong><br>
+              LA PAZ, BCS, MÉXICO, C.P. 23090<br>
+              <br>
+              CEL. +52 (612) 348 9445<br>
+              OFIC. +52 (612) 124 0935<br>
+              BOM@CONSULTINGLAW.NET
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+              <input type="button" value="CONTACT US" onclick="javascript: cont04();" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.5); background: transparent; color: white; font-size: 12px; cursor: pointer; font-family: Arial, sans-serif;">
+            </div>
           </div>
         </td>
       </tr>
     </table>
   </div>
-
-  <script>
-    // Función para crear mapa - se llamará desde endTrans() cuando el contenido se cargue
-    function createMexicoMapForInfo04() {
-      var mapContainer = document.getElementById('mexicoMap');
-      if (!mapContainer) {
-        return;
-      }
-      
-      // Si ya tiene contenido, no hacer nada
-      if (mapContainer.children.length > 0) {
-        return;
-      }
-      
-      // Crear grid del mapa
-      var grid = document.createElement('div');
-      grid.style.cssText = 'display: grid; grid-template-columns: repeat(15, 1fr); grid-template-rows: repeat(18, 1fr); gap: 2px; width: 100%; max-width: 300px; min-height: 250px;';
-      
-      var mexicoPattern = [
-        '000000000000000',
-        '000000000000000',
-        '000011111000000',
-        '000111111100000',
-        '001111111110000',
-        '011111111111000',
-        '011111111111000',
-        '111111111111100',
-        '111111111111110',
-        '111111111111110',
-        '111111111111110',
-        '111111111111110',
-        '011111111111100',
-        '011111111111000',
-        '001111111110000',
-        '000111111100000',
-        '000011111000000',
-        '000000000000000'
-      ];
-      
-      for (var r = 0; r < mexicoPattern.length; r++) {
-        var row = mexicoPattern[r];
-        for (var i = 0; i < row.length; i++) {
-          var cell = document.createElement('div');
-          cell.style.cssText = 'background-color: #4a5a6e; border-radius: 2px; min-width: 4px; min-height: 4px;';
-          if (row[i] === '1') {
-            cell.style.backgroundColor = '#6b7d91';
-          }
-          grid.appendChild(cell);
-        }
-      }
-      
-      mapContainer.appendChild(grid);
-      
-      // Marcador Monterrey (amarillo)
-      var markerMonterrey = document.createElement('div');
-      markerMonterrey.style.cssText = 'position: absolute; width: 12px; height: 12px; background-color: #ffd700; border-radius: 50%; box-shadow: 0 0 8px rgba(255, 215, 0, 0.9); top: 40%; left: 32%; transform: translate(-50%, -50%); z-index: 10;';
-      mapContainer.appendChild(markerMonterrey);
-      
-      // Marcadores La Paz (blancos)
-      var lapazPositions = [
-        { top: '55%', left: '10%' },
-        { top: '57%', left: '11%' },
-        { top: '59%', left: '10%' }
-      ];
-      
-      for (var p = 0; p < lapazPositions.length; p++) {
-        var pos = lapazPositions[p];
-        var marker = document.createElement('div');
-        marker.style.cssText = 'position: absolute; width: 10px; height: 10px; background-color: #ffffff; border-radius: 50%; box-shadow: 0 0 6px rgba(255, 255, 255, 0.8); top: ' + pos.top + '; left: ' + pos.left + '; transform: translate(-50%, -50%); z-index: 10;';
-        mapContainer.appendChild(marker);
-      }
-    }
-    
-    // Intentar crear el mapa cuando el script se ejecuta
-    createMexicoMapForInfo04();
-    
-    // También intentar después de delays
-    setTimeout(createMexicoMapForInfo04, 100);
-    setTimeout(createMexicoMapForInfo04, 500);
-    setTimeout(createMexicoMapForInfo04, 1000);
-  </script>
 
   <div id="conts04">
   <div id="contactFormArea"><form action="" method="post" id="cForm" name="cForm" onsubmit="javascript:enviaForma();">
