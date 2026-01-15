@@ -249,7 +249,7 @@ function MM_nbGroup(event, grpName) { //v6.0
 var sec02 = 1;
 function submenu02(op) {
 	if (op!=sec02) {
-		for (i=1; i<6; i++) {
+		for (i=1; i<5; i++) {
 			document.getElementById('submenu020'+i).className = "s02";
 		}
 var s02imgOut = new OpacityTween(document.getElementById('imgs02'),Tween.regularEaseOut, 100, 0, .2);
