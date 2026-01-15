@@ -39,72 +39,92 @@
   </div>
 
   <script>
-    // Crear mapa estilizado de México
-    function createMexicoMap() {
-      const mapContainer = document.getElementById('mexicoMap');
-      if (!mapContainer) return;
-      
-      const grid = document.createElement('div');
-      grid.style.cssText = 'display: grid; grid-template-columns: repeat(15, 1fr); grid-template-rows: repeat(18, 1fr); gap: 2px; width: 100%; max-width: 300px; min-height: 250px;';
-      
-      const mexicoPattern = [
-        '000000000000000',
-        '000000000000000',
-        '000011111000000',
-        '000111111100000',
-        '001111111110000',
-        '011111111111000',
-        '011111111111000',
-        '111111111111100',
-        '111111111111110',
-        '111111111111110',
-        '111111111111110',
-        '111111111111110',
-        '011111111111100',
-        '011111111111000',
-        '001111111110000',
-        '000111111100000',
-        '000011111000000',
-        '000000000000000'
-      ];
-      
-      mexicoPattern.forEach(row => {
-        for (let i = 0; i < row.length; i++) {
-          const cell = document.createElement('div');
-          cell.style.cssText = 'background-color: #4a5a6e; border-radius: 2px; min-width: 4px; min-height: 4px;';
-          if (row[i] === '1') {
-            cell.style.backgroundColor = '#6b7d91';
-          }
-          grid.appendChild(cell);
+    // Crear mapa estilizado de México - se ejecuta cuando el contenido se carga
+    (function() {
+      function createMexicoMap() {
+        const mapContainer = document.getElementById('mexicoMap');
+        if (!mapContainer || mapContainer.hasChildNodes() && mapContainer.children[0].tagName === 'DIV' && mapContainer.children[0].style.display === 'grid') {
+          return;
         }
-      });
+        
+        // Limpiar contenedor
+        mapContainer.innerHTML = '';
+        
+        const grid = document.createElement('div');
+        grid.style.cssText = 'display: grid; grid-template-columns: repeat(15, 1fr); grid-template-rows: repeat(18, 1fr); gap: 2px; width: 100%; max-width: 300px; min-height: 250px;';
+        
+        const mexicoPattern = [
+          '000000000000000',
+          '000000000000000',
+          '000011111000000',
+          '000111111100000',
+          '001111111110000',
+          '011111111111000',
+          '011111111111000',
+          '111111111111100',
+          '111111111111110',
+          '111111111111110',
+          '111111111111110',
+          '111111111111110',
+          '011111111111100',
+          '011111111111000',
+          '001111111110000',
+          '000111111100000',
+          '000011111000000',
+          '000000000000000'
+        ];
+        
+        mexicoPattern.forEach(row => {
+          for (let i = 0; i < row.length; i++) {
+            const cell = document.createElement('div');
+            cell.style.cssText = 'background-color: #4a5a6e; border-radius: 2px; min-width: 4px; min-height: 4px;';
+            if (row[i] === '1') {
+              cell.style.backgroundColor = '#6b7d91';
+            }
+            grid.appendChild(cell);
+          }
+        });
+        
+        mapContainer.appendChild(grid);
+        
+        // Marcador Monterrey (amarillo)
+        const markerMonterrey = document.createElement('div');
+        markerMonterrey.style.cssText = 'position: absolute; width: 10px; height: 10px; background-color: #ffd700; border-radius: 50%; box-shadow: 0 0 6px rgba(255, 215, 0, 0.8); top: 40%; left: 32%; transform: translate(-50%, -50%); z-index: 10;';
+        mapContainer.appendChild(markerMonterrey);
+        
+        // Marcadores La Paz (blancos)
+        const lapazPositions = [
+          { top: '55%', left: '10%' },
+          { top: '57%', left: '11%' },
+          { top: '59%', left: '10%' }
+        ];
+        
+        lapazPositions.forEach(pos => {
+          const marker = document.createElement('div');
+          marker.style.cssText = `position: absolute; width: 8px; height: 8px; background-color: #ffffff; border-radius: 50%; box-shadow: 0 0 4px rgba(255, 255, 255, 0.6); top: ${pos.top}; left: ${pos.left}; transform: translate(-50%, -50%); z-index: 10;`;
+          mapContainer.appendChild(marker);
+        });
+      }
       
-      mapContainer.appendChild(grid);
-      
-      // Marcador Monterrey (amarillo)
-      const markerMonterrey = document.createElement('div');
-      markerMonterrey.style.cssText = 'position: absolute; width: 10px; height: 10px; background-color: #ffd700; border-radius: 50%; box-shadow: 0 0 6px rgba(255, 215, 0, 0.8); top: 40%; left: 32%; transform: translate(-50%, -50%);';
-      mapContainer.appendChild(markerMonterrey);
-      
-      // Marcadores La Paz (blancos)
-      const lapazPositions = [
-        { top: '55%', left: '10%' },
-        { top: '57%', left: '11%' },
-        { top: '59%', left: '10%' }
-      ];
-      
-      lapazPositions.forEach(pos => {
-        const marker = document.createElement('div');
-        marker.style.cssText = `position: absolute; width: 8px; height: 8px; background-color: #ffffff; border-radius: 50%; box-shadow: 0 0 4px rgba(255, 255, 255, 0.6); top: ${pos.top}; left: ${pos.left}; transform: translate(-50%, -50%);`;
-        mapContainer.appendChild(marker);
-      });
-    }
-    
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', createMexicoMap);
-    } else {
+      // Intentar crear inmediatamente
       createMexicoMap();
-    }
+      
+      // También intentar después de un pequeño delay (para carga dinámica)
+      setTimeout(createMexicoMap, 100);
+      setTimeout(createMexicoMap, 500);
+      
+      // Observer para cuando el elemento se agregue al DOM
+      if (typeof MutationObserver !== 'undefined') {
+        const observer = new MutationObserver(function(mutations) {
+          createMexicoMap();
+        });
+        
+        const infoDiv = document.getElementById('info');
+        if (infoDiv) {
+          observer.observe(infoDiv, { childList: true, subtree: true });
+        }
+      }
+    })();
   </script>
 
   <div id="conts04">
