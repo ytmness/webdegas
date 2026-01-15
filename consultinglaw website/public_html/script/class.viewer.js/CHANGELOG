@@ -1,0 +1,8 @@
+version 0.9.1 (rev.01-08-09)
+	- Fix: compatibility with mootools 1.2.x
+
+version 0.9 (rev.08-12-08)
+	- Fix: no set fxOptions
+
+rev.06-07-08
+	- 

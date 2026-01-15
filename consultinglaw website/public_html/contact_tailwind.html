@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G&M Consulting | Contacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
+  <style>
+    #map {
+      min-height: 360px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .leaflet-container {
+      background: #2f3f50;
+    }
+    .gm-marker-wrap {
+      position: relative;
+      width: 24px;
+      height: 24px;
+    }
+    .gm-marker-wrap .gm-ping {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      left: 1px;
+      top: 1px;
+      background: rgba(255, 214, 10, 0.35);
+      border-radius: 9999px;
+      animation: gm-ping 1.6s ease-out infinite;
+    }
+    .gm-marker-wrap .gm-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 7px;
+      top: 7px;
+      background: #f9d600;
+      border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(249, 214, 0, 0.85);
+    }
+    /* Atribución Leaflet más discreta */
+    .leaflet-control-container .leaflet-control-attribution {
+      background: transparent;
+      color: #9cb4cc;
+      font-size: 10px;
+      padding: 2px 6px;
+      box-shadow: none;
+    }
+    .leaflet-control-container .leaflet-control-attribution a {
+      color: #9cb4cc;
+    }
+    @keyframes gm-ping {
+      0% {
+        transform: scale(0.7);
+        opacity: 0.9;
+      }
+      80% {
+        transform: scale(1.9);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gm: {
+              bg: '#222222',
+              panel: '#3b4f63',
+              accent: '#6ba6d6',
+              text: '#e6e6e6',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Arial'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-gm-bg text-gm-text font-sans">
+  <div class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+    <!-- Header -->
+    <header class="flex flex-col gap-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="index_tailwind.html">
+            <img src="img/logo1.gif" alt="G&M Consulting" class="h-16 w-auto" />
+          </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-6 text-sm uppercase tracking-wide">
+          <a class="hover:text-white" href="nosotros_tailwind.html" data-link-base="nosotros_tailwind.html" id="nav-nos">Nosotros</a>
+          <a class="hover:text-white" href="nuestro_equipo_tailwind.html" data-link-base="nuestro_equipo_tailwind.html" id="nav-team">Nuestro Equipo</a>
+          <a class="hover:text-white" href="index_tailwind.html" data-link-base="index_tailwind.html" id="nav-practice">Practice</a>
+          <span class="text-gm-accent font-semibold" id="nav-contact">Contact</span>
+          <span class="text-gm-accent">|</span>
+          <button class="hover:text-white" type="button" id="lang-es">ESPAÑOL</button>
+          <button class="hover:text-white" type="button" id="lang-en">ENGLISH</button>
+        </nav>
+      </div>
+      <div class="border-t border-gm-accent"></div>
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold" id="hero-title">Contáctanos</h1>
+        <p class="text-sm text-gm-text/80 mt-2" id="hero-sub">Información dedicada solo a contacto. No comparte contenido con la sección de práctica.</p>
+      </div>
+    </header>
+
+    <!-- Contact content -->
+    <section class="bg-gm-panel p-8 rounded shadow space-y-6">
+      <div class="space-y-6">
+        <!-- Fila superior: mapa + formulario -->
+        <div class="grid lg:grid-cols-2 gap-6 items-stretch">
+          <div id="map" class="w-full h-full mx-auto bg-gm-bg rounded overflow-hidden border border-gm-bg/40 min-h-[640px]"></div>
+
+          <form id="contactForm" class="h-full flex flex-col space-y-3 text-sm bg-gm-bg/60 border border-gm-bg/40 rounded p-3 md:p-4 w-full">
+            <div class="grid md:grid-cols-2 gap-3">
+              <label class="space-y-1 block">
+                <span id="form-name-label">Nombre</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+              <label class="space-y-1 block">
+                <span id="form-email-label">E-mail</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="email" />
+              </label>
+              <label class="space-y-1 block">
+                <span id="form-job-label">Trabajo</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+              <label class="space-y-1 block">
+                <span id="form-city-label">Ciudad</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+              <label class="space-y-1 block">
+                <span id="form-country-label">País</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+              <label class="space-y-1 block">
+                <span id="form-subject-label">Asunto</span>
+                <input class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text" type="text" />
+              </label>
+            </div>
+            <label class="space-y-1 block">
+              <span id="form-msg-label">Mensaje</span>
+              <textarea class="w-full bg-gm-bg border border-gm-accent/40 rounded px-3 py-2 text-gm-text h-28"></textarea>
+            </label>
+            <div class="flex items-center justify-start mt-auto">
+              <button type="button" class="bg-gm-accent text-black font-semibold px-4 py-2 rounded hover:bg-white transition" id="form-send-btn">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Fila inferior: oficina y contacto -->
+        <div class="grid sm:grid-cols-2 gap-6 text-sm">
+          <div class="space-y-1">
+            <p class="text-xs uppercase tracking-[0.15em] text-gm-text/70" id="office-title">Oficina</p>
+            <p class="text-gm-text font-semibold" id="office-line1">Plaza Delphi, Oficina 304</p>
+            <p class="text-gm-text/90" id="office-line2">Blvd. Antonio L. Rodríguez 3058</p>
+            <p class="text-gm-text/90" id="office-line3">Col. Santa Maria Monterrey, N. L. 64650, México</p>
+          </div>
+          <div class="space-y-1">
+            <p class="text-xs uppercase tracking-[0.15em] text-gm-text/70" id="contact-title">Contacto</p>
+            <p class="font-semibold text-gm-text" id="contact-phone">Tel. +52 (81) 8989 - 8300</p>
+            <p class="font-semibold text-gm-text" id="contact-fax">Fax. +52 (81) 8378 - 6345</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script>
+      // Mapa Leaflet con marcador personalizado (sin control de atribución)
+      const map = L.map('map', {
+        scrollWheelZoom: false,
+        zoomControl: false,
+        minZoom: 4,
+        attributionControl: false,
+      }).setView([23.6345, -102.5528], 4.8);
+
+      // Limita el paneo a México aprox.
+      map.setMaxBounds([
+        [5, -119],
+        [34.5, -82],
+      ]);
+
+      // Capa base oscura sin etiquetas
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+        attribution: '',
+        maxZoom: 18,
+      }).addTo(map);
+
+      // Etiquetas sutiles encima
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+        attribution: '',
+        maxZoom: 18,
+        pane: 'overlayPane',
+        opacity: 0.65,
+      }).addTo(map);
+
+      const gmIcon = L.divIcon({
+        className: 'gm-marker-wrap',
+        html: '<span class="gm-ping"></span><span class="gm-dot"></span>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
+      });
+
+      L.marker([25.6866, -100.3161], { icon: gmIcon }).addTo(map);
+
+      // Traducciones EN/ES
+      const translations = {
+        es: {
+          'nav-nos': 'Nosotros',
+          'nav-team': 'Nuestro Equipo',
+          'nav-practice': 'Práctica',
+          'nav-contact': 'Contacto',
+          'hero-title': 'Contáctanos',
+          'hero-sub': 'Información dedicada solo a contacto. No comparte contenido con la sección de práctica.',
+          'form-name-label': 'Nombre',
+          'form-email-label': 'E-mail',
+          'form-job-label': 'Trabajo',
+          'form-city-label': 'Ciudad',
+          'form-country-label': 'País',
+          'form-subject-label': 'Asunto',
+          'form-msg-label': 'Mensaje',
+          'form-send-btn': 'Enviar',
+          'office-title': 'Oficina',
+          'office-line1': 'Plaza Delphi, Oficina 304',
+          'office-line2': 'Blvd. Antonio L. Rodríguez 3058',
+          'office-line3': 'Col. Santa Maria Monterrey, N. L. 64650, México',
+          'contact-title': 'Contacto',
+          'contact-phone': 'Tel. +52 (81) 8989 - 8300',
+          'contact-fax': 'Fax. +52 (81) 8378 - 6345',
+        },
+        en: {
+          'nav-nos': 'About Us',
+          'nav-team': 'Our Team',
+          'nav-practice': 'Practice',
+          'nav-contact': 'Contact',
+          'hero-title': 'Contact Us',
+          'hero-sub': 'Contact-only information. It does not share content with the Practice section.',
+          'form-name-label': 'Name',
+          'form-email-label': 'E-mail',
+          'form-job-label': 'Job',
+          'form-city-label': 'City',
+          'form-country-label': 'Country',
+          'form-subject-label': 'Subject',
+          'form-msg-label': 'Message',
+          'form-send-btn': 'Send',
+          'office-title': 'Office',
+          'office-line1': 'Plaza Delphi, Suite 304',
+          'office-line2': 'Blvd. Antonio L. Rodríguez 3058',
+          'office-line3': 'Col. Santa Maria Monterrey, N. L. 64650, Mexico',
+          'contact-title': 'Contact',
+          'contact-phone': 'Tel. +52 (81) 8989 - 8300',
+          'contact-fax': 'Fax. +52 (81) 8378 - 6345',
+        },
+      };
+
+      const updateLinks = (lang) => {
+        document.querySelectorAll('a[data-link-base]').forEach((a) => {
+          const base = a.getAttribute('data-link-base');
+          if (!base) return;
+          const u = new URL(base, window.location.href);
+          u.searchParams.set('lang', lang);
+          a.href = u.toString();
+        });
+      };
+
+      const applyLang = (lang) => {
+        const dict = translations[lang] || translations.es;
+        Object.entries(dict).forEach(([id, text]) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = text;
+        });
+        document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+        localStorage.setItem('lang', lang);
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        window.history.replaceState({}, '', url);
+        updateLinks(lang);
+      };
+
+      const setLangFromParamOrStorage = () => {
+        const url = new URL(window.location.href);
+        const paramLang = url.searchParams.get('lang');
+        const storedLang = localStorage.getItem('lang');
+        const lang = (paramLang || storedLang || 'es').toLowerCase() === 'en' ? 'en' : 'es';
+        applyLang(lang);
+      };
+
+      const navLangEs = document.getElementById('lang-es');
+      const navLangEn = document.getElementById('lang-en');
+      if (navLangEs) navLangEs.addEventListener('click', () => applyLang('es'));
+      if (navLangEn) navLangEn.addEventListener('click', () => applyLang('en'));
+
+      setLangFromParamOrStorage();
+
+    </script>
+
+    <!-- Footer -->
+    <footer class="text-xs text-gm-text/70 text-center border-t border-gm-panel pt-6">
+      © 2009 G&M Consulting, S.C. | Powered by Suite407™
+    </footer>
+  </div>
+</body>
+</html>
+
