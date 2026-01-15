@@ -60,13 +60,6 @@ if (xmlhttp.readyState==4)
 	
 	function endTrans() {
 		if (urlVar=="info01.html") { gal01(); }
-		if (urlVar=="info04.html") { 
-			setTimeout(function() {
-				if (typeof createMexicoMapForInfo04 === 'function') {
-					createMexicoMapForInfo04();
-				}
-			}, 100);
-		}
 		var loadingCapa = new OpacityTween(document.getElementById('infoLoader'),Tween.regularEaseOut, 100, 0, .4);
 		loadingCapa.onMotionFinished = function(){ document.getElementById('infoLoader').style.display="none"; };
 		loadingCapa.start();
