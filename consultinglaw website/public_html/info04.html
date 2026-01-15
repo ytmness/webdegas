@@ -1,11 +1,14 @@
   <!-- Sección de Ubicación -->
-  <div id="locationSection" style="background-color: #38465a; padding: 20px; margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; max-width: 980px; margin: 0 auto;">
-      <!-- Mapa de México estilizado -->
-      <div id="mexicoMap" style="position: relative; min-height: 250px; display: flex; align-items: center; justify-content: center;"></div>
-      
-      <!-- Información de contacto -->
-      <div style="color: white; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.6;">
+  <div id="locationSection" style="background-color: #38465a; padding: 20px; margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); width: 100%; box-sizing: border-box;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 980px; margin: 0 auto;">
+      <tr>
+        <td width="50%" style="vertical-align: middle; padding-right: 15px;">
+          <!-- Mapa de México estilizado -->
+          <div id="mexicoMap" style="position: relative; min-height: 250px; display: block; text-align: center;"></div>
+        </td>
+        <td width="50%" style="vertical-align: middle; padding-left: 15px;">
+          <!-- Información de contacto -->
+          <div style="color: white; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.6;">
         <!-- Oficina Monterrey -->
         <div style="margin-bottom: 15px;">
           <p style="font-weight: bold; margin-bottom: 5px;">Monterrey Office</p>
@@ -34,8 +37,10 @@
             CONTACT US
           </button>
         </div>
-      </div>
-    </div>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 
   <script>
