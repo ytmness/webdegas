@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G&M Consulting | Nosotros</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gm: {
+              bg: '#222222',
+              panel: '#3b4f63',
+              accent: '#6ba6d6',
+              text: '#e6e6e6',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Arial'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-gm-bg text-gm-text font-sans">
+  <div class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+    <!-- Header -->
+    <header class="flex flex-col gap-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="index_tailwind.html">
+            <img src="img/logo1.gif" alt="G&M Consulting" class="h-16 w-auto" />
+          </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-6 text-sm uppercase tracking-wide">
+          <a class="hover:text-white" href="nosotros_tailwind.html" data-link-base="nosotros_tailwind.html" id="nav-nos">Nosotros</a>
+          <a class="hover:text-white" href="nuestro_equipo_tailwind.html" data-link-base="nuestro_equipo_tailwind.html" id="nav-team">Nuestro Equipo</a>
+          <a class="hover:text-white" href="index_tailwind.html" data-link-base="index_tailwind.html" id="nav-practice">Práctica</a>
+          <a class="hover:text-white" href="contact_tailwind.html" data-link-base="contact_tailwind.html" id="nav-contact">Contacto</a>
+          <span class="text-gm-accent">|</span>
+          <button class="hover:text-white" type="button" id="lang-es">ESPAÑOL</button>
+          <button class="hover:text-white" type="button" id="lang-en">ENGLISH</button>
+        </nav>
+      </div>
+      <div class="border-t border-gm-accent"></div>
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold" id="hero-title-nos">Nosotros</h1>
+      </div>
+    </header>
+
+    <!-- Hero + Carousel -->
+    <section class="grid md:grid-cols-2 gap-6 items-stretch">
+      <div class="relative w-full min-h-[420px] h-full overflow-hidden rounded shadow">
+        <div id="carousel" class="relative h-full">
+          <img src="img/fotos/foto01.jpg" alt="Slide 1" class="w-full h-full object-cover absolute inset-0 opacity-100 transition-opacity duration-700">
+          <img src="img/fotos/foto02.jpg" alt="Slide 2" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-700">
+          <img src="img/fotos/foto03.jpg" alt="Slide 3" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-700">
+          <img src="img/fotos/foto04.jpg" alt="Slide 4" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-700">
+        </div>
+      </div>
+      <div class="bg-gm-panel p-8 rounded shadow min-h-[420px] flex items-center">
+        <div>
+          <h2 class="text-2xl font-semibold mb-4" id="about-title">Quiénes somos</h2>
+          <p class="text-base leading-relaxed" id="about-p1">
+            G&M Consulting, S.C., es un despacho de abogados de práctica general enfocado a ofrecer
+            servicios en todas las ramas del derecho, con énfasis en la asesoría corporativa, financiera
+            y comercial. Nuestra misión es proporcionar servicios legales de alta calidad, con ética y
+            costos eficientes, adaptándonos a las necesidades de nuestros clientes.
+          </p>
+          <p class="text-base leading-relaxed mt-4" id="about-p2">
+            Nuestro equipo ha trabajado con clientes nacionales e internacionales, abordando temas de
+            comercio exterior y aduanas, inmobiliario, propiedad intelectual, derecho administrativo,
+            y otros, siempre con enfoque práctico y orientado a resultados.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="bg-gm-panel p-8 rounded shadow space-y-4">
+      <h3 class="text-xl font-semibold" id="values-title">Nuestros valores</h3>
+      <div class="grid md:grid-cols-3 gap-4 text-sm">
+        <div class="bg-gm-bg/30 p-4 rounded">
+          <p class="font-semibold" id="val-1-title">Ética y transparencia</p>
+          <p class="mt-2" id="val-1-body">Actuamos con integridad y claridad en cada interacción.</p>
+        </div>
+        <div class="bg-gm-bg/30 p-4 rounded">
+          <p class="font-semibold" id="val-2-title">Eficiencia y resultados</p>
+          <p class="mt-2" id="val-2-body">Buscamos soluciones rápidas y efectivas para nuestros clientes.</p>
+        </div>
+        <div class="bg-gm-bg/30 p-4 rounded">
+          <p class="font-semibold" id="val-3-title">Cercanía y servicio</p>
+          <p class="mt-2" id="val-3-body">Entendemos las necesidades de negocio y acompañamos de cerca cada proyecto.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-gm-panel p-8 rounded shadow flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>
+        <h3 class="text-xl font-semibold" id="cta-title">¿Listo para conocernos?</h3>
+        <p class="text-sm mt-2" id="cta-body">Agenda una consulta y hablemos de tus necesidades legales.</p>
+      </div>
+      <div class="flex gap-3 text-sm">
+        <a href="contact_tailwind.html" data-link-base="contact_tailwind.html" class="bg-gm-accent text-black font-semibold px-4 py-2 rounded hover:bg-white transition" id="cta-btn">Contáctanos</a>
+        <a href="nuestro_equipo_tailwind.html" data-link-base="nuestro_equipo_tailwind.html" class="border border-gm-accent text-gm-text px-4 py-2 rounded hover:bg-white hover:text-black transition" id="cta-team-btn">Ver equipo</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-xs text-gm-text/70 text-center border-t border-gm-panel pt-6">
+      © 2009 G&M Consulting, S.C. | Powered by Suite407™
+    </footer>
+  </div>
+
+  <script>
+    // Carrusel simple sin controles
+    const slides = Array.from(document.querySelectorAll('#carousel img'));
+    let current = 0;
+    function showSlide(i) {
+      slides.forEach((s, idx) => {
+        s.style.opacity = idx === i ? '1' : '0';
+      });
+      current = i;
+    }
+    setInterval(() => showSlide((current + 1) % slides.length), 5000);
+
+    // Traducciones EN/ES
+    const translations = {
+      es: {
+        'hero-title-nos': 'Nosotros',
+        'nav-nos': 'Nosotros',
+        'nav-team': 'Nuestro Equipo',
+        'nav-practice': 'Práctica',
+        'nav-contact': 'Contacto',
+        'about-title': 'Quiénes somos',
+        'about-p1': 'G&M Consulting, S.C., es un despacho de abogados de práctica general enfocado a ofrecer servicios en todas las ramas del derecho, con énfasis en la asesoría corporativa, financiera y comercial. Nuestra misión es proporcionar servicios legales de alta calidad, con ética y costos eficientes, adaptándonos a las necesidades de nuestros clientes.',
+        'about-p2': 'Nuestro equipo ha trabajado con clientes nacionales e internacionales, abordando temas de comercio exterior y aduanas, inmobiliario, propiedad intelectual, derecho administrativo, y otros, siempre con enfoque práctico y orientado a resultados.',
+        'values-title': 'Nuestros valores',
+        'val-1-title': 'Ética y transparencia',
+        'val-1-body': 'Actuamos con integridad y claridad en cada interacción.',
+        'val-2-title': 'Eficiencia y resultados',
+        'val-2-body': 'Buscamos soluciones rápidas y efectivas para nuestros clientes.',
+        'val-3-title': 'Cercanía y servicio',
+        'val-3-body': 'Entendemos las necesidades de negocio y acompañamos de cerca cada proyecto.',
+        'cta-title': '¿Listo para conocernos?',
+        'cta-body': 'Agenda una consulta y hablemos de tus necesidades legales.',
+        'cta-btn': 'Contáctanos',
+        'cta-team-btn': 'Ver equipo',
+      },
+      en: {
+        'hero-title-nos': 'About Us',
+        'nav-nos': 'About Us',
+        'nav-team': 'Our Team',
+        'nav-practice': 'Practice',
+        'nav-contact': 'Contact',
+        'about-title': 'Who we are',
+        'about-p1': 'G&M Consulting is a full-service law firm focused on corporate, financial, and commercial advice. We provide high-quality legal services with ethics and cost efficiency, tailored to client needs.',
+        'about-p2': 'Our team has worked with national and international clients in foreign trade and customs, real estate, intellectual property, administrative law, and more, always with a practical, results-oriented approach.',
+        'values-title': 'Our values',
+        'val-1-title': 'Ethics and transparency',
+        'val-1-body': 'We act with integrity and clarity in every interaction.',
+        'val-2-title': 'Efficiency and results',
+        'val-2-body': 'We deliver swift and effective solutions for our clients.',
+        'val-3-title': 'Closeness and service',
+        'val-3-body': 'We understand business needs and stay close to each project.',
+        'cta-title': 'Ready to meet us?',
+        'cta-body': 'Schedule a consultation and let’s discuss your legal needs.',
+        'cta-btn': 'Contact us',
+        'cta-team-btn': 'See team',
+      },
+    };
+
+    const updateLinks = (lang) => {
+      document.querySelectorAll('a[data-link-base]').forEach((a) => {
+        const base = a.getAttribute('data-link-base');
+        if (!base) return;
+        const u = new URL(base, window.location.href);
+        u.searchParams.set('lang', lang);
+        a.href = u.toString();
+      });
+    };
+
+    const applyLang = (lang) => {
+      const dict = translations[lang] || translations.es;
+      Object.entries(dict).forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      });
+      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+      localStorage.setItem('lang', lang);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url);
+      updateLinks(lang);
+    };
+
+    const setLangFromParamOrStorage = () => {
+      const url = new URL(window.location.href);
+      const paramLang = url.searchParams.get('lang');
+      const storedLang = localStorage.getItem('lang');
+      const lang = (paramLang || storedLang || 'es').toLowerCase() === 'en' ? 'en' : 'es';
+      applyLang(lang);
+    };
+
+    const navLangEs = document.getElementById('lang-es');
+    const navLangEn = document.getElementById('lang-en');
+    if (navLangEs) navLangEs.addEventListener('click', () => applyLang('es'));
+    if (navLangEn) navLangEn.addEventListener('click', () => applyLang('en'));
+
+    setLangFromParamOrStorage();
+  </script>
+</body>
+</html>
+

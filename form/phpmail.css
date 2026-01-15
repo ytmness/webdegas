@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#contactFormArea {
+	position: absolute;
+	height: 250px;
+	width: 360px;
+	z-index: 50;
+	left: 0px;
+	top: 400px;
+}
+#contactFormArea  #cForm   {
+}
+.textos {
+	font-family: tahoma, Arial, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FFFFFF;
+	line-height: 18px;
+}
+
+#cForm #sendContactEmail {
+	background-image: url(btn_fdo.gif);
+	float: right;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	height: 25px;
+	width: 50px;
+	font-family: tahoma, Arial, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#cForm #posName, #posEmail, #posJob, #posCity, #posCountry {
+	border: 1px solid #748ea5;
+	width: 170px;
+	padding: 2px;
+	height: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #394A58;
+}
+#cForm #posText {
+	padding: 2px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #394A58;
+	border: 1px solid #748ea5;
+	width: 170px;
+	height: 100px;
+}
+#loadBar, #emailSuccess {
+	position: absolute;
+	left: 0px;
+	top: -20px;
+	background-image: url(shim-trans.png);
+	width: 380px;
+	height: 250px;
+	font-family: tahoma, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+}
+#emailSuccess #cerrar {
+	background-image: url(btn_fdo.gif);
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	height: 25px;
+	width: 50px;
+	font-family: tahoma, Arial, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#destNone {
+	display: none;
+	position: absolute;
+	height: 0px;
+	width: 0px;
+	left: 0px;
+	top: 0px;
+	background-color: #CCCCCC;
+}
