@@ -1,0 +1,69 @@
+# Archivos del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Archivos de editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Archivos de log
+*.log
+logs/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Archivos de configuración local (no compartir)
+.env
+.env.local
+config.local.php
+
+# Archivos de upload (si los hay)
+uploads/*
+!uploads/.gitkeep
+
+# Archivos de caché
+cache/
+tmp/
+*.cache
+
+# Archivos comprimidos
+*.zip
+*.tar.gz
+*.rar
+
+# Archivos de FrontPage (si no se usan)
+_vti_bin/
+_vti_cnf/
+_vti_log/
+_vti_pvt/
+_vti_txt/
+_private/
+
+# Archivos de PHP temporales
+*.php~
+*.php.bak
+
+# Node modules (si usas npm)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Archivos de IDE
+*.sublime-project
+*.sublime-workspace

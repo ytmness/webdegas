@@ -408,6 +408,18 @@ Si necesitas verificar o ajustar la configuración de red del Synology:
 
 #### Paso 4: Configura Port Forwarding en el router
 
+⚠️ **IMPORTANTE - Diferencia entre Port Forwarding y Port Trigger:**
+
+- **Port Forwarding:** Permite que servidores externos se conecten a tu servidor interno (lo que necesitas para un servidor web)
+- **Port Trigger:** Abre puertos dinámicamente cuando tu dispositivo interno inicia una conexión (NO es lo que necesitas para un servidor web)
+
+**Si tu proveedor te dice que uses Port Trigger:**
+- Puede ser que tu router/proveedor tenga una configuración especial
+- O puede ser que necesites configurar AMBOS (Port Forwarding y Port Trigger)
+- O el proveedor esté confundiendo los términos
+
+**Para un servidor web, normalmente necesitas Port Forwarding.** Pero si tu proveedor insiste en Port Trigger, sigue las instrucciones a continuación.
+
 1. **Accede a la configuración de tu router:**
    - Normalmente `http://192.168.1.1` o `http://192.168.0.1`
    - O revisa la etiqueta del router para la IP de administración
