@@ -327,44 +327,23 @@ function text04(op) {
 
 cnt04pos=1;
 function cont04() {
-	// #region agent log
-	var logData = {location:'scripts.js:329',message:'cont04 called',data:{cnt04pos:cnt04pos},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'};
-	console.log('[DEBUG]', logData);
-	fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
-	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData)}).catch(()=>{});
-	// #endregion
 	var locationBox = document.getElementById('locationBox');
 	var conts04 = document.getElementById('conts04');
 	var cnt04;
 	
-	// #region agent log
-	var logData2 = {location:'scripts.js:333',message:'Elements check',data:{locationBoxExists:!!locationBox,conts04Exists:!!conts04,TweenExists:typeof Tween!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'};
-	console.log('[DEBUG]', logData2);
-	fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData2)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
-	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData2)}).catch(()=>{});
-	// #endregion
-	
 	if (cnt04pos==1) { 
-		// #region agent log
-		var logData3 = {location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'};
-		console.log('[DEBUG]', logData3);
-		fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData3)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
-		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData3)}).catch(()=>{});
-		// #endregion
-		// Abrir formulario - ocultar el recuadro de direcciones completamente
-		// Usar clase CSS para forzar ocultamiento
-		if (locationBox) {
-			locationBox.classList.add('locationBox-hidden');
+		// Abrir formulario - remover locationBox del DOM completamente
+		if (locationBox && locationBox.parentNode) {
+			// Guardar referencia del padre y del elemento
+			if (!window.locationBoxParent) {
+				window.locationBoxParent = locationBox.parentNode;
+				window.locationBoxNextSibling = locationBox.nextSibling;
+				window.locationBoxElement = locationBox;
+			}
+			// Remover del DOM
+			locationBox.parentNode.removeChild(locationBox);
 		}
 		if (conts04) {
-			// #region agent log
-			var beforeTop = conts04.style.top || window.getComputedStyle(conts04).top;
-			var beforeZIndex = conts04.style.zIndex || window.getComputedStyle(conts04).zIndex;
-			var logData4 = {location:'scripts.js:345',message:'Before form animation',data:{beforeTop:beforeTop,beforeZIndex:beforeZIndex,computedTop:window.getComputedStyle(conts04).top,computedZIndex:window.getComputedStyle(conts04).zIndex},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'};
-			console.log('[DEBUG]', logData4);
-			fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData4)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
-			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData4)}).catch(()=>{});
-			// #endregion
 			// Asegurar que el formulario está visible y tiene z-index alto
 			conts04.style.zIndex = '200';
 			conts04.style.display = 'block';
@@ -392,12 +371,14 @@ function cont04() {
 		cnt04pos = 2;
 	}
 	else { 
-		// #region agent log
-		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:360',message:'Closing form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-		// #endregion
-		// Cerrar formulario - mostrar nuevamente el recuadro de direcciones
-		if (locationBox) {
-			locationBox.classList.remove('locationBox-hidden');
+		// Cerrar formulario - restaurar locationBox al DOM
+		if (window.locationBoxParent && window.locationBoxElement) {
+			// Restaurar al DOM en su posición original
+			if (window.locationBoxNextSibling && window.locationBoxNextSibling.parentNode) {
+				window.locationBoxParent.insertBefore(window.locationBoxElement, window.locationBoxNextSibling);
+			} else {
+				window.locationBoxParent.appendChild(window.locationBoxElement);
+			}
 		}
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
