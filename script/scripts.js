@@ -327,6 +327,14 @@ function text04(op) {
 
 cnt04pos=1;
 function cont04() {
+	var locationBox = document.getElementById('locationBox');
+	if (locationBox) {
+		var rect = locationBox.getBoundingClientRect();
+		locationBox.style.position = 'fixed';
+		locationBox.style.left = rect.left + 'px';
+		locationBox.style.top = rect.top + 'px';
+		locationBox.style.zIndex = '150';
+	}
 	if (cnt04pos==1) { 
 		var cnt04 = new Tween(document.getElementById('conts04').style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
 		cnt04pos = 2;
