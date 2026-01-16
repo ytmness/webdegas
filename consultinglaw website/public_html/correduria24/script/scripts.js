@@ -324,17 +324,90 @@ function text04(op) {
 }
 
 cnt04pos=1;
-function cont04() {
-	if (cnt04pos==1) { 
-		var cnt04 = new Tween(document.getElementById('conts04').style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
-		cnt04pos = 2;
+
+// FORZAR versión correcta de cont04 - sobrescribir siempre al cargar
+// Esto asegura que siempre tengamos la versión correcta, incluso si hay caché
+(function() {
+	// Función para aplicar la versión correcta
+	function forceCorrectCont04() {
+		cont04 = function() {
+			var locationBox = document.getElementById('locationBox');
+			var conts04 = document.getElementById('conts04');
+			var cnt04;
+			
+			console.log('[cont04] Iniciando. cnt04pos:', cnt04pos, 'locationBox:', !!locationBox, 'locationBox.parentNode:', !!locationBox?.parentNode);
+			
+			if (cnt04pos==1) { 
+				console.log('[cont04] Entrando en rama cnt04pos==1 (abrir formulario)');
+				if (locationBox && locationBox.parentNode) {
+					console.log('[cont04] locationBox y parentNode existen, procediendo a remover...');
+					if (!window.locationBoxParent) {
+						window.locationBoxParent = locationBox.parentNode;
+						window.locationBoxNextSibling = locationBox.nextSibling;
+						window.locationBoxElement = locationBox;
+						console.log('[cont04] Referencias guardadas');
+					}
+					try {
+						locationBox.parentNode.removeChild(locationBox);
+						console.log('[cont04] locationBox removido. Verificando si existe:', !!document.getElementById('locationBox'));
+					} catch(e) {
+						console.error('[cont04] ERROR al remover locationBox:', e);
+					}
+				} else {
+					console.error('[cont04] ERROR: locationBox o parentNode no existe');
+				}
+				if (conts04) {
+					console.log('[cont04] Configurando formulario conts04...');
+					conts04.style.zIndex = '200';
+					conts04.style.display = 'block';
+					cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
+					if (cnt04) {
+						cnt04.start();
+					}
+				}
+				cnt04pos = 2;
+			} else { 
+				console.log('[cont04] Cerrando formulario...');
+				if (window.locationBoxParent && window.locationBoxElement) {
+					console.log('[cont04] Restaurando locationBox al DOM...');
+					if (window.locationBoxNextSibling && window.locationBoxNextSibling.parentNode) {
+						window.locationBoxParent.insertBefore(window.locationBoxElement, window.locationBoxNextSibling);
+					} else {
+						window.locationBoxParent.appendChild(window.locationBoxElement);
+					}
+					console.log('[cont04] locationBox restaurado');
+				}
+				if (conts04) {
+					cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
+					if (cnt04) {
+						cnt04.start();
+					}
+				}
+				cnt04pos = 1;
+			}
+		};
+		console.log('[cont04] Versión correcta forzada');
 	}
-	else { 
-		var cnt04 = new Tween(document.getElementById('conts04').style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
-		cnt04pos = 1;
+	
+	// Ejecutar inmediatamente cuando el script se carga
+	forceCorrectCont04();
+	
+	// También ejecutar después de múltiples eventos para asegurar que siempre se aplique
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', forceCorrectCont04);
+	} else {
+		setTimeout(forceCorrectCont04, 0);
+		setTimeout(forceCorrectCont04, 100);
+		setTimeout(forceCorrectCont04, 500);
 	}
-	cnt04.start();
-}
+	
+	// También forzar al hacer clic en cualquier botón (por si acaso)
+	document.addEventListener('click', function(e) {
+		if (e.target && (e.target.value === 'CONTACT US' || e.target.onclick && e.target.onclick.toString().includes('cont04'))) {
+			setTimeout(forceCorrectCont04, 0);
+		}
+	}, true);
+})();
 
 <!-- /submenus -->
 <!-- /submenus -->
