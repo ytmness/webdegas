@@ -343,7 +343,7 @@ function cont04() {
 				window.locationBoxParent = locationBox.parentNode;
 				window.locationBoxNextSibling = locationBox.nextSibling;
 				window.locationBoxElement = locationBox;
-				console.log('[cont04] Referencias guardadas. Parent:', window.locationBoxParent, 'Element:', window.locationBoxElement);
+				console.log('[cont04] Referencias guardadas');
 			}
 			// Remover del DOM
 			try {
@@ -353,11 +353,10 @@ function cont04() {
 				console.error('[cont04] ERROR al remover locationBox:', e);
 			}
 		} else {
-			console.error('[cont04] ERROR: locationBox o parentNode no existe. locationBox:', !!locationBox, 'parentNode:', !!locationBox?.parentNode);
+			console.error('[cont04] ERROR: locationBox o parentNode no existe');
 		}
 		if (conts04) {
 			console.log('[cont04] Configurando formulario conts04...');
-			// Asegurar que el formulario está visible y tiene z-index alto
 			conts04.style.zIndex = '200';
 			conts04.style.display = 'block';
 			// Crear la animación para subir el formulario
@@ -371,12 +370,13 @@ function cont04() {
 	else { 
 		// Cerrar formulario - restaurar locationBox al DOM
 		if (window.locationBoxParent && window.locationBoxElement) {
-			// Restaurar al DOM en su posición original
+			console.log('[cont04] Restaurando locationBox al DOM...');
 			if (window.locationBoxNextSibling && window.locationBoxNextSibling.parentNode) {
 				window.locationBoxParent.insertBefore(window.locationBoxElement, window.locationBoxNextSibling);
 			} else {
 				window.locationBoxParent.appendChild(window.locationBoxElement);
 			}
+			console.log('[cont04] locationBox restaurado');
 		}
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
