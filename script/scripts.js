@@ -389,9 +389,11 @@ function cont04() {
 }
 
 // Verificación y corrección automática: Si la función cont04 tiene la versión antigua, sobrescribirla
+// Ejecutar después de que el DOM esté listo
 (function() {
-	console.log('[cont04] Iniciando verificación automática...');
-	if (typeof cont04 === 'function') {
+	function checkAndFixCont04() {
+		console.log('[cont04] Iniciando verificación automática...');
+		if (typeof cont04 === 'function') {
 		var funcStr = cont04.toString();
 		console.log('[cont04] Función encontrada. Longitud:', funcStr.length);
 		// Detectar versión antigua: si no tiene 'locationBox' o tiene el patrón antiguo sin locationBox
@@ -463,8 +465,18 @@ function cont04() {
 		} else {
 			console.log('[cont04] Versión correcta detectada, no se requiere corrección');
 		}
+		} else {
+			console.error('[cont04] ERROR: cont04 no es una función');
+		}
+	}
+	
+	// Ejecutar inmediatamente y también cuando el DOM esté listo
+	checkAndFixCont04();
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', checkAndFixCont04);
 	} else {
-		console.error('[cont04] ERROR: cont04 no es una función');
+		// DOM ya está listo, ejecutar después de un pequeño delay para asegurar que todo está cargado
+		setTimeout(checkAndFixCont04, 100);
 	}
 })();
 
