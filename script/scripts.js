@@ -328,33 +328,41 @@ function text04(op) {
 cnt04pos=1;
 function cont04() {
 	// #region agent log
-	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:329',message:'cont04 called',data:{cnt04pos:cnt04pos},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+	var logData = {location:'scripts.js:329',message:'cont04 called',data:{cnt04pos:cnt04pos},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'};
+	console.log('[DEBUG]', logData);
+	fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
+	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData)}).catch(()=>{});
 	// #endregion
 	var locationBox = document.getElementById('locationBox');
 	var conts04 = document.getElementById('conts04');
 	var cnt04;
 	
 	// #region agent log
-	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:333',message:'Elements check',data:{locationBoxExists:!!locationBox,conts04Exists:!!conts04,TweenExists:typeof Tween!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+	var logData2 = {location:'scripts.js:333',message:'Elements check',data:{locationBoxExists:!!locationBox,conts04Exists:!!conts04,TweenExists:typeof Tween!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'};
+	console.log('[DEBUG]', logData2);
+	fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData2)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
+	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData2)}).catch(()=>{});
 	// #endregion
 	
 	if (cnt04pos==1) { 
 		// #region agent log
-		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+		var logData3 = {location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'};
+		console.log('[DEBUG]', logData3);
+		fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData3)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
+		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData3)}).catch(()=>{});
 		// #endregion
-		// Abrir formulario - fijar recuadro azul en su posición actual antes de mover formulario
+		// Abrir formulario - ocultar el recuadro de direcciones
 		if (locationBox) {
-			var rect = locationBox.getBoundingClientRect();
-			locationBox.style.position = 'fixed';
-			locationBox.style.left = rect.left + 'px';
-			locationBox.style.top = rect.top + 'px';
-			locationBox.style.zIndex = '100';
+			locationBox.style.display = 'none';
 		}
 		if (conts04) {
 			// #region agent log
 			var beforeTop = conts04.style.top || window.getComputedStyle(conts04).top;
 			var beforeZIndex = conts04.style.zIndex || window.getComputedStyle(conts04).zIndex;
-			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:345',message:'Before form animation',data:{beforeTop:beforeTop,beforeZIndex:beforeZIndex,computedTop:window.getComputedStyle(conts04).top,computedZIndex:window.getComputedStyle(conts04).zIndex},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+			var logData4 = {location:'scripts.js:345',message:'Before form animation',data:{beforeTop:beforeTop,beforeZIndex:beforeZIndex,computedTop:window.getComputedStyle(conts04).top,computedZIndex:window.getComputedStyle(conts04).zIndex},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'};
+			console.log('[DEBUG]', logData4);
+			fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData4)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
+			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData4)}).catch(()=>{});
 			// #endregion
 			// Asegurar que el formulario está visible y tiene z-index alto
 			conts04.style.zIndex = '200';
@@ -362,14 +370,20 @@ function cont04() {
 			// Crear la animación para subir el formulario
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
 			// #region agent log
-			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:348',message:'Tween created',data:{tweenCreated:!!cnt04,tweenType:typeof cnt04,hasStart:!!(cnt04&&cnt04.start)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+			var logData5 = {location:'scripts.js:348',message:'Tween created',data:{tweenCreated:!!cnt04,tweenType:typeof cnt04,hasStart:!!(cnt04&&cnt04.start)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'};
+			console.log('[DEBUG]', logData5);
+			fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData5)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
+			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData5)}).catch(()=>{});
 			// #endregion
 			if (cnt04) {
 				cnt04.start();
 				// #region agent log
 				setTimeout(function(){
 					var afterTop = conts04.style.top || window.getComputedStyle(conts04).top;
-					fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:351',message:'After animation start',data:{afterTop:afterTop,computedTop:window.getComputedStyle(conts04).top,animationStarted:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+					var logData6 = {location:'scripts.js:351',message:'After animation start',data:{afterTop:afterTop,computedTop:window.getComputedStyle(conts04).top,animationStarted:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'};
+					console.log('[DEBUG]', logData6);
+					fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData6)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
+					fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData6)}).catch(()=>{});
 				},100);
 				// #endregion
 			}
@@ -380,7 +394,10 @@ function cont04() {
 		// #region agent log
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:360',message:'Closing form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
 		// #endregion
-		// Cerrar formulario
+		// Cerrar formulario - mostrar nuevamente el recuadro de direcciones
+		if (locationBox) {
+			locationBox.style.display = 'block';
+		}
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
 			if (cnt04) {

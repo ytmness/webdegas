@@ -342,13 +342,9 @@ function cont04() {
 		// #region agent log
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
 		// #endregion
-		// Abrir formulario - fijar recuadro azul en su posición actual antes de mover formulario
+		// Abrir formulario - ocultar el recuadro de direcciones
 		if (locationBox) {
-			var rect = locationBox.getBoundingClientRect();
-			locationBox.style.position = 'fixed';
-			locationBox.style.left = rect.left + 'px';
-			locationBox.style.top = rect.top + 'px';
-			locationBox.style.zIndex = '100';
+			locationBox.style.display = 'none';
 		}
 		if (conts04) {
 			// #region agent log
@@ -380,7 +376,10 @@ function cont04() {
 		// #region agent log
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:360',message:'Closing form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
 		// #endregion
-		// Cerrar formulario
+		// Cerrar formulario - mostrar nuevamente el recuadro de direcciones
+		if (locationBox) {
+			locationBox.style.display = 'block';
+		}
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
 			if (cnt04) {
