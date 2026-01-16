@@ -327,38 +327,38 @@ function text04(op) {
 
 cnt04pos=1;
 function cont04() {
-	// #region agent log
-	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:329',message:'cont04 called',data:{cnt04pos:cnt04pos},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-	// #endregion
 	var locationBox = document.getElementById('locationBox');
 	var conts04 = document.getElementById('conts04');
 	var cnt04;
 	
-	// #region agent log
-	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:333',message:'Elements check',data:{locationBoxExists:!!locationBox,conts04Exists:!!conts04,TweenExists:typeof Tween!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-	// #endregion
+	console.log('[cont04] Iniciando. cnt04pos:', cnt04pos, 'locationBox:', !!locationBox, 'locationBox.parentNode:', !!locationBox?.parentNode);
 	
 	if (cnt04pos==1) { 
-		// #region agent log
-		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-		// #endregion
+		console.log('[cont04] Entrando en rama cnt04pos==1 (abrir formulario)');
 		// Abrir formulario - remover locationBox del DOM completamente
 		if (locationBox && locationBox.parentNode) {
+			console.log('[cont04] locationBox y parentNode existen, procediendo a remover...');
 			// Guardar referencia del padre y del elemento
 			if (!window.locationBoxParent) {
 				window.locationBoxParent = locationBox.parentNode;
 				window.locationBoxNextSibling = locationBox.nextSibling;
 				window.locationBoxElement = locationBox;
+				console.log('[cont04] Referencias guardadas. Parent:', window.locationBoxParent, 'Element:', window.locationBoxElement);
 			}
 			// Remover del DOM
-			locationBox.parentNode.removeChild(locationBox);
+			try {
+				locationBox.parentNode.removeChild(locationBox);
+				console.log('[cont04] locationBox removido. Verificando si existe:', !!document.getElementById('locationBox'));
+			} catch(e) {
+				console.error('[cont04] ERROR al remover locationBox:', e);
+			}
+		} else {
+			console.error('[cont04] ERROR: locationBox o parentNode no existe. locationBox:', !!locationBox, 'parentNode:', !!locationBox?.parentNode);
+		} else {
+			console.error('[cont04] ERROR: locationBox o parentNode no existe. locationBox:', !!locationBox, 'parentNode:', !!locationBox?.parentNode);
 		}
 		if (conts04) {
-			// #region agent log
-			var beforeTop = conts04.style.top || window.getComputedStyle(conts04).top;
-			var beforeZIndex = conts04.style.zIndex || window.getComputedStyle(conts04).zIndex;
-			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:345',message:'Before form animation',data:{beforeTop:beforeTop,beforeZIndex:beforeZIndex,computedTop:window.getComputedStyle(conts04).top,computedZIndex:window.getComputedStyle(conts04).zIndex},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-			// #endregion
+			console.log('[cont04] Configurando formulario conts04...');
 			// Asegurar que el formulario está visible y tiene z-index alto
 			conts04.style.zIndex = '200';
 			conts04.style.display = 'block';

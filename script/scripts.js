@@ -331,19 +331,33 @@ function cont04() {
 	var conts04 = document.getElementById('conts04');
 	var cnt04;
 	
+	console.log('[cont04] Iniciando. cnt04pos:', cnt04pos, 'locationBox:', !!locationBox, 'locationBox.parentNode:', !!locationBox?.parentNode);
+	
 	if (cnt04pos==1) { 
+		console.log('[cont04] Entrando en rama cnt04pos==1 (abrir formulario)');
 		// Abrir formulario - remover locationBox del DOM completamente
 		if (locationBox && locationBox.parentNode) {
+			console.log('[cont04] locationBox y parentNode existen, procediendo a remover...');
 			// Guardar referencia del padre y del elemento
 			if (!window.locationBoxParent) {
 				window.locationBoxParent = locationBox.parentNode;
 				window.locationBoxNextSibling = locationBox.nextSibling;
 				window.locationBoxElement = locationBox;
+				console.log('[cont04] Referencias guardadas. Parent:', window.locationBoxParent, 'Element:', window.locationBoxElement);
 			}
 			// Remover del DOM
-			locationBox.parentNode.removeChild(locationBox);
+			try {
+				locationBox.parentNode.removeChild(locationBox);
+				console.log('[cont04] locationBox removido. Verificando si existe:', !!document.getElementById('locationBox'));
+			} catch(e) {
+				console.error('[cont04] ERROR al remover locationBox:', e);
+			}
+		} else {
+			console.error('[cont04] ERROR: locationBox o parentNode no existe. locationBox:', !!locationBox, 'parentNode:', !!locationBox?.parentNode);
+		}
 		}
 		if (conts04) {
+			console.log('[cont04] Configurando formulario conts04...');
 			// Asegurar que el formulario está visible y tiene z-index alto
 			conts04.style.zIndex = '200';
 			conts04.style.display = 'block';
