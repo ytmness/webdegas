@@ -352,7 +352,10 @@ function cont04() {
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData3)}).catch(()=>{});
 		// #endregion
 		// Abrir formulario - ocultar el recuadro de direcciones completamente
+		// Ocultar ANTES de mostrar el formulario para evitar superposición
 		if (locationBox) {
+			// Mover fuera de la pantalla Y ocultar completamente
+			locationBox.style.setProperty('left', '-9999px', 'important');
 			locationBox.style.setProperty('display', 'none', 'important');
 			locationBox.style.setProperty('visibility', 'hidden', 'important');
 			locationBox.style.setProperty('opacity', '0', 'important');
@@ -400,6 +403,8 @@ function cont04() {
 		// #endregion
 		// Cerrar formulario - mostrar nuevamente el recuadro de direcciones
 		if (locationBox) {
+			// Restaurar posición original y visibilidad
+			locationBox.style.setProperty('left', '560px', 'important');
 			locationBox.style.removeProperty('display');
 			locationBox.style.removeProperty('visibility');
 			locationBox.style.removeProperty('opacity');
