@@ -332,7 +332,7 @@ function cont04() {
 	var cnt04;
 	
 	if (cnt04pos==1) { 
-		// Abrir formulario - fijar recuadro azul en su posición actual
+		// Abrir formulario - fijar recuadro azul en su posición actual antes de mover formulario
 		if (locationBox) {
 			var rect = locationBox.getBoundingClientRect();
 			locationBox.style.position = 'fixed';
@@ -341,19 +341,26 @@ function cont04() {
 			locationBox.style.zIndex = '100';
 		}
 		if (conts04) {
+			// Asegurar que el formulario está visible y tiene z-index alto
 			conts04.style.zIndex = '200';
+			conts04.style.display = 'block';
+			// Crear la animación para subir el formulario
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
-			cnt04pos = 2;
-			if (cnt04) cnt04.start();
+			if (cnt04) {
+				cnt04.start();
+			}
 		}
+		cnt04pos = 2;
 	}
 	else { 
-		// Cerrar formulario - mantener recuadro fixed o restaurar según prefieras
+		// Cerrar formulario
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
-			cnt04pos = 1;
-			if (cnt04) cnt04.start();
+			if (cnt04) {
+				cnt04.start();
+			}
 		}
+		cnt04pos = 1;
 	}
 }
 

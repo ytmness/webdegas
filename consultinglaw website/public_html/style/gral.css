@@ -373,7 +373,7 @@ body {
 .submenu0403act { background-image: url(../img/submenu04/contact_03.gif); }
 #conts04 {
 	position: absolute;
-	z-index: 50;
+	z-index: 200;
 	height: 640px;
 	width: 360px;
 	top: 0px;
