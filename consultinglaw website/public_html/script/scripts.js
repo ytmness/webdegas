@@ -342,9 +342,13 @@ function cont04() {
 		// #region agent log
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
 		// #endregion
-		// Abrir formulario - ocultar el recuadro de direcciones
+		// Abrir formulario - ocultar el recuadro de direcciones completamente
 		if (locationBox) {
-			locationBox.style.display = 'none';
+			locationBox.style.setProperty('display', 'none', 'important');
+			locationBox.style.setProperty('visibility', 'hidden', 'important');
+			locationBox.style.setProperty('opacity', '0', 'important');
+			locationBox.style.setProperty('z-index', '-1', 'important');
+			locationBox.style.pointerEvents = 'none';
 		}
 		if (conts04) {
 			// #region agent log
@@ -378,7 +382,11 @@ function cont04() {
 		// #endregion
 		// Cerrar formulario - mostrar nuevamente el recuadro de direcciones
 		if (locationBox) {
-			locationBox.style.display = 'block';
+			locationBox.style.removeProperty('display');
+			locationBox.style.removeProperty('visibility');
+			locationBox.style.removeProperty('opacity');
+			locationBox.style.setProperty('z-index', '150', 'important');
+			locationBox.style.pointerEvents = 'auto';
 		}
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
