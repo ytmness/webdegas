@@ -342,10 +342,16 @@ function cont04() {
 		// #region agent log
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
 		// #endregion
-		// Abrir formulario - ocultar el recuadro de direcciones completamente
-		// Usar clase CSS para forzar ocultamiento
-		if (locationBox) {
-			locationBox.classList.add('locationBox-hidden');
+		// Abrir formulario - remover locationBox del DOM completamente
+		if (locationBox && locationBox.parentNode) {
+			// Guardar referencia del padre y del elemento
+			if (!window.locationBoxParent) {
+				window.locationBoxParent = locationBox.parentNode;
+				window.locationBoxNextSibling = locationBox.nextSibling;
+				window.locationBoxElement = locationBox;
+			}
+			// Remover del DOM
+			locationBox.parentNode.removeChild(locationBox);
 		}
 		if (conts04) {
 			// #region agent log
@@ -377,9 +383,14 @@ function cont04() {
 		// #region agent log
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:360',message:'Closing form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
 		// #endregion
-		// Cerrar formulario - mostrar nuevamente el recuadro de direcciones
-		if (locationBox) {
-			locationBox.classList.remove('locationBox-hidden');
+		// Cerrar formulario - restaurar locationBox al DOM
+		if (window.locationBoxParent && window.locationBoxElement) {
+			// Restaurar al DOM en su posición original
+			if (window.locationBoxNextSibling && window.locationBoxNextSibling.parentNode) {
+				window.locationBoxParent.insertBefore(window.locationBoxElement, window.locationBoxNextSibling);
+			} else {
+				window.locationBoxParent.appendChild(window.locationBoxElement);
+			}
 		}
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
