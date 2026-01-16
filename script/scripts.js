@@ -352,16 +352,9 @@ function cont04() {
 		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData3)}).catch(()=>{});
 		// #endregion
 		// Abrir formulario - ocultar el recuadro de direcciones completamente
-		// Ocultar ANTES de mostrar el formulario para evitar superposición
+		// Usar clase CSS para forzar ocultamiento
 		if (locationBox) {
-			// Guardar los estilos originales si no están guardados
-			if (!locationBox.dataset.originalStyle) {
-				locationBox.dataset.originalStyle = locationBox.getAttribute('style');
-			}
-			// Eliminar completamente el atributo style y aplicar nuevos estilos
-			locationBox.removeAttribute('style');
-			// Aplicar estilos de ocultamiento usando setProperty con important
-			locationBox.style.cssText = 'position: absolute !important; left: -9999px !important; top: 15px !important; width: 420px !important; height: 250px !important; background-color: #394a58 !important; z-index: -1 !important; padding: 18px !important; box-sizing: border-box !important; opacity: 0 !important; visibility: hidden !important; display: none !important; pointer-events: none !important;';
+			locationBox.classList.add('locationBox-hidden');
 		}
 		if (conts04) {
 			// #region agent log
@@ -404,14 +397,7 @@ function cont04() {
 		// #endregion
 		// Cerrar formulario - mostrar nuevamente el recuadro de direcciones
 		if (locationBox) {
-			// Restaurar los estilos originales guardados
-			if (locationBox.dataset.originalStyle) {
-				locationBox.setAttribute('style', locationBox.dataset.originalStyle);
-				locationBox.removeAttribute('data-original-style');
-			} else {
-				// Si no hay estilos guardados, restaurar manualmente
-				locationBox.setAttribute('style', 'position: absolute; left: 560px; top: 15px; width: 420px; height: 250px; background-color: #394a58 !important; z-index: 150 !important; padding: 18px; box-sizing: border-box; opacity: 1 !important;');
-			}
+			locationBox.classList.remove('locationBox-hidden');
 		}
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 

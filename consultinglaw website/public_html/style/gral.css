@@ -380,6 +380,14 @@ body {
 	right: 50px;
 	overflow: hidden;
 }
+#locationBox.locationBox-hidden {
+	display: none !important;
+	visibility: hidden !important;
+	opacity: 0 !important;
+	z-index: -1 !important;
+	left: -9999px !important;
+	pointer-events: none !important;
+}
 #img04 {
 	position: absolute;
 	top: 60px;
