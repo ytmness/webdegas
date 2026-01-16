@@ -329,27 +329,32 @@ cnt04pos=1;
 function cont04() {
 	var locationBox = document.getElementById('locationBox');
 	var conts04 = document.getElementById('conts04');
-	if (locationBox) {
+	var cnt04;
+	
+	// Fijar recuadro azul ANTES de mover el formulario
+	if (locationBox && cnt04pos==1) {
 		var rect = locationBox.getBoundingClientRect();
 		locationBox.style.position = 'fixed';
 		locationBox.style.left = rect.left + 'px';
 		locationBox.style.top = rect.top + 'px';
 		locationBox.style.zIndex = '100';
 	}
+	
 	if (cnt04pos==1) { 
 		if (conts04) {
 			conts04.style.zIndex = '200';
-			var cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
+			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
+			cnt04pos = 2;
 		}
-		cnt04pos = 2;
 	}
 	else { 
 		if (conts04) {
-			var cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
+			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
 			cnt04pos = 1;
 		}
 	}
-	if (conts04) {
+	
+	if (cnt04 && conts04) {
 		cnt04.start();
 	}
 }
