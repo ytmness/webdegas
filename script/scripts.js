@@ -362,23 +362,11 @@ function cont04() {
 			conts04.style.display = 'block';
 			// Crear la animación para subir el formulario
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
-			// #region agent log
-			var logData5 = {location:'scripts.js:348',message:'Tween created',data:{tweenCreated:!!cnt04,tweenType:typeof cnt04,hasStart:!!(cnt04&&cnt04.start)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'};
-			console.log('[DEBUG]', logData5);
-			fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData5)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
-			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData5)}).catch(()=>{});
-			// #endregion
 			if (cnt04) {
 				cnt04.start();
-				// #region agent log
 				setTimeout(function(){
 					var afterTop = conts04.style.top || window.getComputedStyle(conts04).top;
-					var logData6 = {location:'scripts.js:351',message:'After animation start',data:{afterTop:afterTop,computedTop:window.getComputedStyle(conts04).top,animationStarted:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'};
-					console.log('[DEBUG]', logData6);
-					fetch('debug_log.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData6)}).catch(function(e){console.log('[DEBUG] Log error:',e);});
-					fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData6)}).catch(()=>{});
 				},100);
-				// #endregion
 			}
 		}
 		cnt04pos = 2;
