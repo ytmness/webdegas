@@ -327,11 +327,21 @@ function text04(op) {
 
 cnt04pos=1;
 function cont04() {
+	// #region agent log
+	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:329',message:'cont04 called',data:{cnt04pos:cnt04pos},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+	// #endregion
 	var locationBox = document.getElementById('locationBox');
 	var conts04 = document.getElementById('conts04');
 	var cnt04;
 	
+	// #region agent log
+	fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:333',message:'Elements check',data:{locationBoxExists:!!locationBox,conts04Exists:!!conts04,TweenExists:typeof Tween!=='undefined'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+	// #endregion
+	
 	if (cnt04pos==1) { 
+		// #region agent log
+		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:337',message:'Opening form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+		// #endregion
 		// Abrir formulario - fijar recuadro azul en su posición actual antes de mover formulario
 		if (locationBox) {
 			var rect = locationBox.getBoundingClientRect();
@@ -341,18 +351,35 @@ function cont04() {
 			locationBox.style.zIndex = '100';
 		}
 		if (conts04) {
+			// #region agent log
+			var beforeTop = conts04.style.top || window.getComputedStyle(conts04).top;
+			var beforeZIndex = conts04.style.zIndex || window.getComputedStyle(conts04).zIndex;
+			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:345',message:'Before form animation',data:{beforeTop:beforeTop,beforeZIndex:beforeZIndex,computedTop:window.getComputedStyle(conts04).top,computedZIndex:window.getComputedStyle(conts04).zIndex},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+			// #endregion
 			// Asegurar que el formulario está visible y tiene z-index alto
 			conts04.style.zIndex = '200';
 			conts04.style.display = 'block';
 			// Crear la animación para subir el formulario
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
+			// #region agent log
+			fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:348',message:'Tween created',data:{tweenCreated:!!cnt04,tweenType:typeof cnt04,hasStart:!!(cnt04&&cnt04.start)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+			// #endregion
 			if (cnt04) {
 				cnt04.start();
+				// #region agent log
+				setTimeout(function(){
+					var afterTop = conts04.style.top || window.getComputedStyle(conts04).top;
+					fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:351',message:'After animation start',data:{afterTop:afterTop,computedTop:window.getComputedStyle(conts04).top,animationStarted:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+				},100);
+				// #endregion
 			}
 		}
 		cnt04pos = 2;
 	}
 	else { 
+		// #region agent log
+		fetch('http://127.0.0.1:7243/ingest/ef9c2ad9-d9c2-4d7b-876d-2da61a7f9dda',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'scripts.js:360',message:'Closing form branch',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+		// #endregion
 		// Cerrar formulario
 		if (conts04) {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, -320, 0, .4,'px'); 
