@@ -364,9 +364,6 @@ function cont04() {
 			cnt04 = new Tween(conts04.style,'top',Tween.regularEaseOut, 0, -320, .4,'px'); 
 			if (cnt04) {
 				cnt04.start();
-				setTimeout(function(){
-					var afterTop = conts04.style.top || window.getComputedStyle(conts04).top;
-				},100);
 			}
 		}
 		cnt04pos = 2;
