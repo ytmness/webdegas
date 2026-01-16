@@ -355,7 +355,6 @@ function cont04() {
 		} else {
 			console.error('[cont04] ERROR: locationBox o parentNode no existe. locationBox:', !!locationBox, 'parentNode:', !!locationBox?.parentNode);
 		}
-		}
 		if (conts04) {
 			console.log('[cont04] Configurando formulario conts04...');
 			// Asegurar que el formulario está visible y tiene z-index alto
