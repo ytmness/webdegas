@@ -390,10 +390,18 @@ function cont04() {
 
 // Verificación y corrección automática: Si la función cont04 tiene la versión antigua, sobrescribirla
 (function() {
+	console.log('[cont04] Iniciando verificación automática...');
 	if (typeof cont04 === 'function') {
 		var funcStr = cont04.toString();
-		// Si la función no tiene la lógica de locationBox, es la versión antigua
-		if (!funcStr.includes('locationBox') || funcStr.includes('var cnt04 = new Tween(document.getElementById(\'conts04\').style') && !funcStr.includes('locationBox.parentNode')) {
+		console.log('[cont04] Función encontrada. Longitud:', funcStr.length);
+		// Detectar versión antigua: si no tiene 'locationBox' o tiene el patrón antiguo sin locationBox
+		var hasLocationBox = funcStr.includes('locationBox');
+		var hasOldPattern = funcStr.includes('var cnt04 = new Tween(document.getElementById(\'conts04\').style') && funcStr.includes('cnt04pos = 2');
+		var isOldVersion = !hasLocationBox || (hasOldPattern && !funcStr.includes('locationBox.parentNode'));
+		
+		console.log('[cont04] Diagnóstico - hasLocationBox:', hasLocationBox, 'hasOldPattern:', hasOldPattern, 'isOldVersion:', isOldVersion);
+		
+		if (isOldVersion) {
 			console.log('[cont04] Detectada versión antigua, aplicando corrección automática...');
 			cont04 = function() {
 				var locationBox = document.getElementById('locationBox');
@@ -452,7 +460,11 @@ function cont04() {
 				}
 			};
 			console.log('[cont04] Corrección automática aplicada correctamente');
+		} else {
+			console.log('[cont04] Versión correcta detectada, no se requiere corrección');
 		}
+	} else {
+		console.error('[cont04] ERROR: cont04 no es una función');
 	}
 })();
 
